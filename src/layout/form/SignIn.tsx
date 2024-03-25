@@ -1,30 +1,16 @@
-"use client";
-// import { UserAuth } from "@/context/AuthContext";
+import React, { useState } from "react";
 import { auth, db } from "@/utils/firebase";
 import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-// import { query } from "firebase/database";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  where,
-  query,
-  getDocs,
-} from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import styled from "styled-components";
 
 const SignInLayout = () => {
-  // const { user, googleSignIn, logOut, setUser } = UserAuth();
   const [email, setEmail] = useState("");
   const [passwordOne, setPasswordOne] = useState("");
-  const [error, setError] = useState(null);
   const router = useRouter();
 
   const handleSignIn = async () => {
@@ -57,7 +43,7 @@ const SignInLayout = () => {
     }
   };
 
-  const handleSubmit = async (e: Event) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const { user } = await signInWithEmailAndPassword(
@@ -70,122 +56,59 @@ const SignInLayout = () => {
     }
   };
   return (
-    <SignInForm onSubmit={(e: any) => handleSubmit(e)}>
-      <SignInContainer>
-        <SignInTitle>Sign In</SignInTitle>
-        <div>
-          <SignInLabel htmlFor="email">Email</SignInLabel>
-          <SignInInput
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      className="bg-gray-200 min-h-screen flex items-center justify-center"
+    >
+      <div className="bg-white p-8 rounded shadow-md w-96">
+        <h2 className="text-2xl font-semibold mb-4">Sign In</h2>
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-gray-600 mb-1">
+            Email
+          </label>
+          <input
             type="email"
             id="email"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
           />
         </div>
-        <div>
-          <SignInLabel htmlFor="password">Password</SignInLabel>
-          <SignInInput
+        <div className="mb-4">
+          <label htmlFor="password" className="block text-gray-600 mb-1">
+            Password
+          </label>
+          <input
             type="password"
             id="password"
             name="password"
             value={passwordOne}
             onChange={(e) => setPasswordOne(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
           />
         </div>
-        <SignInButton type="submit">Sign In</SignInButton>
-        <SignInWithGoogleButton onClick={handleSignIn}>
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+        >
+          Sign In
+        </button>
+        <button
+          onClick={handleSignIn}
+          className="w-full bg-yellow-400 text-gray-800 py-2 rounded mt-4 hover:bg-yellow-500 focus:outline-none focus:bg-yellow-500"
+        >
           Sign In With Google
-        </SignInWithGoogleButton>
-        <ForgotPasswordLink href="#">Forgot your password?</ForgotPasswordLink>
-      </SignInContainer>
-    </SignInForm>
+        </button>
+        <a
+          href="#"
+          className="block text-blue-600 text-sm mt-4 hover:underline"
+        >
+          Forgot your password?
+        </a>
+      </div>
+    </form>
   );
 };
 
 export default SignInLayout;
-
-const SignInForm = styled.form`
-  background-color: #f3f4f6;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const SignInContainer = styled.div`
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 24rem;
-`;
-
-const SignInTitle = styled.h2`
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-`;
-
-const SignInLabel = styled.label`
-  display: block;
-  color: #4b5563;
-  font-size: 0.875rem;
-  margin-bottom: 0.5rem;
-`;
-
-const SignInInput = styled.input`
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.25rem;
-  outline: none;
-  transition: border-color 0.3s;
-
-  &:focus {
-    border-color: #60a5fa;
-  }
-`;
-
-const SignInButton = styled.button`
-  width: 100%;
-  background-color: #2563eb;
-  color: #fff;
-  padding: 0.75rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  outline: none;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #1e3a8a;
-  }
-`;
-
-const SignInWithGoogleButton = styled.button`
-  width: 100%;
-  background-color: #fcd34d;
-  color: #1f2937;
-  padding: 0.75rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  outline: none;
-  margin-top: 1rem;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #fbbf24;
-  }
-`;
-
-const ForgotPasswordLink = styled.a`
-  display: block;
-  margin-top: 1rem;
-  color: #3b82f6;
-  font-size: 0.875rem;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
