@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/styles";
+import Image from "next/image";
 
 interface IProp {
   imageSrc: string;
@@ -32,7 +33,13 @@ const AnimatedHoverLogo = ({
         transition={{ duration: 0.3 }}
         className="overflow-hidden z-40 h-full flex justify-end items-center flex-col"
       >
-        <img src={imageSrc} alt={altText} className="w-20 h-20 rounded-lg" />
+        <Image
+          src={imageSrc}
+          alt={altText}
+          width={80}
+          height={80}
+          className="w-20 h-20 rounded-lg"
+        />
 
         <p className=" text-white text-center h-2/3">{textContent}</p>
       </motion.div>

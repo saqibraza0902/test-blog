@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const AnimatedButton = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -27,7 +28,13 @@ const AnimatedButton = () => {
       >
         Click Here
       </motion.p>
-      <img src="edit.gif" alt="" className="absolute right-1" />
+      <Image
+        src="/edit.gif"
+        alt=""
+        height={10}
+        width={10}
+        className="absolute right-1"
+      />
     </button>
   );
 };

@@ -57,10 +57,11 @@ const DashboardLayout = () => {
           ...fields,
           featuredImage: { url: imageUrl, alt: imageUrl },
         });
+        setFile(null);
       }
     };
-    runs();
-  }, [file]);
+    file && runs();
+  }, [file, fields]);
   const handleTagClick = (selectedTag: string) => {
     setFields((prevFields: any) => ({
       ...prevFields,
