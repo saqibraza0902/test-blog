@@ -26,7 +26,7 @@ export default async function SinglePost({
             <div className="w-full h-96 bg-brand_gray-400"></div>
           )}
           <p>{blogPost?.desc}</p>
-          <div dangerouslySetInnerHTML={{ __html: blogPost?.content }} />
+          {/* <div dangerouslySetInnerHTML={{ __html: blogPost?.content }} /> */}
         </div>
       </div>
     </CommonLayout>
