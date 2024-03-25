@@ -15,7 +15,7 @@ export const get_blogs = async () => {
     return error;
   }
 };
-export const getAllPortfolio = async () => {
+export const get_portfolios = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/portfolio`, {
       method: "GET",
@@ -99,6 +99,6 @@ export const get_tags = async () => {
     }));
     return data;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 };
