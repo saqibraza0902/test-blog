@@ -14,9 +14,6 @@ export const GET = async (req: Request) => {
     }));
     return new NextResponse(JSON.stringify(data));
   } catch (err) {
-    console.log(err);
-    return new NextResponse(
-      JSON.stringify({ message: "Something went wrong!" })
-    );
+    return new NextResponse(JSON.stringify({ message: err }));
   }
 };

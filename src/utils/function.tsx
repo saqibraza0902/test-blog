@@ -5,11 +5,8 @@ export const get_blogs = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
       method: "GET",
-      cache: "no-cache",
     });
-    if (!res.ok) {
-      throw new Error("Failed");
-    }
+
     return res.json();
   } catch (error) {
     return error;
