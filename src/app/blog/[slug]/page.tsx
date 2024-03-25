@@ -8,12 +8,12 @@ export default async function SinglePost({
 }: {
   params: { slug: string };
 }) {
-  // const blogPost: IBlog = await getSinglePost(params.slug);
+  const blogPost: IBlog = await getSinglePost(params.slug);
   return (
     <CommonLayout>
       <div className="flex justify-center w-full min-h-screen">
         <div className="w-2/3 mx-auto p-4">
-          {/* <h2 className="text-2xl  font-semibold">{blogPost.title}</h2>
+          <h2 className="text-2xl  font-semibold">{blogPost.title}</h2>
           {blogPost?.featuredImage?.url ? (
             <div className=" w-full">
               <img
@@ -26,7 +26,7 @@ export default async function SinglePost({
             <div className="w-full h-96 bg-brand_gray-400"></div>
           )}
           <p>{blogPost?.desc}</p>
-          <div dangerouslySetInnerHTML={{ __html: blogPost?.content }} /> */}
+          <div dangerouslySetInnerHTML={{ __html: blogPost?.content }} />
         </div>
       </div>
     </CommonLayout>
