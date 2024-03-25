@@ -1,7 +1,7 @@
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 
-export const getAllPosts = async () => {
+export const get_blogs = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
       method: "GET",
@@ -12,7 +12,7 @@ export const getAllPosts = async () => {
     }
     return res.json();
   } catch (error) {
-    throw new Error("Error");
+    return error;
   }
 };
 export const getAllPortfolio = async () => {
@@ -26,7 +26,7 @@ export const getAllPortfolio = async () => {
     }
     return res.json();
   } catch (error) {
-    throw new Error("Error");
+    return error;
   }
 };
 
@@ -44,8 +44,7 @@ export const getSinglePost = async (id: string) => {
     }
     return res.json();
   } catch (error) {
-    console.log(error);
-    // throw new Error("Error");
+    return error;
   }
 };
 
@@ -63,8 +62,7 @@ export const getSinglePortfolio = async (slug: string) => {
     }
     return res.json();
   } catch (error) {
-    console.log(error);
-    // throw new Error("Error");
+    return error;
   }
 };
 export const deleteDocument = async (documentId: string) => {

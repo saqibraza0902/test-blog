@@ -1,6 +1,5 @@
 import React from "react";
 import Navigation from "./components/Navigation";
-import ImageWithAnimatedText from "./components/Footer";
 
 interface ICommon {
   children: React.ReactNode;

@@ -11,7 +11,7 @@ import RadioInput from "@/ui/form/Radio";
 import Button from "@/ui/form/Button";
 import Pills from "@/ui/components/Pills";
 import ImageWithFallback from "@/utils/Imgwithfallback";
-import { get_tags } from "@/utils/firebase.function";
+import { get_tags } from "@/utils/function";
 import { slugify } from "@/utils/slugify";
 import { uploadFile } from "@/utils/uploadFile";
 const initialState = {
