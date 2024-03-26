@@ -10,6 +10,7 @@ export const get_blogs = async () => {
     if (!res.ok) {
       return console.log("Blog function not working");
     }
+    console.log(res.json());
     return res.json();
   } catch (error) {
     return error;

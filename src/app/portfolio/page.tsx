@@ -16,10 +16,10 @@ const Portfolio = async () => {
             <div key={index}>
               <div>
                 {post?.gallery?.length > 0 ? (
-                  <div className="relative group">
+                  <div className="relative h-80 group">
                     <Image
                       fill={true}
-                      className="h-80"
+                      className=""
                       alt={post?.gallery[0]?.alt}
                       src={post?.gallery[0]?.url}
                     />
