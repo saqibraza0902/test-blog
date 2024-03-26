@@ -4,22 +4,6 @@ import { IBlog } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-export const revalidate = 10;
-// const get_blogs = async () => {
-//   try {
-//     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
-//       method: "GET",
-//       cache: "force-cache",
-//     });
-//     if (res.ok) {
-//       return console.log("Error");
-//     }
-//     console.log(res.json());
-//     return res.json();
-//   } catch (error) {
-//     return error;
-//   }
-// };
 export default async function Blog() {
   const blogPosts = await get_blogs();
   return (

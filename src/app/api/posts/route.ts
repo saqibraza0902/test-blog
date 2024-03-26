@@ -17,3 +17,5 @@ export const GET = async (req: Request) => {
     return new NextResponse(JSON.stringify({ message: err }));
   }
 };
+// export const dynamic = "force-dynamic";
+export const revalidate = 0;
