@@ -1,15 +1,28 @@
 import CommonLayout from "@/layout";
-import { get_blogs } from "@/utils/function";
+// import { get_blogs } from "@/utils/function";
 import { IBlog } from "@/utils/types";
 import Link from "next/link";
 import React from "react";
 import { MdManageHistory } from "react-icons/md";
-
+const get_blogs = async () => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
+      method: "GET",
+      next: { revalidate: 10 },
+    });
+    if (res.ok) {
+      return console.log("Error");
+    }
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};
 export default async function Blog() {
   const blogPosts = await get_blogs();
   return (
     <CommonLayout>
-      {blogPosts.length > 0 ? (
+      {blogPosts?.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 p-10 ">
           {blogPosts.map((post: IBlog) => (
             <div key={post.id}>

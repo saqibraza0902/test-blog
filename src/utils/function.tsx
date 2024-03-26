@@ -1,24 +1,13 @@
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 
 export const get_blogs = async () => {
   try {
-    const colRef = collection(db, "Blogs");
-    const snapshot = await getDocs(
-      query(colRef, where("isArchived", "==", false))
-    );
-    const data = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    return data;
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
+      method: "GET",
+    });
+
+    return res.json();
   } catch (error) {
     return error;
   }
