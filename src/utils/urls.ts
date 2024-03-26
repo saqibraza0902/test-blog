@@ -4,5 +4,5 @@ export const PUBLIC_URLS = {
   PROJECTS: "/portfolio",
   BLOG: "/blog",
   COLLECTIBLES: "/collectibles",
-  CONTACT: "/contact",
+  CONTACT: "/",
 };

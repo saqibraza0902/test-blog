@@ -5,7 +5,7 @@ export const get_blogs = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
       method: "GET",
-      cache: "force-cache",
+      cache: "no-store",
     });
     if (res.ok) {
       return console.log("Blog function not working");
