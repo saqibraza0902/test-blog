@@ -4,6 +4,7 @@ import { IBlog } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+export const revalidate = 0;
 export default async function Blog() {
   const blogPosts = await get_blogs();
   return (
