@@ -2,6 +2,7 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/Hooks";
 import CommonLayout from "@/layout";
 import { addItem, decrementItem, removeItem } from "@/redux/slices/cartSlices";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -30,7 +31,9 @@ const Cart = () => {
           <div key={post.id}>
             <div className="bg-white shadow-lg rounded-lg overflow-hidden m-4 w-80">
               <Link href={`/collectibles/${post.id}`}>
-                <img
+                <Image
+                  height={200}
+                  width={200}
                   className="w-full h-48 object-cover object-center"
                   src={post.image}
                   alt={post.title}

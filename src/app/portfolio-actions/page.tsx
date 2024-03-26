@@ -18,6 +18,7 @@ import { IPortfolio } from "@/utils/types";
 import Button from "@/ui/form/Button";
 import { uploadFile } from "@/utils/uploadFile";
 import FileInput from "@/ui/form/FileInput";
+import Image from "next/image";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -105,8 +106,9 @@ const PortfolioActions = () => {
           <div key={index}>
             <div>
               {post?.gallery?.length > 0 ? (
-                <div className="relative group">
-                  <img
+                <div className="relative h-80 group">
+                  <Image
+                    fill={true}
                     className="h-80"
                     alt={post?.gallery[0]?.alt}
                     src={post?.gallery[0]?.url}
@@ -231,7 +233,13 @@ const PortfolioActions = () => {
                   <div className=" grid grid-cols-4">
                     {fields.gallery.map((item: IItem, index: number) => (
                       <div key={index} className="h-20 w-20">
-                        <img className="w-full h-full" alt="" src={item.url} />
+                        <Image
+                          height={80}
+                          width={80}
+                          className="w-full h-full"
+                          alt=""
+                          src={item.url}
+                        />
                         <button onClick={() => removeItemFromGallery(index)}>
                           Remove
                         </button>

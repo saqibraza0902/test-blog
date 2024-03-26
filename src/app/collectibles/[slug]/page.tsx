@@ -1,5 +1,6 @@
 "use client";
 import CommonLayout from "@/layout";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 const get_single_posts = async (slug: string) => {
   try {
@@ -34,7 +35,9 @@ const SingleCollectible = ({ params }: { params: { slug: string } }) => {
     <CommonLayout>
       <div>
         <div className="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-xl">
-          <img
+          <Image
+            height={250}
+            width={250}
             className="w-full h-64 object-cover object-center"
             src={newdata?.image}
             alt="Collectible Image"

@@ -1,6 +1,7 @@
 import CommonLayout from "@/layout";
 import { getSinglePost } from "@/utils/function";
 import { IBlog } from "@/utils/types";
+import Image from "next/image";
 import React from "react";
 
 export default async function SinglePost({
@@ -12,14 +13,15 @@ export default async function SinglePost({
   return (
     <CommonLayout>
       <div className="flex justify-center w-full min-h-screen">
-        <div className="w-2/3 mx-auto p-4">
+        <div className="!w-2/3 grid grid-cols-1 !mx-auto p-4">
           <h2 className="text-2xl  font-semibold">{blogPost.title}</h2>
           {blogPost?.featuredImage?.url ? (
-            <div className=" w-full">
-              <img
-                className="object-center"
-                src={blogPost?.featuredImage?.url}
+            <div className="relative h-80 group">
+              <Image
+                layout="fill"
+                // className="h-full"
                 alt={blogPost?.featuredImage?.alt}
+                src={blogPost.featuredImage?.url}
               />
             </div>
           ) : (

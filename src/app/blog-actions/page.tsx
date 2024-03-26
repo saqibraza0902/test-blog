@@ -10,7 +10,9 @@ import { slugify } from "@/utils/slugify";
 import { IBlog } from "@/utils/types";
 import { uploadFile } from "@/utils/uploadFile";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -29,6 +31,7 @@ const fetcher = async (url: string) => {
 };
 const BlogActions = () => {
   const [delOpen, setDelOpen] = useState(false);
+  const { theme } = useTheme();
   const [editOpen, setEditOpen] = useState(false);
   const [fields, setFields] = useState<any>();
   const [file, setFile] = useState<null | any>();
@@ -100,7 +103,8 @@ const BlogActions = () => {
           <div key={post.id}>
             {post.featuredImage.url ? (
               <div className="relative group">
-                <img
+                <Image
+                  fill={true}
                   className="h-80"
                   alt={post.featuredImage?.alt}
                   src={post.featuredImage?.url}
@@ -196,7 +200,9 @@ const BlogActions = () => {
                     <div className=" grid grid-cols-4">
                       {/* {fields.featuredImage.map((item: IItem, index: number) => ( */}
                       <div className="h-20 w-20">
-                        <img
+                        <Image
+                          width={80}
+                          height={80}
                           className="w-full h-full"
                           alt=""
                           src={fields.featuredImage.url}
@@ -220,7 +226,12 @@ const BlogActions = () => {
                   />
                   <JoditEditor
                     value={fields?.content}
-                    config={config}
+                    config={{
+                      ...config,
+                      style: {
+                        background: theme === "dark" ? "#22253d" : "#fff",
+                      },
+                    }}
                     onBlur={(newContent) =>
                       setFields({ ...fields, content: newContent })
                     }

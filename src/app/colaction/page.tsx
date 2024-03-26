@@ -16,6 +16,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 import React, { useEffect, useState } from "react";
 import { BiEdit, BiTrash } from "react-icons/bi";
@@ -122,7 +123,9 @@ const ColAction = () => {
         {collectible.map((post: any) => (
           <div key={post.id}>
             <div className="bg-white shadow-lg rounded-lg overflow-hidden m-4 w-80">
-              <img
+              <Image
+                height={192}
+                width={192}
                 className="w-full h-48 object-cover object-center"
                 src={post.image}
                 alt={post.title}
@@ -263,7 +266,9 @@ const ColAction = () => {
               <div className="w-full">
                 {fields?.image ? (
                   <div className="relative">
-                    <img
+                    <Image
+                      height={200}
+                      width={200}
                       src={fields?.image}
                       alt=""
                       className="h-50 w-50 object-contain"

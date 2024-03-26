@@ -14,6 +14,7 @@ import { uploadFile } from "@/utils/uploadFile";
 import RadioInput from "@/ui/form/Radio";
 import Button from "@/ui/form/Button";
 import { slugify } from "@/utils/slugify";
+import Image from "next/image";
 export interface IItem {
   url: string;
   alt: string;
@@ -123,7 +124,13 @@ const NewPortfolio = () => {
               <div className=" grid grid-cols-4">
                 {fields.gallery.map((item: IItem, index) => (
                   <div className="h-20 w-20" key={index}>
-                    <img className="w-full h-full" alt="" src={item.url} />
+                    <Image
+                      height={80}
+                      width={80}
+                      className="w-full h-full"
+                      alt=""
+                      src={item.url}
+                    />
                   </div>
                 ))}
               </div>

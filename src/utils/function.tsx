@@ -3,11 +3,11 @@ import { db } from "./firebase";
 
 export const get_blogs = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
+    const res = await fetch(`http://localhost:3000/api/posts`, {
       method: "GET",
-      cache: "no-store",
+      cache: "no-cache",
     });
-    if (res.ok) {
+    if (!res.ok) {
       return console.log("Blog function not working");
     }
     return res.json();

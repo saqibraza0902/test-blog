@@ -5,6 +5,7 @@ import { addItem } from "@/redux/slices/cartSlices";
 import { db } from "@/utils/firebase";
 import { increment } from "firebase/database";
 import { collection, getDocs } from "firebase/firestore";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
@@ -43,7 +44,9 @@ const Collectibles = () => {
           <div key={post.id}>
             <div className="bg-white shadow-lg rounded-lg overflow-hidden m-4 w-80">
               <Link href={`/collectibles/${post.id}`}>
-                <img
+                <Image
+                  width={200}
+                  height={200}
                   className="w-full h-48 object-cover object-center"
                   src={post.image}
                   alt={post.title}

@@ -1,6 +1,7 @@
 import CommonLayout from "@/layout";
 import { get_portfolios } from "@/utils/function";
 import { IPortfolio } from "@/utils/types";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -16,7 +17,8 @@ const Portfolio = async () => {
               <div>
                 {post?.gallery?.length > 0 ? (
                   <div className="relative group">
-                    <img
+                    <Image
+                      fill={true}
                       className="h-80"
                       alt={post?.gallery[0]?.alt}
                       src={post?.gallery[0]?.url}

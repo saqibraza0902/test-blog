@@ -47,8 +47,8 @@ const NewCollectibles = () => {
         setFields({ ...fields, downloadUrl: fileUrl });
       }
     };
-    runs();
-  }, [files]);
+    files && runs();
+  }, [files, fields]);
   const handleSubmit = async () => {
     try {
       const docRef = await addDoc(collection(db, "Collectibles"), {

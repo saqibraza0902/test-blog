@@ -1,6 +1,7 @@
 import CommonLayout from "@/layout";
 import { get_blogs } from "@/utils/function";
 import { IBlog } from "@/utils/types";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 export const revalidate = 10;
@@ -28,10 +29,11 @@ export default async function Blog() {
           {blogPosts.map((post: IBlog) => (
             <div key={post.id}>
               {post.featuredImage.url ? (
-                <div className="relative group">
-                  <img
-                    className="h-80"
-                    alt={post.featuredImage?.alt}
+                <div className="relative h-80 group">
+                  <Image
+                    layout="fill"
+                    // className="h-full"
+                    alt={post?.featuredImage?.alt}
                     src={post.featuredImage?.url}
                   />
                 </div>

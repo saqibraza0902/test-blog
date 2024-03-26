@@ -1,6 +1,7 @@
 import { IItem } from "@/app/newportfolio/page";
 import CommonLayout from "@/layout";
 import { IPortfolio } from "@/utils/types";
+import Image from "next/image";
 import React from "react";
 
 const getData = async (slug: any) => {
@@ -30,8 +31,9 @@ const SinglePortfolio = async (props: any) => {
           {data?.gallery.length > 0 && (
             <div className="grid grid-cols-4 gap-2">
               {data?.gallery?.map((item: IItem, index) => (
-                <div className=" w-full" key={index}>
-                  <img
+                <div className=" w-full h-80" key={index}>
+                  <Image
+                    fill={true}
                     className="object-contain h-full"
                     src={item?.url}
                     alt={item?.alt}
