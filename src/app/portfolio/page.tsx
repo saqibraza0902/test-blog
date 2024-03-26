@@ -3,7 +3,6 @@ import { get_portfolios } from "@/utils/function";
 import { IPortfolio } from "@/utils/types";
 import Link from "next/link";
 import React from "react";
-import { MdManageHistory } from "react-icons/md";
 
 const Portfolio = async () => {
   const newposts = await get_portfolios();
@@ -22,20 +21,9 @@ const Portfolio = async () => {
                       alt={post?.gallery[0]?.alt}
                       src={post?.gallery[0]?.url}
                     />
-                    <div className="absolute top-5 left-5 inset-0  opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Link href={`/actions?id=${post?.id}&slug=portfolio`}>
-                        <MdManageHistory size={25} color="#a0a0a0" />
-                      </Link>
-                    </div>
                   </div>
                 ) : (
-                  <div className="h-80 w-full bg-slate-400">
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Link href={`/actions?id=${post?.id}&slug=portfolio`}>
-                        <MdManageHistory />
-                      </Link>
-                    </div>
-                  </div>
+                  <div className="h-80 w-full bg-slate-400"></div>
                 )}
                 <Link
                   className="cursor-pointer"
