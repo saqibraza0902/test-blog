@@ -7,11 +7,12 @@ const get_blogs = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
       method: "GET",
-      next: { revalidate: 10 },
+      cache: "force-cache",
     });
     if (res.ok) {
       return console.log("Error");
     }
+    console.log(res.json());
     return res.json();
   } catch (error) {
     return error;
