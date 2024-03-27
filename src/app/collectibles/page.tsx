@@ -2,8 +2,8 @@
 import { useAppDispatch } from "@/hooks/Hooks";
 import CommonLayout from "@/layout";
 import { addItem } from "@/redux/slices/cartSlices";
+import Loader from "@/ui/components/Loader";
 import { db } from "@/utils/firebase";
-import { increment } from "firebase/database";
 import { collection, getDocs } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,10 +12,12 @@ import { BiPlus } from "react-icons/bi";
 
 const Collectibles = () => {
   const [collectible, setCollectible] = useState<any>([]);
+  const [loading, setloading] = useState(false);
   const dispatch = useAppDispatch();
   useEffect(() => {
     const get_data = async () => {
       try {
+        setloading(true);
         const colRef = collection(db, "Collectibles");
         const snapshot = await getDocs(colRef);
         const data = snapshot.docs.map((doc) => ({
@@ -23,8 +25,11 @@ const Collectibles = () => {
           ...doc.data(),
         }));
         setCollectible(data);
+        setloading(false);
       } catch (error) {
         console.log(error);
+      } finally {
+        setloading(false);
       }
     };
     get_data();
@@ -39,6 +44,11 @@ const Collectibles = () => {
   };
   return (
     <CommonLayout>
+      {loading && (
+        <div className="flex justify-start mx-auto items-center h-screen w-max">
+          <Loader />
+        </div>
+      )}
       <div className="grid grid-cols-3">
         {collectible.map((post: any) => (
           <div key={post.id}>

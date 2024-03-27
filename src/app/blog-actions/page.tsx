@@ -1,6 +1,7 @@
 "use client";
 import CommonLayout from "@/layout";
 import Modal from "@/layout/components/modal";
+import Loader from "@/ui/components/Loader";
 import Button from "@/ui/form/Button";
 import FileInput from "@/ui/form/FileInput";
 import Input from "@/ui/form/Input";
@@ -98,9 +99,14 @@ const BlogActions = () => {
   }, [file, fields]);
   return (
     <CommonLayout>
+      {isLoading && (
+        <div className="flex justify-start mx-auto items-center h-screen w-max">
+          <Loader />
+        </div>
+      )}
       <div className="grid grid-cols-3 gap-10 p-10 ">
-        {data?.map((post: IBlog) => (
-          <div key={post.id}>
+        {data?.map((post: IBlog, index: number) => (
+          <div key={index}>
             {post.featuredImage.url ? (
               <div className="relative h-80 group">
                 <Image
@@ -176,7 +182,9 @@ const BlogActions = () => {
         <Modal isOpen={editOpen} onClose={() => setEditOpen(false)}>
           <div className="overflow-y-auto bg-white h-full p-5 rounded-xl">
             {isPostLoading ? (
-              <p>Loading</p>
+              <p>
+                <Loader />
+              </p>
             ) : (
               <>
                 <h1 className="text-2xl font-bold mb-4 text-black">Edit</h1>

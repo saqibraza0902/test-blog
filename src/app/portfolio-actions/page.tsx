@@ -19,6 +19,7 @@ import Button from "@/ui/form/Button";
 import { uploadFile } from "@/utils/uploadFile";
 import FileInput from "@/ui/form/FileInput";
 import Image from "next/image";
+import Loader from "@/ui/components/Loader";
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -101,6 +102,11 @@ const PortfolioActions = () => {
   }, [file]);
   return (
     <CommonLayout>
+      {isLoading && (
+        <div className="flex justify-start mx-auto items-center h-screen w-max">
+          <Loader />
+        </div>
+      )}
       <div className="grid grid-cols-3 gap-10 p-10 ">
         {data?.map((post: IPortfolio, index: number) => (
           <div key={index}>
@@ -155,9 +161,11 @@ const PortfolioActions = () => {
         ))}
       </div>
       <Modal isOpen={editOpen}>
-        <div className="overflow-y-auto mx-auto w-full bg-transparent h-max p-10 rounded-xl !bg-white">
+        <div className="overflow-y-auto mx-auto dark:text-black w-full bg-transparent h-max p-10 rounded-xl !bg-white">
           {isPostLoading ? (
-            <p>Loading</p>
+            <p>
+              <Loader />
+            </p>
           ) : (
             <>
               <h1 className="text-2xl font-bold mb-4">Edit</h1>
@@ -275,7 +283,7 @@ const PortfolioActions = () => {
                 </Button>
                 <Button
                   onClick={() => {
-                    setEditOpen(false);
+                    setEditOpen(!editOpen);
                     setId("");
                   }}
                   className="bg-brand_gray-500 text-white "

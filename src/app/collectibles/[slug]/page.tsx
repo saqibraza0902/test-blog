@@ -18,21 +18,31 @@ const get_single_posts = async (slug: string) => {
   }
 };
 const SingleCollectible = ({ params }: { params: { slug: string } }) => {
-  //   console.log(props);
   const [newdata, setNewData] = useState<any>();
+  const [loading, setloading] = useState(false);
   useEffect(() => {
     const get_data = async () => {
       try {
+        setloading(true);
         const data = await get_single_posts(params.slug);
+
         setNewData(data);
+        setloading(false);
       } catch (error) {
         console.log(error);
+      } finally {
+        setloading(false);
       }
     };
     get_data();
   }, [params]);
   return (
     <CommonLayout>
+      {loading && (
+        <div className="flex justify-start mx-auto items-center h-screen w-max">
+          <span>Loading...</span>
+        </div>
+      )}
       <div>
         <div className="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-xl">
           <Image
@@ -43,7 +53,9 @@ const SingleCollectible = ({ params }: { params: { slug: string } }) => {
             alt="Collectible Image"
           />
           <div className="p-4">
-            <h1 className="text-2xl font-bold mb-2">Title: {newdata?.title}</h1>
+            <h1 className="text-2xl font-bold mb-2 dark:text-black">
+              Title: {newdata?.title}
+            </h1>
 
             <p className="text-gray-700 text-lg mb-2">
               Price: ${newdata?.price}

@@ -71,15 +71,16 @@ const Navbar = ({ toggle }: any) => {
             <HiOutlineSun color={theme === "dark" ? "#fff" : "#fff"} />
           </p>
         </li>
-        <li
+        <Link
+          href="/cart"
           className="relative cursor-pointer"
-          onClick={() => router.push("/cart")}
+          // onClick={() => router.push("/cart")}
         >
           <BsCart size={25} />
           <span className="absolute -top-2 bg-brand_red-800 w-4 text-sm h-5 flex justify-center items-center rounded-full -right-2">
             {items.length}
           </span>
-        </li>
+        </Link>
         {user && (
           <>
             {AUTH_NAV.map((item, index) => (

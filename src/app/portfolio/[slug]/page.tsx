@@ -28,7 +28,7 @@ const SinglePortfolio = async (props: any) => {
       <div className="flex justify-center w-full min-h-screen">
         <div className="w-2/3 mx-auto flex flex-col gap-10 p-4">
           <h2 className="text-2xl  font-semibold">{data.title}</h2>
-          {data?.gallery.length > 0 && (
+          {data?.gallery?.length > 0 && (
             <div className="grid grid-cols-4 gap-2">
               {data?.gallery?.map((item: IItem, index) => (
                 <div className=" w-full h-80 relative group" key={index}>
@@ -48,7 +48,7 @@ const SinglePortfolio = async (props: any) => {
             <p>Individual: {data?.client?.isIndividual ? "Yes" : "No"}</p>
           </div>
           <p>{data?.desc}</p>
-          <div dangerouslySetInnerHTML={{ __html: data?.content }} />
+          {/* <div dangerouslySetInnerHTML={{ __html: data?.content }} /> */}
         </div>
       </div>
     </CommonLayout>

@@ -2,6 +2,7 @@
 import adminAuth from "@/hooks/adminAuth";
 import CommonLayout from "@/layout";
 import Modal from "@/layout/components/modal";
+import Loader from "@/ui/components/Loader";
 import Button from "@/ui/form/Button";
 import Input from "@/ui/form/Input";
 import { config } from "@/utils/editor";
@@ -33,12 +34,14 @@ const fetcher = async (url: string) => {
 };
 const ColAction = () => {
   const [collectible, setCollectible] = useState<any>([]);
+  const [loading, setloading] = useState(false);
   const [delOpen, setDelOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [id, setId] = useState("");
   useEffect(() => {
     const get_data = async () => {
       try {
+        setloading(true);
         const colRef = collection(db, "Collectibles");
         const snapshot = await getDocs(colRef);
         const data = snapshot.docs.map((doc) => ({
@@ -46,8 +49,11 @@ const ColAction = () => {
           ...doc.data(),
         }));
         setCollectible(data);
+        setloading(true);
       } catch (error) {
         console.log(error);
+      } finally {
+        setloading(false);
       }
     };
     get_data();
@@ -121,6 +127,11 @@ const ColAction = () => {
   };
   return (
     <CommonLayout>
+      {loading && (
+        <div className="flex justify-start mx-auto items-center h-screen w-max">
+          <Loader />
+        </div>
+      )}
       <div className="grid grid-cols-3">
         {collectible.map((post: any) => (
           <div key={post.id}>
@@ -195,128 +206,138 @@ const ColAction = () => {
           </div>
         </Modal>
         <Modal isOpen={editOpen} onClose={() => setEditOpen(false)}>
-          <div className="h-full !bg-white w-full  mx-auto p-10 my-auto rounded-xl">
-            <div className="flex w-full py-4 gap-10 justify-center">
-              <div className="w-full">
-                <label>Title</label>
-                <Input
-                  value={fields?.title}
-                  onChange={(e) =>
-                    setFields({ ...fields, title: e.target.value })
-                  }
-                  className="w-full"
-                />
+          <div className="h-full !bg-white dark:text-black w-full  mx-auto p-10 my-auto rounded-xl">
+            {isLoading ? (
+              <div>
+                <Loader />
               </div>
-              <div className="w-full">
-                <label>Price</label>
-                <Input
-                  value={fields?.price ? fields.price : ""}
-                  onChange={(e) =>
-                    setFields({ ...fields, price: Number(e.target.value) })
-                  }
-                  className="w-full"
-                />
-              </div>
-            </div>
-            <div className="flex w-full py-4 gap-10 justify-center">
-              <div className="w-full">
-                <label>Type</label>
-                <Input
-                  value={fields?.type}
-                  onChange={(e) =>
-                    setFields({ ...fields, type: e.target.value })
-                  }
-                  className="w-full"
-                />
-              </div>
-              <div className="w-full">
-                <label>Sub Type</label>
-                <Input
-                  value={fields?.subtype}
-                  onChange={(e) =>
-                    setFields({ ...fields, subtype: e.target.value })
-                  }
-                  className="w-full"
-                />
-              </div>
-            </div>
-            <div className="flex w-full py-4 gap-10 justify-center">
-              <div className="w-full">
-                {fields?.downloadUrl ? (
-                  <div className="relative">
-                    <RxCross1
-                      className="absolute top-0 left-3"
-                      size={25}
-                      onClick={() => setFields({ ...fields, downloadUrl: "" })}
-                    />
-                    <Button className="bg-red-500">Download URL</Button>
-                  </div>
-                ) : (
-                  <>
-                    <label>File</label>
+            ) : (
+              <>
+                <div className="flex w-full py-4 gap-10 justify-center">
+                  <div className="w-full">
+                    <label>Title</label>
                     <Input
-                      onChange={(e: any) =>
-                        setFiles({ ...files, file: e.target.files[0] })
+                      value={fields?.title}
+                      onChange={(e) =>
+                        setFields({ ...fields, title: e.target.value })
                       }
-                      type="file"
-                      accept=".zip"
                       className="w-full"
                     />
-                  </>
-                )}
-              </div>
-              <div className="w-full">
-                {fields?.image ? (
-                  <div className="relative">
-                    <Image
-                      height={200}
-                      width={200}
-                      src={fields?.image}
-                      alt=""
-                      className="h-50 w-50 object-contain"
-                    />
-                    <RxCross1
-                      className="absolute top-0 left-3"
-                      size={25}
-                      onClick={() => setFields({ ...fields, image: "" })}
-                    />
                   </div>
-                ) : (
-                  <>
-                    <label>Image</label>
+                  <div className="w-full">
+                    <label>Price</label>
                     <Input
-                      onChange={(e: any) =>
-                        setFiles({ ...files, image: e.target.files[0] })
+                      value={fields?.price ? fields.price : ""}
+                      onChange={(e) =>
+                        setFields({ ...fields, price: Number(e.target.value) })
                       }
-                      accept=".jpg, .png, .jpeg"
-                      type="file"
                       className="w-full"
                     />
-                  </>
-                )}
-              </div>
-            </div>
-            <div className="flex w-full py-4 gap-10 justify-center">
-              <JoditEditor
-                value={content}
-                config={config}
-                onBlur={(newContent) => setContent(newContent)}
-              />
-            </div>
-            <div className="flex mx-auto py-4 w-2/3 gap-10 justify-center">
-              <Button
-                onClick={() => handleSubmit()}
-                className="bg-brand_green-600"
-              >
-                Submit
-              </Button>
-              <Button
-                onClick={() => setEditOpen(false)}
-                className="bg-brand_gray-500"
-              >
-                Cancel
-              </Button>
-            </div>
+                  </div>
+                </div>
+                <div className="flex w-full py-4 gap-10 justify-center">
+                  <div className="w-full">
+                    <label>Type</label>
+                    <Input
+                      value={fields?.type}
+                      onChange={(e) =>
+                        setFields({ ...fields, type: e.target.value })
+                      }
+                      className="w-full"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <label>Sub Type</label>
+                    <Input
+                      value={fields?.subtype}
+                      onChange={(e) =>
+                        setFields({ ...fields, subtype: e.target.value })
+                      }
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+                <div className="flex w-full py-4 gap-10 justify-center">
+                  <div className="w-full">
+                    {fields?.downloadUrl ? (
+                      <div className="relative">
+                        <RxCross1
+                          className="absolute top-0 left-3"
+                          size={25}
+                          onClick={() =>
+                            setFields({ ...fields, downloadUrl: "" })
+                          }
+                        />
+                        <Button className="bg-red-500">Download URL</Button>
+                      </div>
+                    ) : (
+                      <>
+                        <label>File</label>
+                        <Input
+                          onChange={(e: any) =>
+                            setFiles({ ...files, file: e.target.files[0] })
+                          }
+                          type="file"
+                          accept=".zip"
+                          className="w-full"
+                        />
+                      </>
+                    )}
+                  </div>
+                  <div className="w-full">
+                    {fields?.image ? (
+                      <div className="relative">
+                        <Image
+                          height={200}
+                          width={200}
+                          src={fields?.image}
+                          alt=""
+                          className="h-50 w-50 object-contain"
+                        />
+                        <RxCross1
+                          className="absolute top-0 left-3"
+                          size={25}
+                          onClick={() => setFields({ ...fields, image: "" })}
+                        />
+                      </div>
+                    ) : (
+                      <>
+                        <label>Image</label>
+                        <Input
+                          onChange={(e: any) =>
+                            setFiles({ ...files, image: e.target.files[0] })
+                          }
+                          accept=".jpg, .png, .jpeg"
+                          type="file"
+                          className="w-full"
+                        />
+                      </>
+                    )}
+                  </div>
+                </div>
+                <div className="flex w-full py-4 gap-10 justify-center">
+                  <JoditEditor
+                    value={content}
+                    config={config}
+                    onBlur={(newContent) => setContent(newContent)}
+                  />
+                </div>
+                <div className="flex mx-auto py-4 w-2/3 gap-10 justify-center">
+                  <Button
+                    onClick={() => handleSubmit()}
+                    className="bg-brand_green-600"
+                  >
+                    Submit
+                  </Button>
+                  <Button
+                    onClick={() => setEditOpen(false)}
+                    className="bg-brand_gray-500"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
         </Modal>
       </div>
