@@ -19,3 +19,4 @@ export const GET = async (req: Request, { params }: IProp) => {
     return new NextResponse(JSON.stringify({ message: err }), { status: 500 });
   }
 };
+export const revalidate = 0;
