@@ -84,6 +84,8 @@ const ColAction = () => {
   useEffect(() => {
     setFields(data);
     setContent(data?.content);
+  }, [data]);
+  useEffect(() => {
     const runs = async () => {
       if (files.image) {
         const imageUrl = await uploadFile(files.image);
@@ -98,7 +100,7 @@ const ColAction = () => {
       }
     };
     files && runs();
-  }, [data, files, fields]);
+  }, [files, fields]);
   const handleSubmit = async () => {
     try {
       const docRef = doc(db, "Collectibles", id);
