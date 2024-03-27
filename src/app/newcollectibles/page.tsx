@@ -10,6 +10,7 @@ import { addDoc, collection } from "firebase/firestore";
 import dynamic from "next/dynamic";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 import React, { useEffect, useState } from "react";
+import { BiPlus } from "react-icons/bi";
 
 const initialState = {
   title: "",
@@ -40,11 +41,15 @@ const NewCollectibles = () => {
       if (files.image) {
         const imageUrl = await uploadFile(files.image);
         setFields({ ...fields, image: imageUrl });
+        setFiles({ ...files, image: null });
+        alert("Image uploaded successfully");
       }
 
       if (files.file) {
         const fileUrl = await uploadFile(files.file);
         setFields({ ...fields, downloadUrl: fileUrl });
+        setFiles({ ...files, file: null });
+        alert("File uploaded successfully");
       }
     };
     files && runs();
@@ -105,11 +110,32 @@ const NewCollectibles = () => {
               console.log(files.file);
               setFiles({ ...files, file: e.target.files[0] });
             }}
+            accept=".zip"
             name={files.file?.name}
             title="file"
             className="w-full"
           />
-          <InputFile
+          <div className="w-full">
+            <label>Image</label>
+            <label
+              htmlFor="ff"
+              className="cursor-pointer flex items-center gap-5 h-12 dark:bg-slate-400 w-full px-4  bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:bg-blue-600 transition duration-300"
+            >
+              <BiPlus size={25} />
+              {"Choose a file"}
+            </label>
+            <input
+              id="ff"
+              type="file"
+              accept=".jpg, .png, .jpeg"
+              className="hidden"
+              onChange={(e: any) =>
+                setFiles({ ...files, image: e.target.files[0] })
+              }
+              name={files.image?.name}
+            />
+          </div>
+          {/* <InputFile
             label="Image"
             accept=".jpg, .png, .jpeg"
             onChange={(e: any) =>
@@ -117,7 +143,7 @@ const NewCollectibles = () => {
             }
             name={files.image?.name}
             className="w-full"
-          />
+          /> */}
         </div>
         <div className="flex w-full py-4 gap-10 justify-center">
           <JoditEditor
