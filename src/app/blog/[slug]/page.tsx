@@ -16,9 +16,9 @@ export default async function SinglePost({
         <div className="!w-2/3 grid grid-cols-1 !mx-auto p-4">
           <h2 className="text-2xl  font-semibold">{blogPost.title}</h2>
           {blogPost?.featuredImage?.url ? (
-            <div className="relative h-80 group">
+            <div className="relative h-96 group">
               <Image
-                layout="fill"
+                fill={true}
                 // className="h-full"
                 alt={blogPost?.featuredImage?.alt}
                 src={blogPost.featuredImage?.url}

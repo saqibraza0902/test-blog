@@ -31,10 +31,10 @@ const SinglePortfolio = async (props: any) => {
           {data?.gallery.length > 0 && (
             <div className="grid grid-cols-4 gap-2">
               {data?.gallery?.map((item: IItem, index) => (
-                <div className=" w-full h-80" key={index}>
+                <div className=" w-full h-80 relative group" key={index}>
                   <Image
                     fill={true}
-                    className="object-contain h-full"
+                    className="object-contain"
                     src={item?.url}
                     alt={item?.alt}
                   />

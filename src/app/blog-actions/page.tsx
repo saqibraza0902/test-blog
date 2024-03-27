@@ -102,10 +102,10 @@ const BlogActions = () => {
         {data?.map((post: IBlog) => (
           <div key={post.id}>
             {post.featuredImage.url ? (
-              <div className="relative group">
+              <div className="relative h-80 group">
                 <Image
                   fill={true}
-                  className="h-80"
+                  className=""
                   alt={post.featuredImage?.alt}
                   src={post.featuredImage?.url}
                 />

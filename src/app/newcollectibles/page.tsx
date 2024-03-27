@@ -105,15 +105,12 @@ const NewCollectibles = () => {
               console.log(files.file);
               setFiles({ ...files, file: e.target.files[0] });
             }}
-            type="file"
-            accept=".zip"
             name={files.file?.name}
             title="file"
             className="w-full"
           />
           <InputFile
             label="Image"
-            title="image"
             accept=".jpg, .png, .jpeg"
             onChange={(e: any) =>
               setFiles({ ...files, image: e.target.files[0] })
