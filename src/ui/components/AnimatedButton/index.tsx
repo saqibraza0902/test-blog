@@ -11,7 +11,7 @@ const AnimatedButton = ({ text = "HEllo" }: IProp) => {
 
   return (
     <button
-      className="bg-black border-black h-12 min-w-40  flex items-center justify-center rounded-xl relative overflow-hidden"
+      className="bg-black border-black h-12 min-w-40  flex items-center justify-center rounded-lg relative overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

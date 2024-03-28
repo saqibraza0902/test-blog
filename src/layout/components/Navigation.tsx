@@ -19,13 +19,14 @@ const Navigation = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
         setisOpen(false);
+        setisUser(false);
       } else if (user) {
         setisUser(true);
       }
     });
 
     return () => unsubscribe();
-  }, [isOpen]);
+  }, [isOpen, isUser]);
   if (!mount) {
     return null;
   }
