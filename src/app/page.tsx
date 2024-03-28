@@ -42,6 +42,35 @@ const arr = [
 const Home = () => {
   return (
     <CommonLayout>
+      <div className="bg-[#f7d3ff] px-28 h-screen flex flex-col justify-center items-center">
+        <div className=" py-10 h-full flex gap-14 ">
+          <div className="w-[700px] bg-black  rounded-[60px] h-full relative ">
+            <div className="w-full flex flex-col justify-center items-center bg-[#01c3ff] p-10 h-full absolute -top-5 -left-5 rounded-[40px] ">
+              <p className="font-extrabold z-40 text-[80px] leading-[100px] text-black uppercase ">
+                Let's Build the next big thing
+              </p>
+              <div className="flex w-full gap-7 items-center">
+                <p className="font-bold w-[20xp] text-[70px] text-black uppercase ">
+                  7Y
+                </p>
+                <p className="font-bold w-3/6 text-xl  text-black uppercase ">
+                  Of test driven production development
+                </p>
+                <p className="w-1/6  text-black uppercase ">
+                  <AnimatedButton text="LET'S TALK" />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="w-[350px] bg-black  rounded-[60px] h-full relative ">
+            <div className="w-full flex  justify-center items-end gap-1 bg-[#01c3ff] p-10 h-full absolute -top-5 -left-5 rounded-[40px] ">
+              {[0, 1, 2].map((i) => (
+                <div className="h-5 w-5 rounded-full bg-white"></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="mx-auto w-2/3 h-screen flex flex-col justify-center items-center">
         <div className="h-screen flex flex-col gap-10 justify-center items-center">
           <AnimatedButton />
