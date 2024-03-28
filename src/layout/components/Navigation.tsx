@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import ToggleSidebar from "./ToggleSidebar";
 import Navbar from "./Navbar";
 import { auth } from "@/utils/firebase";
+import LoggedinNavbar from "./LogginNavbar";
 
 const Navigation = () => {
   const [isOpen, setisOpen] = useState(false);
+  const [isUser, setisUser] = useState(false);
   const [mount, setMount] = useState(false);
 
   const toggleSideBar = () => {
@@ -17,6 +19,8 @@ const Navigation = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
         setisOpen(false);
+      } else if (user) {
+        setisUser(true);
       }
     });
 
@@ -27,7 +31,11 @@ const Navigation = () => {
   }
   return (
     <div>
-      <Navbar toggle={toggleSideBar} />
+      {isUser ? (
+        <LoggedinNavbar toggle={toggleSideBar} />
+      ) : (
+        <Navbar toggle={toggleSideBar} />
+      )}
       <ToggleSidebar close={toggleSideBar} open={isOpen} />
     </div>
   );

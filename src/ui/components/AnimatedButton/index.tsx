@@ -17,17 +17,17 @@ const AnimatedButton = ({ text = "HEllo" }: IProp) => {
     >
       <div className="!w-2/6">
         <motion.p
-          className="absolute text-white !text-lg top-0 left-0 right-0 bottom-0 m-auto"
-          initial={{ y: "20%", x: "-10%" }} // Initially, text is visible
-          animate={{ y: isHovered ? "-100%" : "20%", x: "-10%" }} // Move text up when hovered
+          className="absolute text-white top-0 left-0 right-0 bottom-0 m-auto"
+          initial={{ y: "25%", x: "-10%" }} // Initially, text is visible
+          animate={{ y: isHovered ? "-100%" : "25%", x: "-10%" }} // Move text up when hovered
           transition={{ duration: 0.3 }}
         >
           {text}
         </motion.p>
         <motion.p
-          className="absolute text-white !text-lg top-0 left-0 right-0 bottom-0 m-auto"
-          initial={{ y: isHovered ? "20%" : "100%", x: "-10%" }}
-          animate={{ y: isHovered ? "20%" : "100%", x: "-10%" }}
+          className="absolute text-white  top-0 left-0 right-0 bottom-0 m-auto"
+          initial={{ y: isHovered ? "25%" : "100%", x: "-10%" }}
+          animate={{ y: isHovered ? "25%" : "100%", x: "-10%" }}
           transition={{ duration: 0.3 }}
         >
           {text}

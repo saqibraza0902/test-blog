@@ -7,14 +7,16 @@ import { ref } from "firebase/database";
 import { collection, getDoc, getDocs, doc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { BsCart } from "react-icons/bs";
+import { BsArrowDown, BsCart } from "react-icons/bs";
 
 import { useTheme } from "next-themes";
 import { HiOutlineSun } from "react-icons/hi";
 import { PUBLIC_URLS } from "@/utils/urls";
-import { AUTH_NAV, PUBLIC_NAV } from "@/mock";
+import { AUTH_NAV, PUBLIC_NAV, WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import Link from "next/link";
 import Dropdown from "./Dropdown";
+import AnimatedButton from "@/ui/components/AnimatedButton";
+import { FaAngleDown } from "react-icons/fa6";
 const Navbar = ({ toggle }: any) => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
@@ -37,68 +39,26 @@ const Navbar = ({ toggle }: any) => {
     return () => unsubscribe();
   }, [user]);
   return (
-    <nav className=" bg-brand_gray-400 dark:bg-brand_gray-700 h-16 flex justify-between items-center text-white px-6">
-      <ul className="flex gap-4 items-center h-full">
-        {PUBLIC_NAV.map((item, index) => (
-          <Link key={index} href={item.pathname}>
-            {item.title}
-          </Link>
-        ))}
-        {!user && (
-          <>
-            <li
-              onClick={() => router.push("/signin")}
-              className="cursor-pointer"
+    <nav className=" bg-white h-16 border flex justify-between items-center text-white px-6">
+      <ul className="flex gap-4 items-center w-full justify-between h-full">
+        <div className="bg-brand_blue-300 w-32 h-10"></div>
+        <div className="gap-5 flex">
+          {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => (
+            <Link
+              className="text-black uppercase flex items-center gap-1"
+              key={index}
+              href={item.pathname}
             >
-              Sign In
-            </li>
-            <li
-              onClick={() => router.push("/signup")}
-              className="cursor-pointer"
-            >
-              Sign Up
-            </li>
-          </>
-        )}
-      </ul>
-      <ul className="flex items-center gap-5">
-        <li onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-          <p
-            className={` p-1 cursor-pointer rounded-md ${
-              theme === "dark" ? "bg-brand_pink-400 " : "!bg-brand_gray-500"
-            }`}
-          >
-            <HiOutlineSun color={theme === "dark" ? "#fff" : "#fff"} />
+              {item.title}
+              {item.isDropdown && <FaAngleDown />}
+            </Link>
+          ))}
+        </div>
+        <div className="bg-brand_blue-300 min-w-40 h-12 my-3 relative rounded-xl">
+          <p className="absolute capitalize text-sm -top-1 -left-1">
+            <AnimatedButton text="CONTACT US" />
           </p>
-        </li>
-        <Link
-          href="/cart"
-          className="relative cursor-pointer"
-          // onClick={() => router.push("/cart")}
-        >
-          <BsCart size={25} />
-          <span className="absolute -top-2 bg-brand_red-800 w-4 text-sm h-5 flex justify-center items-center rounded-full -right-2">
-            {items.length}
-          </span>
-        </Link>
-        {user && (
-          <>
-            {AUTH_NAV.map((item, index) => (
-              <Dropdown item={item} key={index} />
-            ))}
-            <li onClick={() => toggle()}>
-              <ImageWithFallback
-                className="h-8 w-8 cursor-pointer rounded-full"
-                src={user?.photoURL || ""}
-                fallbackSrc="pfp1.png"
-                alt=""
-              />
-            </li>
-            <li onClick={() => handleSignOut()} className="cursor-pointer">
-              Logout
-            </li>
-          </>
-        )}
+        </div>
       </ul>
     </nav>
   );

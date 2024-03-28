@@ -27,6 +27,38 @@ export const NavData = [
     prefix: "/colaction",
   },
 ];
+export const WITHOUT_AUTH_PUBLIC_NAV = [
+  {
+    title: "Services",
+    isDropdown: true,
+    pathname: PUBLIC_URLS.SERVICES,
+    prefix: PUBLIC_URLS.SERVICES,
+  },
+  {
+    isDropdown: false,
+    title: "Process",
+    pathname: PUBLIC_URLS.CONTACT,
+    prefix: PUBLIC_URLS.CONTACT,
+  },
+  {
+    title: "Projects",
+    isDropdown: false,
+    pathname: PUBLIC_URLS.PROJECTS,
+    prefix: PUBLIC_URLS.PROJECTS,
+  },
+  {
+    title: "Blog",
+    isDropdown: false,
+    pathname: PUBLIC_URLS.BLOG,
+    prefix: PUBLIC_URLS.BLOG,
+  },
+  {
+    title: "Collectibles",
+    isDropdown: false,
+    pathname: PUBLIC_URLS.COLLECTIBLES,
+    prefix: PUBLIC_URLS.COLLECTIBLES,
+  },
+];
 export const PUBLIC_NAV = [
   {
     title: "Home",
