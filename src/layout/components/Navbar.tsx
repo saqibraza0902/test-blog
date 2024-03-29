@@ -59,12 +59,14 @@ const Navbar = ({ toggle }: any) => {
         <div className="bg-brand_blue-300 w-32 h-10"></div>
         <div className="gap-5 flex items-center">
           {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => (
-            <span className="flex items-center w-full relative gap-2">
+            <span
+              key={index}
+              className="flex items-center w-full relative gap-2"
+            >
               <AnimatedLink
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className="!text-black !bg-none  uppercase flex items-center gap-1"
-                key={index}
                 href={item.pathname}
                 text={item.title}
                 showIcon={item.isDropdown}
@@ -117,8 +119,8 @@ const Cards = ({ arr, text }: ICard) => {
 
         {text && <div className="w-2/3 mx-auto bg-black h-[1px] my-2" />}
         <div className="flex flex-col gap-2">
-          {arr?.map((item) => (
-            <Link href={item.path} className="font-semibold">
+          {arr?.map((item, i) => (
+            <Link key={i} href={item.path} className="font-semibold">
               {item.name}
             </Link>
           ))}
