@@ -41,7 +41,7 @@ const AnimatedHoverLogo = ({
           className="w-20 h-20 rounded-lg"
         />
 
-        <p className=" text-white text-center h-2/3">{textContent}</p>
+        <p className=" text-white text-center h-2/3 p-2">{textContent}</p>
       </motion.div>
     </div>
   );
