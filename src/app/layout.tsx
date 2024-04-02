@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import ReduxProvider from "@/providers/ReduxProvider";
 import NextTopLoader from "nextjs-toploader";
-
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 const inter = Inter({ subsets: ["latin"] });
 export const revalidate = 0;
 export const metadata: Metadata = {
@@ -31,9 +31,11 @@ export default function RootLayout({
           speed={200}
           shadow="0 0 10px #2299DD,0 0 5px #2299DD"
         />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ReduxProvider>{children}</ReduxProvider>
-        </ThemeProvider>
+        <AppRouterCacheProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <ReduxProvider>{children}</ReduxProvider>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

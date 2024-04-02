@@ -1,9 +1,17 @@
 "use client";
 import CommonLayout from "@/layout";
-import React from "react";
+import React, { useRef, useState } from "react";
 import ScrollText from "@/ui/components/ScrollText";
 import AnimatedHoverLogo from "@/ui/components/AnimateHoverLogo";
-import AnimatedButton from "@/ui/components/AnimatedButton";
+import AnimatedButton, {
+  SliderLeftButton,
+  SliderRightButton,
+} from "@/ui/components/AnimatedButton";
+import Services from "@/layout/Home/Services";
+import SwiperComponent from "@/layout/Home/SwiperComponent";
+import { useSwiper } from "swiper/react";
+import { SwiperNavButtons } from "@/layout/Home/Slides";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 const arr = [
   {
@@ -39,7 +47,22 @@ const arr = [
     text: "Reimagining the video player for courses and overall viewer experience.",
   },
 ];
+
 const Home = () => {
+  const swiperRef = useRef<any>(null);
+
+  const nextSlide = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
+    }
+  };
+
+  const prevSlide = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
+    }
+  };
+
   return (
     <CommonLayout>
       <div className="bg-brand_blue-100 px-28 h-screen flex flex-col justify-center items-center">
@@ -77,6 +100,30 @@ const Home = () => {
           <ScrollText />
         </div>
       </div>
+      <section className="h-max bg-brand_blue-600 flex w-full px-20 py-10">
+        <div className="w-1/3 flex flex-col justify-end text-white">
+          <p className="text-4xl font-semibold">4.9</p>
+          <p className="text-lg mt-4">
+            Clutch average based on 70+ reviews. All chances are you’ll be
+            impressed too.
+          </p>
+          <div className="flex gap-10 mt-6">
+            <span onClick={prevSlide} className="cursor-pointer">
+              <SliderLeftButton />
+            </span>
+            <span onClick={nextSlide} className="cursor-pointer">
+              <SliderRightButton />
+            </span>
+          </div>
+        </div>
+        <div className="w-2/3">
+          <SwiperComponent
+            swiperRef={swiperRef}
+            onNextSlide={nextSlide}
+            onPrevSlide={prevSlide}
+          />
+        </div>
+      </section>
       <div className="h-screen p-20 flex justify-center items-center bg-brand_blue-600">
         <div className="grid grid-cols-4 grid-rows-2">
           {arr.map((item, index) => (
@@ -90,6 +137,9 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <section className="h-max px-20 py-10">
+        <Services />
+      </section>
     </CommonLayout>
   );
 };

@@ -136,3 +136,25 @@ export const AUTH_NAV = [
     ],
   },
 ];
+export const SERVICES_ARRAY = [
+  {
+    title: "Product Research",
+    desc: " To lay a solid foundation for the creative process that follows,we begin our journey with the discovery phase.",
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/64f852beac4d6ff134432f2b_icon-services-research.svg",
+  },
+  {
+    title: "Product design",
+    desc: "By putting users' needs at the forefront, we tell a unique story of your company, juggling with fancy visual elements.",
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/640744d0e7b29de6f1a29aee_icon-services-design.svg",
+  },
+  {
+    title: "Product development",
+    desc: "The motto of our development process is creating digital experiences that are both appealing and functional.",
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/6449421486eae3cf4d387564_development-Illustration.svg",
+  },
+  {
+    title: "Product  growth & care",
+    desc: "With various tools, our experts can help you expand the target audience and increase brand awareness.",
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/6449410877257b6dcfa0ec88_marketing-illustration.svg",
+  },
+];
