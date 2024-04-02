@@ -1,22 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://db.onlinewebfonts.com/c/88f10bf18a36407ef36bf30bc25a3618?family=SuisseIntl-Regular");
 @font-face {
   font-family: "Suisse";
-  src: url("https://db.onlinewebfonts.com/t/88f10bf18a36407ef36bf30bc25a3618.eot");
-  src: url("https://db.onlinewebfonts.com/t/88f10bf18a36407ef36bf30bc25a3618.eot?#iefix")
-      format("embedded-opentype"),
-    url("https://db.onlinewebfonts.com/t/88f10bf18a36407ef36bf30bc25a3618.woff2")
-      format("woff2"),
-    url("https://db.onlinewebfonts.com/t/88f10bf18a36407ef36bf30bc25a3618.woff")
-      format("woff"),
-    url("https://db.onlinewebfonts.com/t/88f10bf18a36407ef36bf30bc25a3618.ttf")
-      format("truetype"),
-    url("https://db.onlinewebfonts.com/t/88f10bf18a36407ef36bf30bc25a3618.svg#SuisseIntl-Regular")
-      format("svg");
+  src: url("../../public//fonts/SuisseIntl-Regular.ttf");
 }
-
+@font-face {
+  font-family: "SuisseMedium";
+  src: url("../../public//fonts/SuisseIntl-Medium.ttf");
+}
+@font-face {
+  font-family: "SuisseSemiBold";
+  src: url("../../public//fonts/SuisseIntl-SemiBold.ttf");
+}
+@font-face {
+  font-family: "SuisseBold";
+  src: url("../../public//fonts/SuisseIntl-Bold.ttf");
+}
 .mui-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
   border-radius: 40px !important;
   /* border: 1px solid white !important; */

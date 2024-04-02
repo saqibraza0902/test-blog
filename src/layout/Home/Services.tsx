@@ -11,7 +11,7 @@ const Services = () => {
           {SERVICES_ARRAY.map((item, i) => (
             <div
               key={i}
-              className="bg-black py-10 flex gap-3  p-3 rounded-3xl h-min"
+              className="bg-black py-10 h-48 flex gap-3  p-3 rounded-3xl "
             >
               <span className="">
                 <img src={item.icon} alt="" />

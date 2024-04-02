@@ -11,6 +11,9 @@ const config: Config = {
     extend: {
       fontFamily: {
         Suisse: ["Suisse"],
+        SuisseMedium: ["SuisseMedium"],
+        SuisseSemiBold: ["SuisseSemiBold"],
+        SuisseBold: ["SuisseBold"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

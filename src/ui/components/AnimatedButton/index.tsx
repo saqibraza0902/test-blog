@@ -11,6 +11,9 @@ import {
   MdOutlineArrowBackIos,
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
+import { FaChevronUp } from "react-icons/fa";
+import { useTheme } from "next-themes";
+import { HiOutlineSun } from "react-icons/hi";
 
 interface IProp {
   text?: string;
@@ -26,17 +29,11 @@ interface ILinkProp {
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
 }
-const AnimatedButton = ({
-  text = "Hello",
-  href = "/",
-  className,
-  showIcon = true,
-}: IProp) => {
+export const AnimatedHeroNav = ({ className, text }: IProp) => {
   const [isHovered, setIsHovered] = useState(false);
-
+  const { theme, setTheme } = useTheme();
   return (
-    <Link
-      href={href}
+    <div
       className={cn(
         `bg-black border-black h-12 min-w-40  flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
       )}
@@ -61,14 +58,55 @@ const AnimatedButton = ({
           {text}
         </motion.p>
       </div>
-      {showIcon && (
-        <div className="h-5 w-5 rounded-full bg-slate-400 absolute right-3"></div>
-      )}
-    </Link>
+
+      <div className="h-5 w-5 absolute right-3">
+        <li onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+          <p
+            className={` p-1 cursor-pointer rounded-md ${
+              theme === "dark" ? "bg-brand_pink-400 " : "!bg-brand_gray-500"
+            }`}
+          >
+            <HiOutlineSun color={theme === "dark" ? "#fff" : "#fff"} />
+          </p>
+        </li>
+      </div>
+    </div>
   );
 };
+export const AnimatedHeroButton = ({ className, text }: IProp) => {
+  const [isHovered, setIsHovered] = useState(false);
 
-export default AnimatedButton;
+  return (
+    <div
+      className={cn(
+        `bg-black border-black h-12 min-w-40  flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="!w-2/6">
+        <motion.p
+          className="absolute text-white top-0 left-0 right-0 bottom-0 m-auto"
+          initial={{ y: "30%", x: "15%" }}
+          animate={{ y: isHovered ? "-100%" : "30%", x: "15%" }}
+          transition={{ duration: 0.3 }}
+        >
+          {text}
+        </motion.p>
+        <motion.p
+          className="absolute text-white  top-0 left-0 right-0 bottom-0 m-auto"
+          initial={{ y: isHovered ? "30%" : "100%", x: "15%" }}
+          animate={{ y: isHovered ? "30%" : "100%", x: "15%" }}
+          transition={{ duration: 0.3 }}
+        >
+          {text}
+        </motion.p>
+      </div>
+
+      <div className="h-5 w-5 rounded-full bg-slate-400 absolute right-3"></div>
+    </div>
+  );
+};
 export const AnimatedLink = ({
   text = "Hello",
   href = "/",
@@ -100,7 +138,15 @@ export const AnimatedLink = ({
           transition={{ duration: 0.3 }}
         >
           {text}
-          {showIcon && <FaChevronDown color="#000" />}
+          {showIcon && (
+            <>
+              {isHovered ? (
+                <FaChevronUp color="#000" />
+              ) : (
+                <FaChevronDown color="#000" />
+              )}
+            </>
+          )}
         </motion.p>
         <motion.p
           className=" text-black flex m-auto items-center gap-1"
@@ -109,7 +155,15 @@ export const AnimatedLink = ({
           transition={{ duration: 0.3 }}
         >
           {text}
-          {showIcon && <FaChevronDown color="#000" />}
+          {showIcon && (
+            <>
+              {isHovered ? (
+                <FaChevronUp color="#000" />
+              ) : (
+                <FaChevronDown color="#000" />
+              )}
+            </>
+          )}
         </motion.p>
       </div>
     </Link>

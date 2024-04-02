@@ -1,15 +1,16 @@
+import { useTheme } from "next-themes";
 import React, { useState, useEffect } from "react";
 
 const ScrollText = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
-
+  const { theme, setTheme } = useTheme();
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       console.log("Pos", scrollPosition);
-      const progress = (scrollPosition / (documentHeight - windowHeight)) * 10;
+      const progress = (scrollPosition / (documentHeight - windowHeight)) * 27;
 
       setScrollProgress(progress);
     };
@@ -23,9 +24,9 @@ const ScrollText = () => {
 
   const generateColor = (index: number) => {
     if (scrollProgress >= index / 100) {
-      return "black"; // Change color to white for scrolled area
+      return theme === "dark" ? "white" : "black";
     } else {
-      return "gray"; // Change color to gray for remaining area
+      return "gray";
     }
   };
 
@@ -35,7 +36,11 @@ const ScrollText = () => {
   return (
     <p className="">
       {text.split("").map((letter, index) => (
-        <span key={index} style={{ color: generateColor(index) }}>
+        <span
+          className="text-3xl  font-SuisseSemiBold"
+          key={index}
+          style={{ color: generateColor(index) }}
+        >
           {letter}
         </span>
       ))}

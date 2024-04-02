@@ -3,7 +3,8 @@ import CommonLayout from "@/layout";
 import React, { useRef, useState } from "react";
 import ScrollText from "@/ui/components/ScrollText";
 import AnimatedHoverLogo from "@/ui/components/AnimateHoverLogo";
-import AnimatedButton, {
+import {
+  AnimatedHeroButton,
   SliderLeftButton,
   SliderRightButton,
 } from "@/ui/components/AnimatedButton";
@@ -65,22 +66,22 @@ const Home = () => {
 
   return (
     <CommonLayout>
-      <div className="bg-brand_blue-100 px-28 h-screen flex flex-col justify-center items-center">
-        <div className=" py-10 h-full flex gap-14 w-full">
+      <section className="bg-brand_blue-100 px-28 h-screen flex flex-col justify-center items-center">
+        <div className=" h-[480px] flex gap-14 w-full">
           <div className="w-10/12 bg-black  rounded-[60px] h-full relative ">
             <div className="w-full flex flex-col justify-center items-start bg-brand_blue-300 p-10 h-full absolute -top-5 -left-5 rounded-[40px] ">
-              <p className="font-extrabold z-40 text-left text-[80px] leading-[100px] text-black uppercase ">
+              <p className="font-extrabold z-40 text-left font-SuisseBold text-[80px] leading-[100px] text-black uppercase ">
                 Lets Build the next big thing
               </p>
               <div className="flex w-full justify-between  gap-0 items-center">
-                <p className="font-bold w-[20xp] text-[70px] text-black uppercase ">
+                <p className="font-SuisseBold w-[20xp] text-[70px] text-black uppercase ">
                   7Y
                 </p>
                 <p className="font-bold w-3/6 text-xl  2xl:text-center text-black uppercase ">
                   Of test driven production development
                 </p>
                 <p className="w-1/6  text-black uppercase mr-10">
-                  <AnimatedButton text="LET'S TALK" />
+                  <AnimatedHeroButton text="LET'S TALK" />
                 </p>
               </div>
             </div>
@@ -93,17 +94,18 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="mx-auto w-2/3 h-screen flex flex-col justify-center items-center">
+      </section>
+      <section className="px-20 h-screen flex flex-col justify-center items-center">
         <div className="h-screen flex flex-col gap-10 justify-center items-center">
-          <AnimatedButton />
           <ScrollText />
         </div>
-      </div>
-      <section className="h-max bg-brand_blue-600 flex w-full px-20 py-10">
+      </section>
+      <section className="h-full bg-brand_blue-100 flex w-full px-20 py-10">
         <div className="w-1/3 flex flex-col justify-end text-white">
-          <p className="text-4xl font-semibold">4.9</p>
-          <p className="text-lg mt-4">
+          <p className="text-4xl font-SuisseSemiBold text-black dark:text-white">
+            4.9
+          </p>
+          <p className="text-lg text-black dark:text-white mt-4">
             Clutch average based on 70+ reviews. All chances are you’ll be
             impressed too.
           </p>
@@ -116,7 +118,7 @@ const Home = () => {
             </span>
           </div>
         </div>
-        <div className="w-2/3">
+        <div className="w-2/3 h-full">
           <SwiperComponent
             swiperRef={swiperRef}
             onNextSlide={nextSlide}

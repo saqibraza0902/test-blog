@@ -15,7 +15,7 @@ import { PUBLIC_URLS } from "@/utils/urls";
 import { AUTH_NAV, PUBLIC_NAV, WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import Link from "next/link";
 import Dropdown from "./Dropdown";
-import AnimatedButton, { AnimatedLink } from "@/ui/components/AnimatedButton";
+import { AnimatedLink, AnimatedHeroNav } from "@/ui/components/AnimatedButton";
 import { FaAngleDown } from "react-icons/fa6";
 import { cn } from "@/utils/styles";
 const c1 = [
@@ -54,7 +54,7 @@ const Navbar = ({ toggle }: any) => {
     return () => unsubscribe();
   }, [user]);
   return (
-    <nav className=" bg-white h-16 border flex justify-between items-center text-white px-6">
+    <nav className=" bg-white cursor-pointer h-16 border flex justify-between items-center text-white px-6">
       <ul className="flex gap-4 items-center w-full justify-between h-full">
         <div className="bg-brand_blue-300 w-32 h-10"></div>
         <div className="gap-5 flex items-center">
@@ -79,11 +79,11 @@ const Navbar = ({ toggle }: any) => {
                   // animate={{ y: isHovered ? "-150%" : "50%" }}
                   transition={{ duration: 0.3 }}
                   className={cn(
-                    " top-12 -left-2/4 absolute z-50 bg-white p-5  shadow-md rounded-[41px] ",
+                    " top-12 -left-2/4  absolute z-50 bg-white py-5 pl-7 pr-5  shadow-md rounded-b-[41px] ",
                     {}
                   )}
                 >
-                  <div className="flex  gap-5">
+                  <div className="flex justify-center w-full gap-5">
                     <Cards arr={c1} text="Product Branding" />
                     <Cards />
                     <Cards />
@@ -95,7 +95,7 @@ const Navbar = ({ toggle }: any) => {
         </div>
         <div className="bg-brand_blue-300 min-w-40 h-12 my-3 relative rounded-xl">
           <p className="absolute capitalize text-sm -top-1 -left-1">
-            <AnimatedButton className="bg-black" text="CONTACT US" />
+            <AnimatedHeroNav className="bg-black" text="CONTACT US" />
           </p>
         </div>
       </ul>
