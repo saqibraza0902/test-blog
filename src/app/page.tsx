@@ -95,7 +95,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="px-4 lg:px-20 py-5 h-full lg:h-screen flex flex-col justify-center items-center">
+      <section className="px-4 lg:px-20 py-5 h-full lg:h-max flex flex-col justify-center items-center">
         <div className="h-full flex flex-col gap-10 justify-center items-center">
           <ScrollText />
         </div>
@@ -126,7 +126,7 @@ const Home = () => {
           />
         </div>
       </section>
-      <div className="h-screen p-20 flex justify-center items-center bg-brand_blue-600">
+      <section className="h-screen px-4 lg:p-20 flex justify-center items-center bg-brand_blue-600">
         <div className="grid grid-cols-2 justify-items-center lg:grid-cols-4 grid-rows-2">
           {arr.map((item, index) => (
             <React.Fragment key={index}>
@@ -138,7 +138,7 @@ const Home = () => {
             </React.Fragment>
           ))}
         </div>
-      </div>
+      </section>
       <section className="h-max pl-7 pr-2  lg:px-20 py-10">
         <Services />
       </section>

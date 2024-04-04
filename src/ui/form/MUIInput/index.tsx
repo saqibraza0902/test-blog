@@ -35,7 +35,7 @@ const customTheme = (outerTheme: Theme) =>
           root: {
             color: "#ccc",
             width: "100%",
-            minWidth: "350px",
+            minWidth: "300px",
             [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: "#ccc",
             },

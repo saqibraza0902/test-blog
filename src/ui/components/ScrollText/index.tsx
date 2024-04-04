@@ -1,51 +1,69 @@
-import { useTheme } from "next-themes";
-import React, { useState, useEffect } from "react";
+"use client";
+import { useScroll, useTransform, motion } from "framer-motion";
+import React, { useRef } from "react";
+const Content =
+  "For 10 years since our foundation in Ukrain, We've been perfection our Design & Developement game and eager to help passionate founders perfect theirs.Success is a team play, right? Let's aim for the top together!.";
 
-const ScrollText = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const { theme, setTheme } = useTheme();
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      console.log("Pos", scrollPosition);
-      const progress = (scrollPosition / (documentHeight - windowHeight)) * 27;
+const ParagraphComponent = () => {
+  const element = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: element,
+    offset: ["start 0.8", "start 0.2"],
+  });
 
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const generateColor = (index: number) => {
-    if (scrollProgress >= index / 100) {
-      return theme === "dark" ? "white" : "black";
-    } else {
-      return "gray";
-    }
-  };
-
-  const text =
-    "For 10 years since our foundation in   Ukraine, we’ve been perfecting our Design & Development game and are eager to help passionate Founders perfect theirs. Success is a team play, right? Let’s aim for the top together!. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.";
+  const words = Content.split(" ");
 
   return (
-    <p className="">
-      {text.split("").map((letter, index) => (
-        <span
-          className="text-3xl  font-SuisseSemiBold"
-          key={index}
-          style={{ color: generateColor(index) }}
+    <div>
+      <div>
+        <p
+          ref={element}
+          className="flex flex-wrap text-white leading-none justify-start   "
         >
-          {letter}
-        </span>
-      ))}
-    </p>
+          {words.map((word, idx) => {
+            const start = idx / words.length;
+            const end = start + 1 / words.length;
+
+            /* const opacity = useTransform(scrollYProgress, [start, end], [0, 1]); */
+            const char = word.split("");
+            const amount = end - start;
+            const step = amount / char.length;
+            return (
+              <span
+                className={`mr-2  lg:mt-2 leading-10 font-semibold lg:text-6xl md:text-4xl text-xl ${
+                  idx === 0 ? " ml-40" : ""
+                }`}
+              >
+                {/* ------Character Map */}
+                {char.map((ch, idx) => {
+                  const cstart = start + step * idx;
+                  const cend = start + step * (idx + 1);
+                  const opacity = useTransform(
+                    scrollYProgress,
+                    [cstart, cend],
+                    [0, 1]
+                  );
+
+                  return (
+                    <span className="relative">
+                      <span className="absolute opacity-30">{ch}</span>
+                      <motion.span
+                        key={idx}
+                        style={{ opacity }}
+                        transition={{ duration: 2 }}
+                      >
+                        {ch}
+                      </motion.span>
+                    </span>
+                  );
+                })}
+              </span>
+            );
+          })}
+        </p>
+      </div>
+    </div>
   );
 };
 
-export default ScrollText;
+export default ParagraphComponent;

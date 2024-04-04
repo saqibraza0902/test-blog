@@ -22,7 +22,7 @@ const AnimatedHoverLogo = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        `group relative  h-40 cursor-pointer  overflow-hidden w-60`,
+        `group relative  h-40 cursor-pointer  overflow-hidden  lg:w-60`,
         { "lg:border-r": index < 3 || (index > 3 && index < 7) },
         { "lg:border-b": index < 4 }
       )}

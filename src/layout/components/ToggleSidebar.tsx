@@ -26,14 +26,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
             <RxCross1 />
           </div>
         </div>
-        <div className="bg-brand_blue-300 flex md:hidden w-36 h-10 my-3 relative rounded-xl">
-          <p className="absolute capitalize text-sm -top-1 -left-1">
-            <AnimatedHeroNav
-              className="bg-black text-white h-10 min-w-36"
-              text="CONTACT US"
-            />
-          </p>
-        </div>
+
         <div className="w-full flex flex-col gap-1">
           {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => (
             <span
@@ -50,6 +43,14 @@ const ToggleSidebar = ({ open, close }: Props) => {
               />
             </span>
           ))}
+        </div>
+        <div className="bg-brand_blue-300 flex md:hidden w-36 h-10 my-3 relative rounded-xl">
+          <p className="absolute capitalize text-sm -top-1 -left-1">
+            <AnimatedHeroNav
+              className="bg-black text-white h-10 min-w-36"
+              text="CONTACT US"
+            />
+          </p>
         </div>
       </div>
     </div>
