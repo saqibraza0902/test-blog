@@ -127,7 +127,7 @@ const Home = () => {
         </div>
       </section>
       <div className="h-screen p-20 flex justify-center items-center bg-brand_blue-600">
-        <div className="grid grid-cols-1 lg:grid-cols-4 grid-rows-2">
+        <div className="grid grid-cols-2 justify-items-center lg:grid-cols-4 grid-rows-2">
           {arr.map((item, index) => (
             <React.Fragment key={index}>
               <AnimatedHoverLogo

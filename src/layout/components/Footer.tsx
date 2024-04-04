@@ -45,7 +45,7 @@ const FOOTER_LINKS = [
 const Footer = () => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="h-full w-full flex flex-col lg:flex-row justify-between bg-brand_blue-600 px-4 lg:px-20 py-10">
+    <div className="h-full w-full flex flex-col gap-5 lg:gap-0 lg:flex-row justify-between bg-brand_blue-600 px-4 lg:px-20 py-10">
       <div className="lg:w-4/12 flex flex-col gap-5">
         <p className="text-white font-bold text-xl">
           Subscribe to our newsletter to stay in touch with the latest.
