@@ -190,7 +190,7 @@ export const FooterLink = ({
     <Link
       href={href}
       className={cn(
-        ` border-black h-8 w-min flex-nowrap text-nowrap  flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
+        ` border-black h-8 w-max flex-nowrap text-nowrap  flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -201,7 +201,7 @@ export const FooterLink = ({
         onMouseLeave={showIcon ? onMouseLeave : () => console.log("first")}
       >
         <motion.p
-          className="   flex m-auto items-center gap-1"
+          className=" flex-nowrap text-nowrap  flex m-auto items-center gap-1"
           initial={{ y: "50%" }}
           animate={{ y: isHovered ? "-150%" : "50%" }}
           transition={{ duration: 0.3 }}
@@ -210,7 +210,7 @@ export const FooterLink = ({
         </motion.p>
 
         <motion.p
-          className="  flex m-auto items-center gap-1"
+          className="flex-nowrap text-nowrap  flex m-auto items-center gap-1"
           initial={{ y: isHovered ? "-50%" : "100%" }}
           animate={{ y: isHovered ? "-50%" : "100%" }}
           transition={{ duration: 0.3 }}

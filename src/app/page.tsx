@@ -69,24 +69,26 @@ const Home = () => {
       <section className="bg-brand_blue-100 pl-10 pr-3 py-20 lg:mt-0 lg:px-28 h-full lg:h-screen flex flex-col justify-center items-center">
         <div className="h-screen lg:h-[480px] flex flex-col lg:flex-row gap-14 w-full">
           <div className="lg:w-10/12 bg-black  rounded-[60px] h-full relative ">
-            <div className="w-full flex flex-col justify-center items-start bg-brand_blue-300 p-10 h-full absolute -top-5 -left-5 rounded-[40px] ">
-              <p className="font-extrabold z-40 text-left font-SuisseBold lg:text-[80px] leading-[100px] text-black uppercase ">
+            <div className="w-full flex gap-5 lg:gap-0 flex-col justify-center items-start bg-brand_blue-300 p-10 h-full absolute -top-5 -left-5 rounded-[40px] ">
+              <p className="font-extrabold z-40 text-left text-3xl font-SuisseBold lg:text-[80px] lg:leading-[100px] text-black uppercase ">
                 Lets Build the next big thing
               </p>
-              <div className="flex flex-row w-full justify-between  gap-0 items-center">
-                <p className="font-SuisseBold text-xl lg:text-[70px] text-black uppercase ">
-                  7Y
-                </p>
-                <p className="font-bold w-3/6 text-xs lg:text-xl  2xl:text-center text-black uppercase ">
-                  Of test driven production development
-                </p>
+              <div className="flex flex-col gap-5 lg:flex-row w-full justify-between   lg:gap-0 items-center">
+                <div className="flex justify-between w-full items-center">
+                  <p className="font-SuisseBold text-3xl lg:text-[70px] text-black uppercase ">
+                    7Y
+                  </p>
+                  <p className="font-bold lg:w-4/6  lg:text-xl  2xl:text-center text-black uppercase ">
+                    Of test driven production development
+                  </p>
+                </div>
                 <p className="w-1/6  text-black uppercase mr-20 lg:mr-10">
                   <AnimatedHeroButton text="LET'S TALK" />
                 </p>
               </div>
             </div>
           </div>
-          <div className="lg:w-4/12  bg-black  rounded-[60px] h-screen lg:h-full relative ">
+          <div className="lg:w-4/12  bg-black  rounded-[60px] h-full lg:h-full relative ">
             <div className="w-full flex  justify-center items-end gap-1 bg-brand_blue-300 p-10 h-full absolute -top-5 -left-5 rounded-[40px] ">
               {[0, 1, 2].map((i) => (
                 <div key={i} className="h-5 w-5 rounded-full bg-white"></div>
