@@ -30,6 +30,7 @@ const ParagraphComponent = () => {
             const step = amount / char.length;
             return (
               <span
+                key={idx}
                 className={`mr-2  lg:mt-2 leading-10 font-semibold lg:text-6xl md:text-4xl text-xl ${
                   idx === 0 ? " ml-40" : ""
                 }`}
@@ -45,7 +46,7 @@ const ParagraphComponent = () => {
                   );
 
                   return (
-                    <span className="relative">
+                    <span className="relative" key={idx}>
                       <span className="absolute opacity-30">{ch}</span>
                       <motion.span
                         key={idx}
