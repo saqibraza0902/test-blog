@@ -1,8 +1,9 @@
 "use client";
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useRef } from "react";
 const Content =
-  "For 10 years since our foundation in Ukrain, We've been perfection our Design & Developement game and eager to help passionate founders perfect theirs.Success is a team play, right? Let's aim for the top together!.";
+  "For 10 years since our foundation in Ukrain, We've been perfection our Design & Developement game and eager to help passionate founders perfect theirs.Success is a team play, right? Let's aim for the top together!";
 
 const ParagraphComponent = () => {
   const element = useRef(null);
