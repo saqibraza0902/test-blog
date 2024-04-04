@@ -45,8 +45,8 @@ const FOOTER_LINKS = [
 const Footer = () => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="h-full w-full flex justify-between bg-brand_blue-600 px-20 py-10">
-      <div className="w-4/12 flex flex-col gap-5">
+    <div className="h-full w-full flex flex-col lg:flex-row justify-between bg-brand_blue-600 px-4 lg:px-20 py-10">
+      <div className="lg:w-4/12 flex flex-col gap-5">
         <p className="text-white font-bold text-xl">
           Subscribe to our newsletter to stay in touch with the latest.
         </p>
@@ -54,9 +54,9 @@ const Footer = () => {
           <MUIInput />
         </div>
       </div>
-      <div className="w-3/12 flex flex-col items-center ">
+      <div className="lg:w-3/12 flex flex-col lg:items-center ">
         {FOOTER_LINKS.map((item, i) => (
-          <span className="flex items-center w-8/12 justify-start" key={i}>
+          <span className="flex items-center lg:w-8/12 justify-start" key={i}>
             <FooterLink
               className="text-white text-lg font-bold"
               onMouseEnter={() => setIsHovered(true)}
@@ -69,7 +69,7 @@ const Footer = () => {
           </span>
         ))}
       </div>
-      <div className="w-3/12 text-white flex flex-col gap-5">
+      <div className="lg:w-3/12 text-white flex flex-col gap-5">
         <div>
           <p className="font-light text-xs text-[#ccc]">DROP US A LINE</p>
           <ContactLink href="" className="text-xl" text="testuser@gmail.com" />

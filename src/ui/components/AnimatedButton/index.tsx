@@ -12,6 +12,7 @@ import {
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
 import { FaChevronUp } from "react-icons/fa";
+import { HiBars3BottomLeft, HiBars3BottomRight } from "react-icons/hi2";
 import { useTheme } from "next-themes";
 import { HiOutlineSun } from "react-icons/hi";
 
@@ -29,46 +30,51 @@ interface ILinkProp {
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
 }
+interface ISlider {
+  Arrows?: any;
+  className?: any;
+}
 export const AnimatedHeroNav = ({ className, text }: IProp) => {
   const [isHovered, setIsHovered] = useState(false);
   const { theme, setTheme } = useTheme();
   return (
     <div
       className={cn(
-        `bg-black border-black h-12 min-w-40  flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
+        `bg-black border-black min-w-40 gap-3 px-2 flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="!w-2/6">
+      <div className="!w-full ">
         <motion.p
-          className="absolute text-white top-0 left-0 right-0 bottom-0 m-auto"
-          initial={{ y: "30%", x: "15%" }}
-          animate={{ y: isHovered ? "-100%" : "30%", x: "15%" }}
+          className="text-nowrap"
+          initial={{ y: "50%", x: "0%" }}
+          animate={{ y: isHovered ? "-200%" : "50%", x: "0%" }}
           transition={{ duration: 0.3 }}
         >
           {text}
         </motion.p>
         <motion.p
-          className="absolute text-white  top-0 left-0 right-0 bottom-0 m-auto"
-          initial={{ y: isHovered ? "30%" : "100%", x: "15%" }}
-          animate={{ y: isHovered ? "30%" : "100%", x: "15%" }}
+          className="text-nowrap"
+          initial={{ y: "200%", x: "0%" }}
+          animate={{ y: isHovered ? "-50%" : "200%", x: "0%" }}
           transition={{ duration: 0.3 }}
         >
           {text}
         </motion.p>
       </div>
 
-      <div className="h-5 w-5 absolute right-3">
-        <li onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-          <p
-            className={` p-1 cursor-pointer rounded-md ${
-              theme === "dark" ? "bg-brand_pink-400 " : "!bg-brand_gray-500"
-            }`}
-          >
-            <HiOutlineSun color={theme === "dark" ? "#fff" : "#fff"} />
-          </p>
-        </li>
+      <div
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        className="h-5 w-5"
+      >
+        <p
+          className={`p-1 h-full w-full flex justify-center items-center cursor-pointer rounded ${
+            theme === "dark" ? "bg-brand_pink-400 " : "!bg-brand_gray-500"
+          }`}
+        >
+          <HiOutlineSun size={15} color={theme === "dark" ? "#fff" : "#fff"} />
+        </p>
       </div>
     </div>
   );
@@ -286,10 +292,7 @@ export const ContactLink = ({
     </Link>
   );
 };
-interface ISlider {
-  Arrows?: any;
-  className?: any;
-}
+
 export const SliderRightButton = ({ className }: ISlider) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
@@ -356,6 +359,38 @@ export const SliderLeftButton = ({ className }: ISlider) => {
           transition={{ duration: 0.3 }}
         >
           <MdOutlineArrowBackIos color="#000" />
+        </motion.p>
+      </div>
+    </div>
+  );
+};
+export const AnimatedHeroHamburger = ({ className, text }: IProp) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const { theme, setTheme } = useTheme();
+  return (
+    <div
+      className={cn(
+        `bg-black border-black min-w-10 gap-3 px-2 flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="!w-full ">
+        <motion.p
+          className="text-nowrap"
+          initial={{ x: "0%", y: "50%" }}
+          animate={{ x: isHovered ? "-200%" : "0%", y: "50%" }}
+          transition={{ duration: 0.3 }}
+        >
+          <HiBars3BottomLeft size={30} />
+        </motion.p>
+        <motion.p
+          className="text-nowrap"
+          initial={{ x: "150%", y: "-50%" }}
+          animate={{ x: isHovered ? "0%" : "150%", y: "-50%" }}
+          transition={{ duration: 0.3 }}
+        >
+          <HiBars3BottomRight size={30} />
         </motion.p>
       </div>
     </div>

@@ -11,11 +11,20 @@ import { FaStar } from "react-icons/fa6";
 SwiperCore.use([Navigation]);
 
 const SwiperComponent = ({ swiperRef }: any) => {
+  const breakpoints = {
+    // when window width is >= 768px
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 30,
+    },
+  };
+
   return (
     <Swiper
+      breakpoints={breakpoints}
       spaceBetween={30}
       ref={swiperRef}
-      slidesPerView={2}
+      slidesPerView={1}
       pagination={{ clickable: false }}
       scrollbar={{ draggable: true }}
       autoplay={{ delay: 3000 }}
@@ -24,7 +33,7 @@ const SwiperComponent = ({ swiperRef }: any) => {
     >
       {[0, 2, 3, 4, 5, 5].map((item, i) => (
         <SwiperSlide key={i} className="h-full">
-          <div className=" bg-black ml-10  mt-10 rounded-[60px] lg:h-[580px] 2xl:h-[500px] h-full relative ">
+          <div className=" bg-black ml-10  mt-10 rounded-[60px]  h-[580px] 2xl:h-[500px]  relative ">
             <div className="w-full flex flex-col justify-center  gap-1 bg-brand_blue-300 p-5 h-full absolute -top-5 -left-5 rounded-[40px] ">
               <div className="flex items-center  gap-4">
                 <p className="!text-black text-xl font-bold">5.0</p>

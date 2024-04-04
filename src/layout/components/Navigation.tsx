@@ -18,7 +18,6 @@ const Navigation = () => {
     setMount(true);
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
-        setisOpen(false);
         setisUser(false);
       } else if (user) {
         setisUser(true);
@@ -26,7 +25,7 @@ const Navigation = () => {
     });
 
     return () => unsubscribe();
-  }, [isOpen, isUser]);
+  }, [isUser]);
   if (!mount) {
     return null;
   }

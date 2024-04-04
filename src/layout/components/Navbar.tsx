@@ -15,7 +15,11 @@ import { PUBLIC_URLS } from "@/utils/urls";
 import { AUTH_NAV, PUBLIC_NAV, WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import Link from "next/link";
 import Dropdown from "./Dropdown";
-import { AnimatedLink, AnimatedHeroNav } from "@/ui/components/AnimatedButton";
+import {
+  AnimatedLink,
+  AnimatedHeroNav,
+  AnimatedHeroHamburger,
+} from "@/ui/components/AnimatedButton";
 import { FaAngleDown } from "react-icons/fa6";
 import { cn } from "@/utils/styles";
 const c1 = [
@@ -57,7 +61,7 @@ const Navbar = ({ toggle }: any) => {
     <nav className=" bg-white cursor-pointer h-16 border flex justify-between items-center text-white px-6">
       <ul className="flex gap-4 items-center w-full justify-between h-full">
         <div className="bg-brand_blue-300 w-32 h-10"></div>
-        <div className="gap-5 flex items-center">
+        <div className="gap-5 hidden md:flex items-center">
           {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => (
             <span
               key={index}
@@ -93,9 +97,20 @@ const Navbar = ({ toggle }: any) => {
             </span>
           ))}
         </div>
-        <div className="bg-brand_blue-300 min-w-40 h-12 my-3 relative rounded-xl">
+        <div className="bg-brand_blue-300 hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
           <p className="absolute capitalize text-sm -top-1 -left-1">
-            <AnimatedHeroNav className="bg-black" text="CONTACT US" />
+            <AnimatedHeroNav
+              className="bg-black h-10 min-w-36"
+              text="CONTACT US"
+            />
+          </p>
+        </div>
+        <div
+          onClick={() => toggle()}
+          className="bg-brand_blue-300 min-w-[46px] flex md:hidden h-10 my-3 relative rounded-xl"
+        >
+          <p className="absolute capitalize text-sm -top-1 -left-1">
+            <AnimatedHeroHamburger className="h-10" />
           </p>
         </div>
       </ul>

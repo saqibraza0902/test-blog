@@ -23,13 +23,13 @@ const AnimatedHoverLogo = ({
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
         `group relative  h-40 cursor-pointer  overflow-hidden w-60`,
-        { "border-r": index < 3 || (index > 3 && index < 7) },
-        { "border-b": index < 4 }
+        { "lg:border-r": index < 3 || (index > 3 && index < 7) },
+        { "lg:border-b": index < 4 }
       )}
     >
       <motion.div
-        initial={{ y: "58%" }}
-        animate={{ y: isHovered ? "0%" : "58%" }}
+        initial={{ y: "60%" }}
+        animate={{ y: isHovered ? "0%" : "60%" }}
         transition={{ duration: 0.3 }}
         className="overflow-hidden z-40 h-full flex justify-end items-center flex-col"
       >
