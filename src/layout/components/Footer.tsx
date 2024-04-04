@@ -72,13 +72,13 @@ const Footer = () => {
       <div className="lg:w-3/12 text-white flex flex-col gap-5">
         <div>
           <p className="font-light text-xs text-[#ccc]">DROP US A LINE</p>
-          <ContactLink href="" className="text-xl" text="testuser@gmail.com" />
+          <ContactLink href="" className="" text="testuser@gmail.com" />
         </div>
         <div>
           <p className="font-light text-xs text-[#ccc]">Call US</p>
           <div className="flex gap-4 items-center">
             <FcCallback size={25} />
-            <ContactLink className="text-xl" href="" text="+1 (920) 948 309" />
+            <ContactLink className="" href="" text="+1 (920) 948 309" />
           </div>
         </div>
       </div>

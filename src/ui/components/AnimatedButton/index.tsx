@@ -234,11 +234,9 @@ export const FooterLink = ({
 };
 
 export const ContactLink = ({
-  text = "Hello",
+  text = "",
   href = "/",
   className,
-  onMouseEnter,
-  onMouseLeave,
 }: ILinkProp) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
@@ -246,7 +244,7 @@ export const ContactLink = ({
     <Link
       href={href}
       className={cn(
-        ` border-black h-8 w-min flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
+        ` border-black h-8 w-max flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
       )}
       onMouseEnter={() => {
         setIsHovered(true), setIsHovered2(false);
@@ -277,15 +275,15 @@ export const ContactLink = ({
         <motion.div
           className="absolute bottom-0 left-0 h-0.5 bg-white"
           style={{ width: "100%", scaleX: isHovered ? 1 : 0 }}
-          initial={{ x: "100%" }} // Change initial position to start from the left
-          animate={{ x: isHovered ? "0%" : "-100%" }} // Animate towards the right when hovered
+          initial={{ x: "105%" }} // Change initial position to start from the left
+          animate={{ x: isHovered ? "0%" : "-105%" }} // Animate towards the right when hovered
           transition={{ duration: 0.3 }}
         />
         <motion.div
           className="absolute bottom-0 left-0 h-0.5 bg-white"
           style={{ width: "100%", scaleX: isHovered2 ? 1 : 0 }}
-          initial={{ x: "00%" }}
-          animate={{ x: isHovered2 ? "-100%" : "00%" }}
+          initial={{ x: "-5%" }}
+          animate={{ x: isHovered2 ? "-100%" : "-5%" }}
           transition={{ duration: 0.3 }}
         />
       </div>
