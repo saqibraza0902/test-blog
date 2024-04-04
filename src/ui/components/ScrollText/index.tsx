@@ -19,7 +19,7 @@ const ParagraphComponent = () => {
       <div>
         <p
           ref={element}
-          className="flex flex-wrap text-white leading-none justify-start   "
+          className="flex flex-wrap  leading-none justify-start   "
         >
           {words.map((word, idx) => {
             const start = idx / words.length;
