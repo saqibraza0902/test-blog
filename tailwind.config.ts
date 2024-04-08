@@ -30,6 +30,7 @@ const config: Config = {
         },
         brand_blue: {
           100: "#f7d3ff",
+          200: "#00C3FF",
           300: "#01c3ff",
           500: "#3B82F6",
           600: "#01011d",
@@ -42,6 +43,7 @@ const config: Config = {
         },
         brand_green: {
           200: "#bbf7d0",
+          300: "#FF6633",
           600: "#16a34a",
         },
       },

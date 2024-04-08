@@ -12,17 +12,20 @@ SwiperCore.use([Navigation]);
 
 const SwiperComponent = ({ swiperRef }: any) => {
   const breakpoints = {
-    // when window width is >= 768px
     768: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    1024: {
       slidesPerView: 2,
-      spaceBetween: 30,
+      spaceBetween: 10,
     },
   };
 
   return (
     <Swiper
       breakpoints={breakpoints}
-      spaceBetween={30}
+      spaceBetween={5}
       ref={swiperRef}
       slidesPerView={1}
       pagination={{ clickable: false }}
@@ -33,8 +36,8 @@ const SwiperComponent = ({ swiperRef }: any) => {
     >
       {[0, 2, 3, 4, 5, 5].map((item, i) => (
         <SwiperSlide key={i} className="h-full">
-          <div className=" bg-black ml-10  mt-10 rounded-[60px]  h-[580px] 2xl:h-[500px]  relative ">
-            <div className="w-full flex flex-col justify-center  gap-1 bg-brand_blue-300 p-5 h-full absolute -top-5 -left-5 rounded-[40px] ">
+          <div className=" bg-black ml-10  mt-10 rounded-[60px]  h-[500px] 2xl:h-[500px]  relative ">
+            <div className="w-full flex flex-col justify-center  gap-1 bg-white p-5 h-full absolute -top-5 -left-5 rounded-[40px] ">
               <div className="flex items-center  gap-4">
                 <p className="!text-black text-xl font-bold">5.0</p>
                 <span className="flex gap-1">
@@ -45,7 +48,7 @@ const SwiperComponent = ({ swiperRef }: any) => {
               </div>
               <div className="h-[0.1px] my-6 w-full bg-white" />
               <div className="">
-                <p className="text-lg dark:text-white font-bold ">
+                <p className="text-lg text-black font-bold ">
                   The client has learned to trust Halo Lab, thanks to their
                   significant knowledge in UI/UX design. The vendor has provided
                   valuable feedback by always being readily available for
@@ -57,7 +60,9 @@ const SwiperComponent = ({ swiperRef }: any) => {
               <div className="flex items-center mt-8 gap-3">
                 <div className="h-12 w-12 bg-slate-400 rounded-full" />
                 <div className="flex flex-col dark:text-white">
-                  <span className="text-sm font-semibold">Atif Hussain</span>
+                  <span className="text-sm font-semibold text-black">
+                    Atif Hussain
+                  </span>
                   <span className="text-xs font-medium dark:text-[#ccc]">
                     Co Founder
                   </span>
@@ -72,3 +77,38 @@ const SwiperComponent = ({ swiperRef }: any) => {
 };
 
 export default SwiperComponent;
+
+export const WorkSlider = ({ swiperRef }: any) => {
+  const breakpoints = {
+    768: {
+      slidesPerView: 1,
+      spaceBetween: 30,
+    },
+    992: {
+      slidesPerView: 1,
+      spaceBetween: 30,
+    },
+  };
+
+  return (
+    <Swiper
+      breakpoints={breakpoints}
+      spaceBetween={5}
+      ref={swiperRef}
+      slidesPerView={1}
+      pagination={{ clickable: false }}
+      scrollbar={{ draggable: true }}
+      autoplay={{ delay: 3000 }}
+      loop={true}
+      className="h-full"
+    >
+      {[0, 2, 3, 4, 5, 5].map((item, i) => (
+        <SwiperSlide key={i} className="h-full">
+          <div className=" bg-black h-[300px] lg:h-full w-full rounded-xl  relative ">
+            {i}
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+};

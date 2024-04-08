@@ -13,42 +13,40 @@ import Link from "next/link";
 import { cn } from "@/utils/styles";
 import { MdOutlineMailOutline } from "react-icons/md";
 
-const customTheme = (outerTheme: Theme) =>
-  createTheme({
-    palette: {
-      mode: outerTheme.palette.mode,
-    },
-    components: {
-      MuiOutlinedInput: {
-        styleOverrides: {
-          inputAdornedEnd: {
-            width: "90%",
-            // marginRight: "15px", // Adjust the spacing between the input and the icon
-            // marginLeft: "15px", // Adjust the spacing between the input and the icon
-          },
-          notchedOutline: {
-            borderColor: "#ccc",
-            color: "#ccc",
-            width: "100%",
-            borderRadius: "40px",
-          },
-          root: {
-            color: "#ccc",
-            width: "100%",
-            minWidth: "300px",
-            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: "#ccc",
+export default function MUIInput() {
+  const {} = useTheme;
+  const customTheme = (outerTheme: Theme) =>
+    createTheme({
+      palette: {
+        mode: outerTheme.palette.mode,
+      },
+      components: {
+        MuiOutlinedInput: {
+          styleOverrides: {
+            inputAdornedEnd: {
+              width: "90%",
             },
-            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+            notchedOutline: {
               borderColor: "#ccc",
+              color: "#ccc",
+              width: "100%",
+              borderRadius: "40px",
+            },
+            root: {
+              color: "#ccc",
+              width: "100%",
+              minWidth: "300px",
+              [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+                borderColor: "#ccc",
+              },
+              [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+                borderColor: "#ccc",
+              },
             },
           },
         },
       },
-    },
-  });
-
-export default function MUIInput() {
+    });
   const classes = useTheme();
 
   return (

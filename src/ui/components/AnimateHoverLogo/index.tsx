@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/styles";
 import Image from "next/image";
+import { useMediaQuery } from "react-responsive";
 
 interface IProp {
   imageSrc: string;
@@ -16,15 +17,17 @@ const AnimatedHoverLogo = ({
   index = 0,
 }: IProp) => {
   const [isHovered, setIsHovered] = useState(false);
-
+  const isMobile = useMediaQuery({ query: `(max-width: 1024px)` });
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        `group relative  h-40 cursor-pointer  overflow-hidden  lg:w-60`,
-        { "lg:border-r": index < 3 || (index > 3 && index < 7) },
-        { "lg:border-b": index < 4 }
+        `group relative h-40 cursor-pointer overflow-hidden md:w-60`,
+        { "lg:border-r-[2px]": index < 3 || (index > 3 && index < 7) },
+        { "lg:border-b-[2px]": index < 4 },
+        { "border-r-[2px] ": index % 2 === 0 },
+        { "border-b-[2px] ": index >= 0 && index < 6 && isMobile }
       )}
     >
       <motion.div

@@ -40,14 +40,14 @@ export const AnimatedHeroNav = ({ className, text }: IProp) => {
   return (
     <div
       className={cn(
-        `bg-black border-black min-w-40 gap-3 px-2 flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
+        `bg-black dark:bg-white border-black min-w-40 gap-3 px-2 flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="!w-full ">
         <motion.p
-          className="text-nowrap"
+          className="text-nowrap dark:text-black text-white"
           initial={{ y: "50%", x: "0%" }}
           animate={{ y: isHovered ? "-200%" : "50%", x: "0%" }}
           transition={{ duration: 0.3 }}
@@ -55,7 +55,7 @@ export const AnimatedHeroNav = ({ className, text }: IProp) => {
           {text}
         </motion.p>
         <motion.p
-          className="text-nowrap"
+          className="text-nowrap dark:text-black text-white"
           initial={{ y: "200%", x: "0%" }}
           animate={{ y: isHovered ? "-50%" : "200%", x: "0%" }}
           transition={{ duration: 0.3 }}
@@ -85,24 +85,24 @@ export const AnimatedHeroButton = ({ className, text }: IProp) => {
   return (
     <div
       className={cn(
-        `bg-black border-black h-12 min-w-40  flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
+        `bg-black border-black h-12 min-w-40 text-white flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="!w-2/6">
+      <div className="!w-2/6 cursor-pointer">
         <motion.p
-          className="absolute text-white top-0 left-0 right-0 bottom-0 m-auto"
-          initial={{ y: "30%", x: "15%" }}
-          animate={{ y: isHovered ? "-100%" : "30%", x: "15%" }}
+          className="text-nowrap"
+          initial={{ y: "50%", x: "-55%" }}
+          animate={{ y: isHovered ? "-150%" : "50%", x: "-55%" }}
           transition={{ duration: 0.3 }}
         >
           {text}
         </motion.p>
         <motion.p
-          className="absolute text-white  top-0 left-0 right-0 bottom-0 m-auto"
-          initial={{ y: isHovered ? "30%" : "100%", x: "15%" }}
-          animate={{ y: isHovered ? "30%" : "100%", x: "15%" }}
+          className="text-nowrap"
+          initial={{ y: "150%", x: "-55%" }}
+          animate={{ y: isHovered ? "-50%" : "150%", x: "-55%" }}
           transition={{ duration: 0.3 }}
         >
           {text}
@@ -138,7 +138,7 @@ export const AnimatedLink = ({
         onMouseLeave={showIcon ? onMouseLeave : () => console.log("first")}
       >
         <motion.p
-          className="  text-black flex m-auto items-center gap-1"
+          className="  text-black dark:text-white flex m-auto items-center gap-1"
           initial={{ y: "50%" }}
           animate={{ y: isHovered ? "-150%" : "50%" }}
           transition={{ duration: 0.3 }}
@@ -147,15 +147,15 @@ export const AnimatedLink = ({
           {showIcon && (
             <>
               {isHovered ? (
-                <FaChevronUp color="#000" />
+                <FaChevronUp className="dark:text-white text-black" />
               ) : (
-                <FaChevronDown color="#000" />
+                <FaChevronDown className="dark:text-white text-black" />
               )}
             </>
           )}
         </motion.p>
         <motion.p
-          className=" text-black flex m-auto items-center gap-1"
+          className=" text-black dark:text-white flex m-auto items-center gap-1"
           initial={{ y: isHovered ? "-50%" : "100%" }}
           animate={{ y: isHovered ? "-50%" : "100%" }}
           transition={{ duration: 0.3 }}
@@ -164,9 +164,9 @@ export const AnimatedLink = ({
           {showIcon && (
             <>
               {isHovered ? (
-                <FaChevronUp color="#000" />
+                <FaChevronUp className="dark:text-white text-black" />
               ) : (
-                <FaChevronDown color="#000" />
+                <FaChevronDown className="dark:text-white text-black" />
               )}
             </>
           )}
@@ -273,14 +273,14 @@ export const ContactLink = ({
           {text}
         </motion.p>
         <motion.div
-          className="absolute bottom-0 left-0 h-0.5 bg-white"
+          className="absolute bottom-0 left-0 h-0.5 dark:bg-white bg-black"
           style={{ width: "100%", scaleX: isHovered ? 1 : 0 }}
           initial={{ x: "105%" }} // Change initial position to start from the left
           animate={{ x: isHovered ? "0%" : "-105%" }} // Animate towards the right when hovered
           transition={{ duration: 0.3 }}
         />
         <motion.div
-          className="absolute bottom-0 left-0 h-0.5 bg-white"
+          className="absolute bottom-0 left-0 h-0.5 dark:bg-white bg-black"
           style={{ width: "100%", scaleX: isHovered2 ? 1 : 0 }}
           initial={{ x: "-5%" }}
           animate={{ x: isHovered2 ? "-100%" : "-5%" }}
@@ -296,13 +296,13 @@ export const SliderRightButton = ({ className }: ISlider) => {
   return (
     <div
       className={cn(
-        ` border-black h-12 w-min flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
+        ` border-black h-12 w-12 lg:h-28 lg:w-28  flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`w-10 h-10 flex justify-center transition-all duration-300 items-center  rounded-full ${
+        className={`w-full h-full flex justify-center transition-all duration-300 items-center  rounded-full ${
           isHovered ? "bg-white border" : " bg-none border"
         }`}
       >
@@ -312,7 +312,10 @@ export const SliderRightButton = ({ className }: ISlider) => {
           animate={{ x: isHovered ? "200%" : "50%", y: "-0%" }}
           transition={{ duration: 0.3 }}
         >
-          <MdOutlineArrowForwardIos color="#fff" />
+          <MdOutlineArrowForwardIos
+            className="lg:text-5xl text-xl"
+            color="#fff"
+          />
         </motion.p>
         <motion.p
           className=""
@@ -320,7 +323,10 @@ export const SliderRightButton = ({ className }: ISlider) => {
           animate={{ x: isHovered ? "-50%" : "-200%", y: "-0%" }}
           transition={{ duration: 0.3 }}
         >
-          <MdOutlineArrowForwardIos color="#000" />
+          <MdOutlineArrowForwardIos
+            className="lg:text-5xl text-xl"
+            color="#000"
+          />
         </motion.p>
       </div>
     </div>
@@ -332,13 +338,13 @@ export const SliderLeftButton = ({ className }: ISlider) => {
   return (
     <div
       className={cn(
-        ` border-black h-12 w-min flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
+        ` border-black lg:h-28 lg:w-28 h-12 w-12 flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`w-10 h-10 flex justify-center transition-all duration-300 items-center  rounded-full ${
+        className={`w-full h-full flex justify-center transition-all duration-300 items-center  rounded-full ${
           isHovered ? "bg-white border" : " bg-none border"
         }`}
       >
@@ -348,7 +354,7 @@ export const SliderLeftButton = ({ className }: ISlider) => {
           animate={{ x: isHovered ? "-200%" : "50%", y: "-0%" }}
           transition={{ duration: 0.3 }}
         >
-          <MdOutlineArrowBackIos color="#fff" />
+          <MdOutlineArrowBackIos className="lg:text-5xl text-xl" color="#fff" />
         </motion.p>
         <motion.p
           className=""
@@ -356,7 +362,7 @@ export const SliderLeftButton = ({ className }: ISlider) => {
           animate={{ x: isHovered ? "-50%" : "200%", y: "-0%" }}
           transition={{ duration: 0.3 }}
         >
-          <MdOutlineArrowBackIos color="#000" />
+          <MdOutlineArrowBackIos className="lg:text-5xl text-xl" color="#000" />
         </motion.p>
       </div>
     </div>

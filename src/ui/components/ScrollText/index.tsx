@@ -3,7 +3,7 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useRef } from "react";
 const Content =
-  "For 10 years since our foundation in Ukrain, We've been perfection our Design & Developement game and eager to help passionate founders perfect theirs.Success is a team play, right? Let's aim for the top together!";
+  "For a decade in Pakistan, honing our Design & Development skills. We endeavor to support ambitious clients in their pursuit of perfection. Success, we believe, is a collaborative effort. let's join forces to reach the pinnacle together!";
 
 const ParagraphComponent = () => {
   const element = useRef(null);
@@ -19,7 +19,7 @@ const ParagraphComponent = () => {
       <div>
         <p
           ref={element}
-          className="flex flex-wrap  leading-none justify-start   "
+          className="flex flex-wrap  leading-none justify-center   "
         >
           {words.map((word, idx) => {
             const start = idx / words.length;
@@ -32,8 +32,8 @@ const ParagraphComponent = () => {
             return (
               <span
                 key={idx}
-                className={`mr-2  lg:mt-2 leading-10 font-semibold lg:text-6xl md:text-4xl text-xl ${
-                  idx === 0 ? " ml-40" : ""
+                className={`mr-2  lg:mt-2 leading-10 font-semibold md:text-4xl text-xl ${
+                  idx === 0 ? "" : ""
                 }`}
               >
                 {/* ------Character Map */}

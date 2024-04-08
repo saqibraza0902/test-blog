@@ -58,7 +58,7 @@ const Navbar = ({ toggle }: any) => {
     return () => unsubscribe();
   }, [user]);
   return (
-    <nav className=" bg-white cursor-pointer h-16 border flex justify-between items-center text-white px-6">
+    <nav className=" bg-white dark:bg-black cursor-pointer h-16 border dark:border-none flex justify-between items-center text-white px-6">
       <ul className="flex gap-4 items-center w-full justify-between h-full">
         <div className="bg-brand_blue-300 w-32 h-10"></div>
         <div className="gap-5 hidden md:flex items-center">
@@ -70,7 +70,7 @@ const Navbar = ({ toggle }: any) => {
               <AnimatedLink
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className="!text-black !bg-none  uppercase flex items-center gap-1"
+                className="!text-black dark:text-black !bg-none  uppercase flex items-center gap-1"
                 href={item.pathname}
                 text={item.title}
                 showIcon={item.isDropdown}
@@ -97,7 +97,7 @@ const Navbar = ({ toggle }: any) => {
             </span>
           ))}
         </div>
-        <div className="bg-brand_blue-300 hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
+        <div className="bg-brand_blue-300  hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
           <p className="absolute capitalize text-sm -top-1 -left-1">
             <AnimatedHeroNav
               className="bg-black h-10 min-w-36"
