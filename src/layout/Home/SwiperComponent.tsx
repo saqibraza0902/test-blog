@@ -78,7 +78,7 @@ const SwiperComponent = ({ swiperRef }: any) => {
 
 export default SwiperComponent;
 
-export const WorkSlider = ({ swiperRef }: any) => {
+export const WorkSlider = ({ swiperRef, data }: any) => {
   const breakpoints = {
     768: {
       slidesPerView: 1,
@@ -96,16 +96,57 @@ export const WorkSlider = ({ swiperRef }: any) => {
       spaceBetween={5}
       ref={swiperRef}
       slidesPerView={1}
+      allowTouchMove={false}
       pagination={{ clickable: false }}
       scrollbar={{ draggable: true }}
       autoplay={{ delay: 3000 }}
       loop={true}
       className="h-full"
     >
-      {[0, 2, 3, 4, 5, 5].map((item, i) => (
+      {data?.map((item: any, i: number) => (
         <SwiperSlide key={i} className="h-full">
-          <div className=" bg-black h-[300px] lg:h-full w-full rounded-xl  relative ">
-            {i}
+          <img
+            className="h-full rounded-3xl"
+            src={item.gallery[0]?.url}
+            alt={item.gallery[0]?.alt}
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+};
+
+export const WorkContentSlider = ({ swiperRef, data }: any) => {
+  const breakpoints = {
+    768: {
+      slidesPerView: 1,
+      spaceBetween: 30,
+    },
+    992: {
+      slidesPerView: 1,
+      spaceBetween: 30,
+    },
+  };
+
+  return (
+    <Swiper
+      breakpoints={breakpoints}
+      spaceBetween={5}
+      ref={swiperRef}
+      allowTouchMove={false}
+      slidesPerView={1}
+      pagination={{ clickable: false }}
+      autoplay={{ delay: 3000 }}
+      loop={true}
+      className="h-full"
+    >
+      {data?.map((item: any, i: number) => (
+        <SwiperSlide key={i} className="h-full">
+          <div className="w-full">
+            <div className="  text-white gap-2 p-3 ">
+              <h3 className="text-xl  font-SuisseSemiBold">{item?.title}</h3>
+              <p>{item?.desc}</p>
+            </div>
           </div>
         </SwiperSlide>
       ))}
