@@ -13,7 +13,7 @@ export default async function SinglePost({
   return (
     <CommonLayout>
       <div className="flex justify-center w-full min-h-screen">
-        <div className="!w-2/3 grid grid-cols-1 !mx-auto p-4">
+        <div className="lg:!w-2/3 grid grid-cols-1 !mx-auto p-4">
           <h2 className="text-2xl  font-semibold">{blogPost.title}</h2>
           {blogPost?.featuredImage?.url ? (
             <div className="relative h-96 group">

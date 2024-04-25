@@ -104,7 +104,7 @@ const BlogActions = () => {
           <Loader />
         </div>
       )}
-      <div className="grid grid-cols-3 gap-10 p-10 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-10 ">
         {data?.map((post: IBlog, index: number) => (
           <div key={index}>
             {post.featuredImage.url ? (
@@ -151,7 +151,7 @@ const BlogActions = () => {
           </div>
         ))}
         <Modal isOpen={delOpen} onClose={() => setDelOpen(false)}>
-          <div className="h-full !bg-white w-2/3  mx-auto p-10 my-auto rounded-xl">
+          <div className="h-full !bg-white lg:w-2/3  mx-auto p-10 my-auto rounded-xl">
             <h1 className="text-brand_red-800 font-bold text-2xl">Delete</h1>
             <h2 className="text-lg py-5 text-black">
               Are you sure you want to delete this Blog

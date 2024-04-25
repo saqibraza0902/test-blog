@@ -15,7 +15,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className={`fixed inset-y-0 w-full md:w-[50%]  !overflow-hidden z-50 lg:w-[25%]  bg-brand_gray-400 dark:bg-brand_gray-700 transition-transform duration-300 transform flex 
+      className={`fixed lg:hidden inset-y-0 w-full md:w-[50%]  !overflow-hidden z-50 lg:w-[25%]  bg-brand_gray-400 dark:bg-brand_gray-700 transition-transform duration-300 transform flex 
        ${open ? "translate-x-0" : "-translate-x-full"} 
      
       `}

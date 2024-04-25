@@ -14,7 +14,7 @@ const Modal = ({ isOpen, children }: IProp) => {
   return (
     <div className={modalClasses}>
       <div className="fixed inset-0 bg-black opacity-50"></div>
-      <div className="h-full w-2/3 p-6 rounded-lg z-10">
+      <div className="h-full lg:w-2/3 p-6 rounded-lg z-10">
         <div className=" flex justify-center  flex-col">{children}</div>
       </div>
     </div>

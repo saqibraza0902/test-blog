@@ -107,7 +107,7 @@ const PortfolioActions = () => {
           <Loader />
         </div>
       )}
-      <div className="grid grid-cols-3 gap-10 p-10 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-10 ">
         {data?.map((post: IPortfolio, index: number) => (
           <div key={index}>
             <div>
@@ -296,7 +296,7 @@ const PortfolioActions = () => {
         </div>
       </Modal>
       <Modal isOpen={delOpen}>
-        <div className="h-full !bg-white w-2/3 mx-auto p-10 my-auto rounded-xl">
+        <div className="h-full !bg-white lg:w-2/3 mx-auto p-10 my-auto rounded-xl">
           <h1 className="text-2xl  font-bold mb-4 ">Actions</h1>
           <p>Are you sure you want to delete this item</p>
           <div className="flex w-full h-10 gap-5 mt-5">

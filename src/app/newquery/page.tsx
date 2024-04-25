@@ -31,7 +31,7 @@ const NewQuery = () => {
   };
   return (
     <CommonLayout>
-      <div className="mx-auto flex flex-col gap-10 my-10 w-2/3">
+      <div className="mx-auto p-2 md:p-5 flex flex-col gap-10 my-10 md:w-2/3">
         <input
           placeholder="Name"
           className="!bg-slate-300 outline-none border-none h-12 px-3"

@@ -132,7 +132,7 @@ const ColAction = () => {
           <Loader />
         </div>
       )}
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3">
         {collectible.map((post: any) => (
           <div key={post.id}>
             <div className="bg-white shadow-lg rounded-lg overflow-hidden m-4 w-80">
@@ -177,7 +177,7 @@ const ColAction = () => {
           </div>
         ))}
         <Modal isOpen={delOpen} onClose={() => setDelOpen(false)}>
-          <div className="h-full !bg-white w-2/3  mx-auto p-10 my-auto rounded-xl">
+          <div className="h-full !bg-white lg::w-2/3  mx-auto p-10 my-auto rounded-xl">
             <h1 className="text-red-700 font-bold text-2xl">Delete</h1>
             <h2 className="text-lg py-5 text-black">
               Are you sure you want to delete this collectibe
@@ -213,7 +213,7 @@ const ColAction = () => {
               </div>
             ) : (
               <>
-                <div className="flex w-full py-4 gap-10 justify-center">
+                <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
                   <div className="w-full">
                     <label>Title</label>
                     <Input
@@ -235,7 +235,7 @@ const ColAction = () => {
                     />
                   </div>
                 </div>
-                <div className="flex w-full py-4 gap-10 justify-center">
+                <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
                   <div className="w-full">
                     <label>Type</label>
                     <Input
@@ -257,7 +257,7 @@ const ColAction = () => {
                     />
                   </div>
                 </div>
-                <div className="flex w-full py-4 gap-10 justify-center">
+                <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
                   <div className="w-full">
                     {fields?.downloadUrl ? (
                       <div className="relative">
@@ -315,14 +315,14 @@ const ColAction = () => {
                     )}
                   </div>
                 </div>
-                <div className="flex w-full py-4 gap-10 justify-center">
+                <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
                   <JoditEditor
                     value={content}
                     config={config}
                     onBlur={(newContent) => setContent(newContent)}
                   />
                 </div>
-                <div className="flex mx-auto py-4 w-2/3 gap-10 justify-center">
+                <div className="flex flex-col md:flex-row mx-auto py-4 lg:w-2/3 gap-10 justify-center">
                   <Button
                     onClick={() => handleSubmit()}
                     className="bg-brand_green-600"

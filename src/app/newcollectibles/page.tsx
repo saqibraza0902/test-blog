@@ -70,8 +70,8 @@ const NewCollectibles = () => {
   };
   return (
     <WithAuthLayout>
-      <div className="w-3/4 gap-5 mx-auto">
-        <div className="flex w-full py-4 gap-10 justify-center">
+      <div className="md:w-3/4 p-2 md:p-5 gap-5 mx-auto">
+        <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
           <Input
             label="Title"
             value={fields.title}
@@ -88,7 +88,7 @@ const NewCollectibles = () => {
             className="w-full"
           />
         </div>
-        <div className="flex w-full py-4 gap-10 justify-center">
+        <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
           <Input
             label="Type"
             value={fields.type}
@@ -103,7 +103,7 @@ const NewCollectibles = () => {
             className="w-full"
           />
         </div>
-        <div className="flex w-full py-4 gap-10 justify-center">
+        <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
           <InputFile
             label="File"
             onChange={(e: any) => {
@@ -145,14 +145,14 @@ const NewCollectibles = () => {
             className="w-full"
           /> */}
         </div>
-        <div className="flex w-full py-4 gap-10 justify-center">
+        <div className="flex flex-col md:flex-row w-full py-4 gap-10 justify-center">
           <JoditEditor
             value={content}
             config={config}
             onBlur={(newContent) => setContent(newContent)}
           />
         </div>
-        <div className="flex mx-auto py-4 w-2/3 gap-10 justify-center">
+        <div className="flex flex-col md:flex-row mx-auto py-4 lg:w-2/3 gap-10 justify-center">
           <Button onClick={() => handleSubmit()}>Submit</Button>
         </div>
       </div>

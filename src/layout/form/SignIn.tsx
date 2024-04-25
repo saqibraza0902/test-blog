@@ -6,7 +6,15 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import { useRouter } from "next/navigation";
 
 const SignInLayout = () => {
@@ -17,28 +25,16 @@ const SignInLayout = () => {
   const handleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      const { user } = await signInWithPopup(auth, provider);
-      if (user.email) {
-        const usersRef = collection(db, "Authers");
-        const q = query(usersRef, where("email", "==", user.email));
-        const snap = await getDocs(q);
-        const data = snap.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        console.log(data);
-        if (data.length === 0) {
-          const docRef = await addDoc(collection(db, "Authers"), {
-            email: user.email,
-            name: user.displayName,
-            avatar: user.photoURL,
-            description: user.providerData[0].providerId,
-            isAdmin: false,
-            isAuther: false,
-          });
-          console.log(docRef);
-        }
-      }
+      const auths = await signInWithPopup(auth, provider);
+      const authorsDocRef = doc(db, "Authers", auths.user.uid);
+      await setDoc(authorsDocRef, {
+        email: auths.user.email,
+        name: auths.user.displayName,
+        avatar: auths.user.photoURL,
+        description: auths.user.providerData[0].providerId,
+        isAdmin: false,
+        isAuther: false,
+      });
     } catch (error) {
       console.log(error);
     }

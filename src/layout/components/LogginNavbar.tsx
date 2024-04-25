@@ -40,7 +40,7 @@ const LoggedinNavbar = ({ toggle }: any) => {
     <nav className=" bg-brand_gray-400 dark:bg-brand_gray-700 h-16 flex justify-between items-center text-white px-6">
       <ul className="flex gap-4 items-center h-full">
         {PUBLIC_NAV.map((item, index) => (
-          <Link key={index} href={item.pathname}>
+          <Link className="hidden md:flex" key={index} href={item.pathname}>
             {item.title}
           </Link>
         ))}
@@ -82,7 +82,7 @@ const LoggedinNavbar = ({ toggle }: any) => {
           </span>
         </Link>
         {user && (
-          <>
+          <div className="hidden lg:flex">
             {AUTH_NAV.map((item, index) => (
               <Dropdown item={item} key={index} />
             ))}
@@ -97,7 +97,7 @@ const LoggedinNavbar = ({ toggle }: any) => {
             <li onClick={() => handleSignOut()} className="cursor-pointer">
               Logout
             </li>
-          </>
+          </div>
         )}
       </ul>
     </nav>

@@ -49,7 +49,7 @@ const Collectibles = () => {
           <Loader />
         </div>
       )}
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
         {collectible.map((post: any) => (
           <div key={post.id}>
             <div className="bg-white shadow-lg rounded-lg overflow-hidden m-4 w-80">

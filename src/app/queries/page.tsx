@@ -45,7 +45,7 @@ const Queries = () => {
           <Loader />
         </div>
       ) : (
-        <div className="m-10">
+        <div className=" w-full overflow-x-auto">
           <table className="w-full ">
             <thead>
               <tr className=" text-sm  bg-yellow-400 whitespace-nowrap">

@@ -70,7 +70,7 @@ const DashboardLayout = () => {
   };
   return (
     <div className="flex justify-center w-full min-h-screen">
-      <div className="w-2/3 mx-auto p-4 flex flex-col gap-5">
+      <div className="md:w-2/3 mx-auto p-4 flex flex-col gap-5">
         <p>Available Tags</p>
         <div className="flex gap-2">
           {tags.map((tag: any) => (

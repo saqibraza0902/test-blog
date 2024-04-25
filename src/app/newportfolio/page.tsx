@@ -98,7 +98,7 @@ const NewPortfolio = () => {
   return (
     <CommonLayout>
       <div className="flex justify-center w-full min-h-screen">
-        <div className="w-2/3 mx-auto p-4 flex flex-col gap-5">
+        <div className="md:w-2/3 mx-auto p-4 flex flex-col gap-5">
           <h2 className="text-center font-semibold text-3xl">
             Add new portfolio Item
           </h2>
@@ -199,7 +199,7 @@ const NewPortfolio = () => {
           </div>
           <div>
             <p>Timeline</p>
-            <div className="flex gap-10">
+            <div className="flex flex-col lg:flex-row gap-10">
               <Input type="datetime-local" label="Start Date" />
               <Input type="datetime-local" label="End Date" />
             </div>
