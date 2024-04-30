@@ -26,12 +26,12 @@ const SinglePortfolio = async (props: any) => {
   return (
     <CommonLayout>
       <div className="flex justify-center w-full min-h-screen">
-        <div className="w-2/3 mx-auto flex flex-col gap-10 p-4">
+        <div className="lg:w-2/3 mx-auto flex flex-col gap-2 p-4">
           <h2 className="text-2xl  font-semibold">{data.title}</h2>
           {data?.gallery?.length > 0 && (
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid lg:grid-cols-4 gap-2">
               {data?.gallery?.map((item: IItem, index) => (
-                <div className=" w-full h-80 relative group" key={index}>
+                <div className=" w-full min-h-80 relative group" key={index}>
                   <Image
                     fill={true}
                     className="object-contain"
@@ -42,13 +42,13 @@ const SinglePortfolio = async (props: any) => {
               ))}
             </div>
           )}
-          <div className="flex justify-between">
+          <div className="flex flex-col md:flex-row justify-between">
             <p>Country:{data?.client?.country}</p>
             <p>Name:{data?.client?.name}</p>
             <p>Individual: {data?.client?.isIndividual ? "Yes" : "No"}</p>
           </div>
           <p>{data?.desc}</p>
-          {/* <div dangerouslySetInnerHTML={{ __html: data?.content }} /> */}
+          <div dangerouslySetInnerHTML={{ __html: data?.content }} />
         </div>
       </div>
     </CommonLayout>
