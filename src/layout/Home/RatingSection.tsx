@@ -21,7 +21,7 @@ const RatingSection = () => {
   };
   return (
     <>
-      <div className="w-full mr-10 lg:w-3/12 flex flex-row justify-between items-center lg:items-start px-6 lg:px-0 lg:justify-end lg:flex-col  text-white">
+      <div className="w-full mr-10 lg:w-3/12  flex flex-row justify-between items-center lg:items-start px-6 lg:px-0 lg:justify-end lg:flex-col 2xl:justify-center  text-white">
         <div className="w-1/2 flex flex-col">
           <span className="text-4xl font-SuisseBold text-white">4.9</span>
           <span className="text-3xl  text-white font-SuisseMedium">
@@ -37,7 +37,7 @@ const RatingSection = () => {
           </span>
         </div>
       </div>
-      <div className="w-full lg:w-9/12 h-full">
+      <div className="w-full lg:w-9/12 flex items-center justify-center  h-full">
         <SwiperComponent
           swiperRef={swiperRef}
           onNextSlide={nextSlide}

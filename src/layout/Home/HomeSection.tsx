@@ -1,6 +1,6 @@
 import { AnimatedHeroButton } from "@/ui/components/AnimatedButton";
 import React from "react";
-import ScrollText from "@/ui/components/ScrollText";
+
 const HomeSection = () => {
   return (
     <>
@@ -37,9 +37,6 @@ const HomeSection = () => {
             ))}
           </div>
         </div>
-      </div>
-      <div className="h-full flex flex-col gap-10 py-40 justify-center items-center">
-        <ScrollText />
       </div>
     </>
   );

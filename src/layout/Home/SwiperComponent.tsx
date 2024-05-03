@@ -20,6 +20,10 @@ const SwiperComponent = ({ swiperRef }: any) => {
       slidesPerView: 2,
       spaceBetween: 10,
     },
+    1536: {
+      slidesPerView: 2.5,
+      spaceBetween: 10,
+    },
   };
 
   return (
@@ -32,11 +36,11 @@ const SwiperComponent = ({ swiperRef }: any) => {
       scrollbar={{ draggable: true }}
       autoplay={{ delay: 3000 }}
       loop={true}
-      className="h-full"
+      className="h-full 2xl:h-[600px]"
     >
       {[0, 2, 3, 4, 5, 5].map((item, i) => (
         <SwiperSlide key={i} className="h-full">
-          <div className=" bg-black ml-10  mt-10 rounded-[60px]  h-[500px] 2xl:h-[500px]  relative ">
+          <div className=" bg-black ml-10 mt-10 rounded-[60px]  h-[500px] 2xl:h-[500px]  relative ">
             <div className="w-full flex flex-col justify-center  gap-1 bg-white p-5 h-full absolute -top-5 -left-5 rounded-[40px] ">
               <div className="flex items-center  gap-4">
                 <p className="!text-black text-xl font-bold">5.0</p>
@@ -79,6 +83,7 @@ const SwiperComponent = ({ swiperRef }: any) => {
 export default SwiperComponent;
 
 export const WorkSlider = ({ swiperRef, data }: any) => {
+  console.log(swiperRef);
   const breakpoints = {
     768: {
       slidesPerView: 1,
@@ -106,7 +111,7 @@ export const WorkSlider = ({ swiperRef, data }: any) => {
       {data?.map((item: any, i: number) => (
         <SwiperSlide key={i} className="h-full">
           <img
-            className="h-full rounded-3xl"
+            className="h-full 2xl:h-[700px] rounded-3xl"
             src={item.gallery[0]?.url}
             alt={item.gallery[0]?.alt}
           />
