@@ -12,8 +12,9 @@ import { get_portfolios } from "@/utils/function";
 const WorkSection = () => {
   const swiperRef = useRef<any>(null);
   const swiperRefs = useRef<any>(null);
-
+  const [loading, setloading] = useState(false);
   const nextSlide = () => {
+    // console.log(swiperRef.current, swiperRefs.current);
     if (
       swiperRef.current &&
       swiperRef.current.swiper &&
@@ -37,14 +38,47 @@ const WorkSection = () => {
     }
   };
   const [data, setData] = useState([]);
+  // const data = [
+  //   {
+  //     title: "This is another portfolio.",
+  //     desc: "This is the desc",
+  //     gallery: [
+  //       {
+  //         url: "https://firebasestorage.googleapis.com/v0/b/next-firebase-33c02.appspot.com/o/1711530077152Screenshot%20(1).png?alt=media&token=06ecae98-baa4-4cd3-beca-0d3043ef6553",
+  //         alt: "https://firebasestorage.googleapis.com/v0/b/next-firebase-33c02.appspot.com/o/1711530077152Screenshot%20(1).png?alt=media&token=06ecae98-baa4-4cd3-beca-0d3043ef6553",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "This is another portfolio no 2.",
+  //     desc: "This is the desc",
+  //     gallery: [
+  //       {
+  //         url: "https://firebasestorage.googleapis.com/v0/b/next-firebase-33c02.appspot.com/o/1711530077152Screenshot%20(1).png?alt=media&token=06ecae98-baa4-4cd3-beca-0d3043ef6553",
+  //         alt: "https://firebasestorage.googleapis.com/v0/b/next-firebase-33c02.appspot.com/o/1711530077152Screenshot%20(1).png?alt=media&token=06ecae98-baa4-4cd3-beca-0d3043ef6553",
+  //       },
+  //     ],
+  //   },
+  // ];
   useEffect(() => {
     const get_data = async () => {
-      const newposts = await get_portfolios();
-      console.log(newposts);
-      setData(newposts);
+      try {
+        setloading(true);
+        const newposts = await get_portfolios();
+        console.log(newposts);
+        setloading(false);
+        setData(newposts);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setloading(false);
+      }
     };
     get_data();
   }, []);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
   return (
     <div className="min-h-screen 2xl:min-h-[800px] h-full bg-none lg:bg-black rounded-[90px] relative">
       <div className="w-full h-full flex flex-col justify-center lg:h-full z-40 bg-none lg:bg-brand_blue-300 rounded-[64px] lg:absolute -top-5 -left-5">
