@@ -42,7 +42,7 @@ const Navbar = ({ toggle }: any) => {
   const [user, setUser] = useState<User | null>();
   const { items } = useAppSelector((s) => s.cart);
   const [isHovered, setIsHovered] = useState(false);
-  console.log(items);
+
   const handleSignOut = () => {
     try {
       signOut(auth);
@@ -63,7 +63,7 @@ const Navbar = ({ toggle }: any) => {
         <div className="bg-brand_blue-300 w-32 h-10"></div>
         <div className="gap-5 hidden md:flex items-center">
           {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => (
-            <span
+            <div
               key={index}
               className="flex items-center w-full relative gap-2"
             >
@@ -94,24 +94,24 @@ const Navbar = ({ toggle }: any) => {
                   </div>
                 </motion.div>
               )}
-            </span>
+            </div>
           ))}
         </div>
         <div className="bg-brand_blue-300  hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
-          <p className="absolute capitalize text-sm -top-1 -left-1">
+          <div className="absolute capitalize text-sm -top-1 -left-1">
             <AnimatedHeroNav
               className="bg-black h-10 min-w-36"
               text="CONTACT US"
             />
-          </p>
+          </div>
         </div>
         <div
           onClick={() => toggle()}
           className="bg-brand_blue-300 min-w-[46px] flex md:hidden h-10 my-3 relative rounded-xl"
         >
-          <p className="absolute capitalize text-sm -top-1 -left-1">
+          <div className="absolute capitalize text-sm -top-1 -left-1">
             <AnimatedHeroHamburger className="h-10" />
-          </p>
+          </div>
         </div>
       </ul>
     </nav>

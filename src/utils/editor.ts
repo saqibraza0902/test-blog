@@ -1,7 +1,9 @@
 export const config = {
   readonly: false,
   spellcheck: true,
-
+  iframe: true,
+  toolbarSticky: false,
+  allowScritp: true,
   enableDragAndDropFileToEditor: true,
   uploader: {
     insertImageAsBase64URI: true,

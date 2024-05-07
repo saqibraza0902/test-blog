@@ -29,7 +29,7 @@ const ToggleSidebar = ({ open, close }: Props) => {
 
         <div className="w-full flex flex-col gap-1">
           {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => (
-            <span
+            <div
               key={index}
               className="flex items-center px-3 bg-yellow-300 w-full relative gap-2"
             >
@@ -41,16 +41,16 @@ const ToggleSidebar = ({ open, close }: Props) => {
                 text={item.title}
                 showIcon={item.isDropdown}
               />
-            </span>
+            </div>
           ))}
         </div>
         <div className="bg-brand_blue-300 flex md:hidden w-36 h-10 my-3 relative rounded-xl">
-          <p className="absolute capitalize text-sm -top-1 -left-1">
+          <div className="absolute capitalize text-sm -top-1 -left-1">
             <AnimatedHeroNav
               className="bg-black text-white h-10 min-w-36"
               text="CONTACT US"
             />
-          </p>
+          </div>
         </div>
       </div>
     </div>

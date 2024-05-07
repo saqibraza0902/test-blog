@@ -83,7 +83,6 @@ const SwiperComponent = ({ swiperRef }: any) => {
 export default SwiperComponent;
 
 export const WorkSlider = ({ swiperRef, data }: any) => {
-  console.log(swiperRef);
   const breakpoints = {
     768: {
       slidesPerView: 1,

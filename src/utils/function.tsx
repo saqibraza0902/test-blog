@@ -100,3 +100,20 @@ export const get_tags = async () => {
     return error;
   }
 };
+export const get_featured_blogs = async () => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/featuredblogs`,
+      {
+        method: "GET",
+        cache: "no-cache",
+      }
+    );
+    if (!res.ok) {
+      throw new Error("Failed");
+    }
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};

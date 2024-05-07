@@ -20,6 +20,7 @@ export interface IBlog {
   };
   isArchived: boolean;
   autherId: string;
+  isFeatured?: boolean;
   createdAt: string;
   updatedAt: string;
 }

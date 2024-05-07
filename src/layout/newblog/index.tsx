@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 import { db } from "@/utils/firebase";
@@ -24,6 +24,7 @@ const initialState = {
     alt: "",
   },
   isArchived: false,
+  isFeatured: false,
   autherId: "",
   createdAt: new Date(),
   updatedAt: new Date(),
@@ -32,6 +33,15 @@ const DashboardLayout = () => {
   const [tags, setTags] = useState<any>([]);
   const [fields, setFields] = useState(initialState);
   const [file, setFile] = useState<null | any>();
+  const editor = useRef<any>(null);
+
+  const insertVideo = () => {
+    const videoURL = prompt("Enter the URL of the video:");
+    if (videoURL) {
+      const videoIframe = `<iframe width="560" height="315" src="${videoURL}" frameborder="0" allowfullscreen></iframe>`;
+      editor.current.selection.insertHTML(videoIframe);
+    }
+  };
   const postData = async () => {
     try {
       const docRef = await addDoc(collection(db, "Blogs"), {
@@ -145,8 +155,9 @@ const DashboardLayout = () => {
           </div>
         </div>
         <JoditEditor
+          ref={editor}
           value={fields.content}
-          config={config}
+          config={{ ...config, iframe: true, useSplitMode: false }}
           onBlur={(newContent) => setFields({ ...fields, content: newContent })}
         />
         <div>
@@ -159,6 +170,7 @@ const DashboardLayout = () => {
             ))}
           </div>
         </div>
+        <p>{fields.content}</p>
         <Button className="" onClick={() => postData()}>
           Submit
         </Button>
