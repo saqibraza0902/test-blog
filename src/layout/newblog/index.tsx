@@ -2,8 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
-import { db } from "@/utils/firebase";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { auth, db } from "@/utils/firebase";
+import { Timestamp, addDoc, collection, getDocs } from "firebase/firestore";
 import { config } from "@/utils/editor";
 import Input from "@/ui/form/Input";
 import InputFile from "@/ui/form/FileInput";
@@ -14,10 +14,10 @@ import ImageWithFallback from "@/utils/Imgwithfallback";
 import { get_tags } from "@/utils/function";
 import { slugify } from "@/utils/slugify";
 import { uploadFile } from "@/utils/uploadFile";
+import { User, onAuthStateChanged } from "firebase/auth";
 const initialState = {
   title: "",
   desc: "",
-  content: "",
   tags: [],
   featuredImage: {
     url: "",
@@ -25,31 +25,29 @@ const initialState = {
   },
   isArchived: false,
   isFeatured: false,
-  autherId: "",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  autherId: "gfjsrcOKFafEsa0cggW5",
 };
 const DashboardLayout = () => {
   const [tags, setTags] = useState<any>([]);
   const [fields, setFields] = useState(initialState);
+  const [content, setContent] = useState("");
+  const [user, setUser] = useState<User | null>();
   const [file, setFile] = useState<null | any>();
   const editor = useRef<any>(null);
 
-  const insertVideo = () => {
-    const videoURL = prompt("Enter the URL of the video:");
-    if (videoURL) {
-      const videoIframe = `<iframe width="560" height="315" src="${videoURL}" frameborder="0" allowfullscreen></iframe>`;
-      editor.current.selection.insertHTML(videoIframe);
-    }
-  };
   const postData = async () => {
     try {
+      const timestamp = Timestamp.now();
       const docRef = await addDoc(collection(db, "Blogs"), {
         ...fields,
         slug: slugify(fields.title),
+        content,
+        createdAt: timestamp,
+        updatedAt: timestamp,
       });
       console.log("Data written with ID:", docRef.id);
       setFields(initialState);
+      setContent("");
     } catch (error) {
       console.error("Error posting data:", error);
     }
@@ -59,6 +57,10 @@ const DashboardLayout = () => {
       const mytags = await get_tags();
       setTags(mytags);
     };
+    // const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    //   setUser(currentUser);
+    // });
+    // return () => unsubscribe();
     getTags();
     const runs = async () => {
       if (file) {
@@ -78,6 +80,7 @@ const DashboardLayout = () => {
       tags: [...prevFields.tags, selectedTag],
     }));
   };
+  // console.log(user);
   return (
     <div className="flex justify-center w-full min-h-screen">
       <div className="md:w-2/3 mx-auto p-4 flex flex-col gap-5">
@@ -156,9 +159,9 @@ const DashboardLayout = () => {
         </div>
         <JoditEditor
           ref={editor}
-          value={fields.content}
+          value={content}
           config={{ ...config, iframe: true, useSplitMode: false }}
-          onBlur={(newContent) => setFields({ ...fields, content: newContent })}
+          onBlur={(newContent) => setContent(newContent)}
         />
         <div>
           <p>Tags in your blog</p>
@@ -170,7 +173,7 @@ const DashboardLayout = () => {
             ))}
           </div>
         </div>
-        <p>{fields.content}</p>
+        <p>{content}</p>
         <Button className="" onClick={() => postData()}>
           Submit
         </Button>

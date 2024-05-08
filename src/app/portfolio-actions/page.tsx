@@ -2,11 +2,10 @@
 import CommonLayout from "@/layout";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
-// import { fetcher } from "../blog-actions/page";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import Link from "next/link";
 import { MdManageHistory } from "react-icons/md";
-import Modal from "@/layout/components/modal";
+import Modal from "@/ui/components/Modal";
 import { IItem } from "../newportfolio/page";
 import dynamic from "next/dynamic";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });

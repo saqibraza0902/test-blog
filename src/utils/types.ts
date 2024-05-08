@@ -1,4 +1,4 @@
-interface IUser {
+export interface IUser {
   avatar: string;
   description: string;
   email: string;
@@ -21,8 +21,14 @@ export interface IBlog {
   isArchived: boolean;
   autherId: string;
   isFeatured?: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: {
+    seconds: number;
+    nenoseconds: number;
+  };
+  updatedAt: {
+    seconds: number;
+    nenoseconds: number;
+  };
 }
 
 export type IPortfolio = {
@@ -44,6 +50,12 @@ export type IPortfolio = {
     end: string;
   };
   autherId: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: {
+    seconds: number;
+    nenoseconds: number;
+  };
+  updatedAt: {
+    seconds: number;
+    nenoseconds: number;
+  };
 };

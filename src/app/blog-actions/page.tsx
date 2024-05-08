@@ -1,6 +1,6 @@
 "use client";
 import CommonLayout from "@/layout";
-import Modal from "@/layout/components/modal";
+import Modal from "@/ui/components/Modal";
 import Loader from "@/ui/components/Loader";
 import Button from "@/ui/form/Button";
 import FileInput from "@/ui/form/FileInput";
@@ -8,9 +8,10 @@ import Input from "@/ui/form/Input";
 import { config } from "@/utils/editor";
 import { db } from "@/utils/firebase";
 import { slugify } from "@/utils/slugify";
+// import { convertSecondsToTimestamp } from "@/utils/timestamp";
 import { IBlog } from "@/utils/types";
 import { uploadFile } from "@/utils/uploadFile";
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { Timestamp, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -75,15 +76,35 @@ const BlogActions = () => {
     setFields(postData);
   }, [postData]);
   const handleUpdate = async (id: string) => {
+    const timestamp = Timestamp.now();
+    const createdAtMilliseconds = fields.createdAt.seconds * 1000;
+
+    const createdAtDate = new Date(createdAtMilliseconds);
+
+    // Format dates as desired
+    const createdAtFormatted =
+      createdAtDate.toDateString() + " " + createdAtDate.toTimeString();
+
     const washingtonRef = doc(db, "Blogs", id);
+    console.log("Date", createdAtDate);
     const abc = await updateDoc(washingtonRef, {
-      ...fields,
+      autherId: fields.autherId,
+      content: fields.content,
+      desc: fields.desc,
+      featuredImage: fields.featuredImage,
+      isArchived: fields.isArchived,
+      isFeatured: fields.isFeatured,
+      tags: fields.tags,
+      title: fields.title,
       slug: slugify(fields.title),
+      updatedAt: timestamp,
     });
     mutatePost();
     console.log(abc);
     setId("");
   };
+  // const timestamp = convertSecondsToTimestamp(1715153738); // Replace 1620470522 with your seconds value
+  // console.log(timestamp);
   useEffect(() => {
     const runs = async () => {
       if (file) {

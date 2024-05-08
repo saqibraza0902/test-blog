@@ -33,14 +33,6 @@ div.sticks {
   padding: 50px;
   font-size: 20px;
 }
-.polygon {
-  clip-path: polygon(70% 0, 100% 30%, 100% 100%, 0 99%, 0 0);
-  background-color: #b2b2b2;
-}
-.polygon-b {
-  clip-path: polygon(70% 0, 100% 30%, 100% 100%, 0 99%, 0 0);
-  background-color: aliceblue !important  ;
-}
 .custom-styling {
   background-color: #f4f4f4;
   padding: 1rem;

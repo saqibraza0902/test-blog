@@ -14,7 +14,6 @@ import { HiOutlineSun } from "react-icons/hi";
 import { PUBLIC_URLS } from "@/utils/urls";
 import { AUTH_NAV, PUBLIC_NAV, WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import Link from "next/link";
-import Dropdown from "./Dropdown";
 import {
   AnimatedLink,
   AnimatedHeroNav,
@@ -97,12 +96,25 @@ const Navbar = ({ toggle }: any) => {
             </div>
           ))}
         </div>
-        <div className="bg-brand_blue-300  hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
-          <div className="absolute capitalize text-sm -top-1 -left-1">
-            <AnimatedHeroNav
-              className="bg-black h-10 min-w-36"
-              text="CONTACT US"
-            />
+        <div className="flex gap-5 items-center">
+          <div
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="bg-brand_blue-300 cursor-pointer  hidden md:flex w-10 h-10 my-3 relative rounded-xl"
+          >
+            <div className="absolute capitalize flex items-center justify-center bg-black dark:bg-white w-full h-full text-sm rounded-xl -top-1 -left-1">
+              <HiOutlineSun
+                size={20}
+                color={theme === "dark" ? "#000" : "#fff"}
+              />
+            </div>
+          </div>
+          <div className="bg-brand_blue-300  hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
+            <div className="absolute capitalize text-sm -top-1 -left-1">
+              <AnimatedHeroNav
+                className="bg-black h-10 min-w-36"
+                text="CONTACT US"
+              />
+            </div>
           </div>
         </div>
         <div

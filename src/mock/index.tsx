@@ -1,5 +1,7 @@
 import { PUBLIC_URLS } from "@/utils/urls";
-
+import { BsTwitterX } from "react-icons/bs";
+import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { IoIosLink } from "react-icons/io";
 export const NavData = [
   {
     title: "New Blog",
@@ -190,5 +192,28 @@ export const PARTNERS_ARRAY = [
   {
     img: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/64c916e32ce946863b8f8186_logo-udemy.svg",
     text: "Reimagining the video player for courses and overall viewer experience.",
+  },
+];
+
+export const SHARE_ICONS = [
+  {
+    icon: <FaLinkedinIn color="#878A93" size={20} />,
+    iconAlt: <FaLinkedinIn color="#fff" size={20} />,
+    color: "bg-[#3827C7]",
+  },
+  {
+    icon: <FaFacebookF color="#878A93" size={20} />,
+    iconAlt: <FaFacebookF color="#fff" size={20} />,
+    color: "bg-[#255fef]",
+  },
+  {
+    icon: <BsTwitterX color="#878A93" size={20} />,
+    iconAlt: <BsTwitterX color="#fff" size={20} />,
+    color: "bg-[#000]",
+  },
+  {
+    icon: <IoIosLink color="#878A93" size={20} />,
+    iconAlt: <IoIosLink color="#fff" size={20} />,
+    color: "bg-[#000]",
   },
 ];

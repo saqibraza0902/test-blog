@@ -7,10 +7,14 @@ export const config = {
   enableDragAndDropFileToEditor: true,
   uploader: {
     insertImageAsBase64URI: true,
-    url: "/uploadImage",
-    format: "json",
-    filesVariableName: "file",
+    imagesExtensions: ["jpg", "png", "jpeg", "gif", "webp"],
     withCredentials: false,
+    format: "json",
+    method: "POST",
+    url: "/uploadImage",
+    filesVariableName: function (r: any) {
+      return "images";
+    },
     prepareData: (formData: any) => {
       return formData;
     },

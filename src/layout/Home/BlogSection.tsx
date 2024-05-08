@@ -1,3 +1,4 @@
+import BlogBox from "@/ui/components/BlogBox";
 import { get_featured_blogs } from "@/utils/function";
 import { IBlog } from "@/utils/types";
 import Image from "next/image";
@@ -32,31 +33,7 @@ const BlogSection = () => {
       </p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 ml-4 lg:ml-0">
         {data?.map((item: IBlog, i: number) => (
-          <div
-            key={i}
-            className="!h-96 rounded-[40px] bg-black relative w-full"
-          >
-            <div className="bg-white !h-full rounded-[30px] absolute -top-4 w-full -left-4">
-              <div className="w-full pt-5">
-                <div className="h-full w-11/12 mx-auto">
-                  <Image
-                    src={item.featuredImage.url}
-                    alt={item.featuredImage.alt}
-                    height={400}
-                    className="h-72 w-full rounded-3xl object-center"
-                    width={400}
-                  />
-                  <Link
-                    href={`/blog/${item.slug}`}
-                    className="line-clamp-1 font-bold text-xl"
-                  >
-                    {item.title}
-                  </Link>
-                  <p className="line-clamp-1">{item.desc}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <BlogBox item={item} key={i} />
         ))}
       </div>
     </div>

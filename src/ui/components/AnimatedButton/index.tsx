@@ -65,16 +65,17 @@ export const AnimatedHeroNav = ({ className, text }: IProp) => {
       </div>
 
       <div
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="h-5 w-5"
+      // onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      // className="h-5 w-5"
       >
-        <p
+        {/* This div is for icon do not remove it */}
+        {/* <p
           className={`p-1 h-full w-full flex justify-center items-center cursor-pointer rounded ${
             theme === "dark" ? "bg-brand_pink-400 " : "!bg-brand_gray-500"
           }`}
         >
           <HiOutlineSun size={15} color={theme === "dark" ? "#fff" : "#fff"} />
-        </p>
+        </p> */}
       </div>
     </div>
   );

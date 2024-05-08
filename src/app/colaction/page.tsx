@@ -1,7 +1,7 @@
 "use client";
 import adminAuth from "@/hooks/adminAuth";
 import CommonLayout from "@/layout";
-import Modal from "@/layout/components/modal";
+import Modal from "@/ui/components/Modal";
 import Loader from "@/ui/components/Loader";
 import Button from "@/ui/form/Button";
 import Input from "@/ui/form/Input";

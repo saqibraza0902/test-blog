@@ -22,8 +22,3 @@ export const timestamps = (seconds: number) => {
   const formattedDate = `${day} ${month} ${year}`;
   return formattedDate;
 };
-
-// Example usage:
-// const firebaseSeconds = 1677743200; // Example Firebase seconds
-// const formattedDate = formatFirebaseSecondsToDate(firebaseSeconds);
-// console.log(formattedDate); // Output: "6 MAR 2024"

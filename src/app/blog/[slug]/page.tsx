@@ -1,29 +1,31 @@
 import CommonLayout from "@/layout";
-import { getSinglePost } from "@/utils/function";
+import { auther_details, getSinglePost, recent_blogs } from "@/utils/function";
 import extractStrongText from "@/utils/text";
 import { timestamps } from "@/utils/timestamp";
-import { IBlog } from "@/utils/types";
+import { IBlog, IUser } from "@/utils/types";
 import { addCustomStyling } from "@/utils/transformation";
 import React from "react";
 import { CiCalendar } from "react-icons/ci";
+import Image from "next/image";
+import Link from "next/link";
+import BlogBox from "@/ui/components/BlogBox";
+import { ShareIcon } from "@/ui/components/AnimatedIcons";
+import { SHARE_ICONS } from "@/mock";
 export default async function SinglePost({
   params,
 }: {
   params: { slug: string };
 }) {
   const blogPost: IBlog = await getSinglePost(params.slug);
-  const scrollToSection = () => {
-    const section = document.querySelector("#scrollToSection");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const recentBlogs = await recent_blogs();
+  const autherdetail: IUser = await auther_details(blogPost.autherId);
   const strongText = extractStrongText(blogPost.content);
+  // console.log(autherdetail);
 
   return (
     <CommonLayout>
       <div className="flex relative justify-center w-full h-full min-h-screen ">
-        <div className="h-full">
+        <div className="h-full w-full">
           <div className="h-screen bg-brand_blue-400 rounded-b-[40px] px-14 py-14 flex flex-col justify-end">
             <h2 className="text-[70px] text-white font-semibold">
               {blogPost.title}
@@ -31,9 +33,9 @@ export default async function SinglePost({
             <div className="bg-white my-5 w-full h-[1px]" />
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
-                <CiCalendar color="#fff" size={24} />
+                <CiCalendar color="#fff" size={20} />
                 <span className="text-white">
-                  {/* {timestamps(blogPost.createdAt?.seconds)} */}
+                  {timestamps(blogPost.createdAt.seconds)}
                 </span>
               </div>
               <div>
@@ -43,60 +45,88 @@ export default async function SinglePost({
               </div>
             </div>
           </div>
-          <div id="article" className="relative">
-            <section className="px-14  flex gap-10 py-10">
-              <div className="sticky start-1 top-0">
-                <div className="">
-                  <span>Share</span>
-                  <div className="flex flex-col gap-2">
-                    {[1, 2, 3, 9].map((el, i) => (
-                      <div
-                        key={el}
-                        className="h-9 w-9 rounded-full bg-black"
-                      ></div>
-                    ))}
+          <div id="article" className="relative flex py-10 px-14">
+            <section className="w-1/12 relative">
+              <div className="!sticky top-10 pb-20">
+                <div className=" !relative">
+                  <div className="">
+                    <span>Share</span>
+                    <div className="flex flex-col gap-2">
+                      {SHARE_ICONS.map((el, i) => (
+                        <ShareIcon
+                          key={i}
+                          IconAlt={el.iconAlt}
+                          Icon={el.icon}
+                          color={el.color}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="w-7/12">
-                <h3 className="text-2xl font-semibold">{blogPost?.desc}</h3>
-                {/* Content */}
-              </div>
-              <div className="flex gap-1">
-                <div className="h-12 w-12 rounded-full bg-black"></div>
-                <div className="flex flex-col text-sm gap-1">
-                  <span>Valentine Boyev </span>
-                  <span>CEO of Halo Lab</span>
+            </section>
+            <section className="w-11/12">
+              <div className="flex gap-10">
+                <div className="w-7/12 ">
+                  <h3 className="text-2xl font-semibold">{blogPost?.desc}</h3>
+                </div>
+                <div className="flex gap-1">
+                  <Image
+                    src={autherdetail.avatar}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="rounded-full h-10 object-contain w-10"
+                  />
+                  <div className="flex flex-col text-sm gap-1">
+                    <span>{autherdetail.name} </span>
+                    <span>CEO of Halo Lab</span>
+                  </div>
                 </div>
               </div>
-            </section>
-
-            <section className="ml-36 mr-14 pb-10">
+              <div className="bg-black my-5 w-full h-[1px]"></div>
+              <div className="flex gap-10 relative">
+                <div className="w-7/12">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: addCustomStyling(blogPost?.content),
+                    }}
+                  />
+                </div>
+                <div className="w-3/12   start-1">
+                  <div className="border-[#b2b2b2]  sticky top-10  rounded-xl border-[1px] w-full h-min   p-[1px]">
+                    <div className="relative">
+                      <Image
+                        alt="Icon"
+                        src="/icons/toc-collar_tablet.svg"
+                        width={20}
+                        height={30}
+                        className="absolute w-10 -right-[2px] -top-[2px] bg-white"
+                      />
+                      <div className=" w-full h-max  rounded-xl flex flex-col gap-5 p-8">
+                        <h4 className="uppercase">Table of contents</h4>
+                        <ol className="list-decimal flex flex-col text-sm gap-3">
+                          {strongText.map((el: string, i: number) => (
+                            <li key={i}>{el}</li>
+                          ))}
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="bg-black my-5 w-full h-[1px]"></div>
             </section>
-            <section className="h-full flex gap-10 px-14 ">
-              <div className="w-12"></div>
-              <div className="w-7/12">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: addCustomStyling(blogPost?.content),
-                  }}
-                />
-              </div>
-              <div className="w-3/12   start-1">
-                <div className="border-[#b2b2b2] sticky top-0 polygon rounded-xl border-[1px] w-full h-min   p-[1px]">
-                  <div className=" w-full h-max polygon-b rounded-xl flex flex-col gap-5 p-8">
-                    <h4 className="uppercase">Table of contents</h4>
-                    <ol className="list-decimal flex flex-col text-sm gap-3">
-                      {strongText.map((el: string, i: number) => (
-                        <li key={i}>{el}</li>
-                      ))}
-                    </ol>
-                  </div>
-                </div>
-              </div>
-            </section>
           </div>
+
+          <section className="px-14 bg-slate-200 py-10 min-h-screen">
+            <h3 className="text-2xl font-semibold">Recent Blogs</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 py-10">
+              {recentBlogs.map((post: IBlog, i: number) => (
+                <BlogBox item={post} key={i} />
+              ))}
+            </div>
+          </section>
         </div>
       </div>
     </CommonLayout>

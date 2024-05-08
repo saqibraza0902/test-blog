@@ -1,12 +1,13 @@
 import CommonLayout from "@/layout";
 import DashboardLayout from "@/layout/newblog";
+import WithAuthLayout from "@/layout/withAuthLayout";
 import React from "react";
 
 const Dashboard = () => {
   const content = (
-    <CommonLayout>
+    <WithAuthLayout>
       <DashboardLayout />
-    </CommonLayout>
+    </WithAuthLayout>
   );
   return content;
 };

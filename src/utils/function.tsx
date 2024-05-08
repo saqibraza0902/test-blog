@@ -117,3 +117,34 @@ export const get_featured_blogs = async () => {
     return error;
   }
 };
+export const recent_blogs = async () => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/recentblogs`, {
+      method: "GET",
+      cache: "no-cache",
+    });
+    if (!res.ok) {
+      throw new Error("Failed");
+    }
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};
+export const auther_details = async (id: string) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/autherdetails?id=${id}`,
+      {
+        method: "GET",
+        cache: "no-cache",
+      }
+    );
+    if (!res.ok) {
+      throw new Error("Failed");
+    }
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};

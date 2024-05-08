@@ -1,5 +1,5 @@
 import { db } from "@/utils/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 export const GET = async (
@@ -7,20 +7,20 @@ export const GET = async (
   { params }: { params: { slug: string } }
 ) => {
   try {
-    // console.log("Params", params);
-    // const urlObject = new URL(req.url);
-    // const id = urlObject.searchParams.get("id");
+    const ref = collection(db, "Portfolio");
+    const q = query(ref, where("slug", "==", params.slug));
+    const snap = await getDocs(q);
+    const data = snap.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
-    if (params.slug) {
-      const colRef = doc(db, "Portfolio", params.slug);
-      const snapshot = await getDoc(colRef);
-      const data = { id: snapshot.id, ...snapshot.data() };
-      return new NextResponse(JSON.stringify(data));
-    }
+    const newdata = {
+      ...data[0],
+    };
+    return new NextResponse(JSON.stringify(newdata));
   } catch (err) {
     console.log(err);
-    return new NextResponse(
-      JSON.stringify({ message: "Something went wrong!" })
-    );
+    return new NextResponse(JSON.stringify({ message: err }));
   }
 };

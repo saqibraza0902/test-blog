@@ -14,14 +14,12 @@ import { HiOutlineSun } from "react-icons/hi";
 import { PUBLIC_URLS } from "@/utils/urls";
 import { AUTH_NAV, PUBLIC_NAV } from "@/mock";
 import Link from "next/link";
-import Dropdown from "./Dropdown";
+import Dropdown from "@/ui/components/Dropdown";
 const LoggedinNavbar = ({ toggle }: any) => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const [user, setUser] = useState<User | null>();
   const { items } = useAppSelector((s) => s.cart);
-
-  console.log(items);
   const handleSignOut = () => {
     try {
       signOut(auth);

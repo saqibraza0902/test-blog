@@ -29,7 +29,7 @@ const Portfolio = async () => {
                 )}
                 <Link
                   className="cursor-pointer"
-                  href={`/portfolio/${post.id}`}
+                  href={`/portfolio/${post.slug}`}
                   key={post.id}
                 >
                   <p className="text-xl font-semibold">{post.title}</p>
