@@ -401,3 +401,41 @@ export const AnimatedHeroHamburger = ({ className, text }: IProp) => {
     </div>
   );
 };
+
+export const CartButton = ({ className, text }: IProp) => {
+  const [isHovered, setIsHovered] = useState(false);
+  return (
+    <div
+      className={cn(
+        `bg-black border-black w-full gap-3 px-4 flex items-center justify-center rounded-lg relative overflow-hidden ${className}`
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="!w-full ">
+        <motion.p
+          className="text-nowrap dark:text-black "
+          initial={{ y: "50%", x: "0%" }}
+          animate={{ y: isHovered ? "-200%" : "50%", x: "0%" }}
+          transition={{ duration: 0.3 }}
+        >
+          <span className="flex justify-between gap-3 text-white">
+            <span>Add to Cart</span>
+            <span>${text}</span>
+          </span>
+        </motion.p>
+        <motion.p
+          className="text-nowrap dark:text-black "
+          initial={{ y: "200%", x: "0%" }}
+          animate={{ y: isHovered ? "-50%" : "200%", x: "0%" }}
+          transition={{ duration: 0.3 }}
+        >
+          <span className="flex justify-between gap-3 text-white">
+            <span>Add to Cart</span>
+            <span>${text}</span>
+          </span>
+        </motion.p>
+      </div>
+    </div>
+  );
+};

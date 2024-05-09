@@ -16,14 +16,16 @@ export const ShareIcon = ({ className, Icon, IconAlt, color }: IProp) => {
   return (
     <div
       className={cn(
-        ` border-black h-10 w-min cursor-pointer flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
+        ` border-black h-14 lg:h-10 w-min cursor-pointer flex-nowrap text-nowrap  flex items-center justify-center relative overflow-hidden ${className}`
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`w-10 h-full p-2 flex justify-center transition-all duration-300 items-center  rounded-full ${
-          isHovered ? `${color}` : "bg-white border"
+        className={`w-14 lg:w-10 h-full p-2 flex justify-center transition-all duration-300 items-center  rounded-full ${
+          isHovered
+            ? `${color}`
+            : "bg-white border-black border-[1px] lg:border-brand_gray-400 "
         }`}
       >
         <motion.p

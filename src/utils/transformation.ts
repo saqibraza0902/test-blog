@@ -16,7 +16,7 @@ export function addCustomStyling(content: string) {
       );
 
       // Wrap the modified content in a grid container
-      const gridContent = `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">${modifiedContent}</div>`;
+      const gridContent = `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; justify-items: center">${modifiedContent}</div>`;
 
       return gridContent;
     }

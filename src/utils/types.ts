@@ -59,3 +59,14 @@ export type IPortfolio = {
     nenoseconds: number;
   };
 };
+
+export interface ICollectible {
+  id: string;
+  title: string;
+  type: string;
+  subtype: string;
+  price: number;
+  image: string;
+  downloadUrl: string;
+  content: string;
+}

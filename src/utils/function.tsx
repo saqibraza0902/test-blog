@@ -1,5 +1,6 @@
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
+import { cache } from "react";
 
 export const get_blogs = async () => {
   try {
@@ -28,7 +29,7 @@ export const get_portfolios = async () => {
   }
 };
 
-export const getSinglePost = async (id: string) => {
+export const getSinglePost = cache(async (id: string) => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/singlepost?id=${id}`,
@@ -44,7 +45,7 @@ export const getSinglePost = async (id: string) => {
   } catch (error) {
     return error;
   }
-};
+});
 
 export const getSinglePortfolio = async (slug: string) => {
   try {
@@ -138,6 +139,29 @@ export const auther_details = async (id: string) => {
       {
         method: "GET",
         cache: "no-cache",
+      }
+    );
+    if (!res.ok) {
+      throw new Error("Failed");
+    }
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};
+
+export const recent_portfolios = async (tags: string[]) => {
+  try {
+    const arrayParam = tags;
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/recentportfolios`,
+      {
+        method: "POST",
+        cache: "no-cache",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(arrayParam),
       }
     );
     if (!res.ok) {

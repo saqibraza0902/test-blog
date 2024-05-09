@@ -5,7 +5,7 @@ import { GoArrowUpRight } from "react-icons/go";
 const Services = () => {
   return (
     <div className="lg:h-[730px] 2xl:h-[85vh]  h-max bg-none lg:bg-black rounded-[90px] relative">
-      <div className="w-full h-full flex flex-col justify-center lg:h-full z-40 bg-none lg:bg-brand_blue-300 rounded-[64px] lg:absolute -top-5 -left-5">
+      <div className="w-full h-full flex flex-col justify-center lg:h-full z-40 bg-none lg:bg-brand_blue-300 rounded-[70px] lg:absolute -top-5 -left-5">
         <h2 className="text-4xl w-1/12 lg:mt-10 lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black px-10 pt-5">
           Our Services
         </h2>

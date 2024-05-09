@@ -1,26 +1,21 @@
 "use client";
 import { useAppSelector } from "@/hooks/Hooks";
-import ImageWithFallback from "@/utils/Imgwithfallback";
-import { auth, db, mydb } from "@/utils/firebase";
+import { auth } from "@/utils/firebase";
 import { User, onAuthStateChanged, signOut } from "firebase/auth";
-import { ref } from "firebase/database";
-import { collection, getDoc, getDocs, doc } from "firebase/firestore";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { BsArrowDown, BsCart } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { HiOutlineSun } from "react-icons/hi";
-import { PUBLIC_URLS } from "@/utils/urls";
-import { AUTH_NAV, PUBLIC_NAV, WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
+import { WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import Link from "next/link";
 import {
   AnimatedLink,
   AnimatedHeroNav,
   AnimatedHeroHamburger,
 } from "@/ui/components/AnimatedButton";
-import { FaAngleDown } from "react-icons/fa6";
 import { cn } from "@/utils/styles";
+import { BsCart } from "react-icons/bs";
 const c1 = [
   {
     path: "/",
@@ -36,12 +31,12 @@ const c1 = [
   },
 ];
 const Navbar = ({ toggle }: any) => {
-  const router = useRouter();
+  const path = usePathname();
   const { theme, setTheme } = useTheme();
   const [user, setUser] = useState<User | null>();
   const { items } = useAppSelector((s) => s.cart);
   const [isHovered, setIsHovered] = useState(false);
-
+  console.log(path);
   const handleSignOut = () => {
     try {
       signOut(auth);
@@ -101,21 +96,35 @@ const Navbar = ({ toggle }: any) => {
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="bg-brand_blue-300 cursor-pointer  hidden md:flex w-10 h-10 my-3 relative rounded-xl"
           >
-            <div className="absolute capitalize flex items-center justify-center bg-black dark:bg-white w-full h-full text-sm rounded-xl -top-1 -left-1">
+            <div className="absolute capitalize flex items-center justify-center bg-black dark:bg-white w-full h-full text-sm rounded-lg -top-1 -left-1">
               <HiOutlineSun
                 size={20}
                 color={theme === "dark" ? "#000" : "#fff"}
               />
             </div>
           </div>
-          <div className="bg-brand_blue-300  hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
-            <div className="absolute capitalize text-sm -top-1 -left-1">
-              <AnimatedHeroNav
-                className="bg-black h-10 min-w-36"
-                text="CONTACT US"
-              />
+          {path.includes("/collectibles") ? (
+            <Link
+              href={"/cart"}
+              className="bg-brand_blue-300 z-0 hidden md:flex min-w-10 h-10 my-3 relative rounded-xl"
+            >
+              <span className="absolute -top-2 z-40 -right-1 h-5 w-5 flex justify-center items-center text-xs rounded-full bg-brand_red-800 font-semibold">
+                {items.length}
+              </span>
+              <div className="absolute dark:text-black text-white capitalize dark:bg-white bg-black w-full rounded-lg flex justify-center items-center h-full text-sm -top-1 -left-1">
+                <BsCart size={25} />
+              </div>
+            </Link>
+          ) : (
+            <div className="bg-brand_blue-300  hidden md:flex min-w-36 h-10 my-3 relative rounded-xl">
+              <div className="absolute capitalize text-sm -top-1 -left-1">
+                <AnimatedHeroNav
+                  className="bg-black h-10 min-w-36"
+                  text="CONTACT US"
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <div
           onClick={() => toggle()}
@@ -141,7 +150,7 @@ interface ICard {
 const Cards = ({ arr, text }: ICard) => {
   return (
     <div className="h-56 relative bg-black w-44 rounded-[27px]">
-      <div className="h-full text-black bg-brand_blue-300 absolute -top-2 right-2 p-3  w-full rounded-2xl">
+      <div className="h-full text-black bg-brand_blue-300 absolute -top-2 right-2 p-3  w-full rounded-[19px]">
         <h3 className="text-3xl font-extrabold">{text}</h3>
 
         {text && <div className="w-2/3 mx-auto bg-black h-[1px] my-2" />}

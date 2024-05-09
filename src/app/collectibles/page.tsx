@@ -2,29 +2,34 @@
 import { useAppDispatch } from "@/hooks/Hooks";
 import CommonLayout from "@/layout";
 import { addItem } from "@/redux/slices/cartSlices";
+import CollectiblesBox from "@/ui/components/CollectiblesBox";
 import Loader from "@/ui/components/Loader";
 import { db } from "@/utils/firebase";
+import { ICollectible } from "@/utils/types";
 import { collection, getDocs } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 
 const Collectibles = () => {
   const [collectible, setCollectible] = useState<any>([]);
   const [loading, setloading] = useState(false);
-  const dispatch = useAppDispatch();
+  const [myTypes, setMyTypes] = useState<string[]>([]);
+  const params = useSearchParams();
+  const paramtype = params.get("t") || "";
+
   useEffect(() => {
     const get_data = async () => {
       try {
         setloading(true);
-        const colRef = collection(db, "Collectibles");
-        const snapshot = await getDocs(colRef);
-        const data = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setCollectible(data);
+        const a = await fetch(`/api/collectibles?mytype=${paramtype}`);
+        const b = await a.json();
+        setCollectible(b.data);
+        console.log(b);
+        const subtypes = b.subtypes || []; // Ensure subtypes is an array
+        setMyTypes(["All", ...subtypes]);
         setloading(false);
       } catch (error) {
         console.log(error);
@@ -33,55 +38,66 @@ const Collectibles = () => {
       }
     };
     get_data();
-  }, []);
-  const addToCart = async (item: any) => {
-    try {
-      dispatch(addItem(item));
-      console.log("Item added to cart!");
-    } catch (error) {
-      console.error("Error adding to cart: ", error);
-    }
-  };
+  }, [paramtype]);
+
   return (
     <CommonLayout>
-      {loading && (
-        <div className="flex justify-start mx-auto items-center h-screen w-max">
-          <Loader />
+      <div className="bg-brand_blue-300 p-4 pt-10 pl-10 lg:pl-14 lg:pt-14  lg:p-14">
+        <div className="flex pb-10 gap-5">
+          {myTypes?.map((el, i) => (
+            <Link
+              className="bg-brand_blue-100 cursor-pointer w-36 h-10 my-3 relative rounded-xl"
+              key={i}
+              href={el === "All" ? "/collectibles" : `/collectibles/?t=${el}`}
+            >
+              <span className="absolute capitalize flex justify-center items-center bg-black h-full rounded-lg text-white w-full text-sm -top-1 -left-1">
+                {el}
+              </span>
+            </Link>
+          ))}
         </div>
-      )}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
-        {collectible.map((post: any) => (
-          <div key={post.id}>
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden m-4 w-80">
-              <Link href={`/collectibles/${post.id}`}>
-                <Image
-                  width={200}
-                  height={200}
-                  className="w-full h-48 object-cover object-center"
-                  src={post.image}
-                  alt={post.title}
-                />
-              </Link>
-              <div className="p-4">
-                <h2 className="text-gray-800 text-xl font-semibold">
-                  {post.title}
-                </h2>
-                <p className="mt-2 text-gray-600">Type: {post.type}</p>
-                <p className="text-gray-600">Sub-Type: {post.subtype}</p>
-                <p className="mt-2 text-gray-800 font-semibold">
-                  ${post.price}
-                </p>
-                <button
-                  onClick={() => addToCart(post)}
-                  className="mt-4 bg-brand_blue-500 flex hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                  <BiPlus />
-                  Add to Cart
-                </button>
-              </div>
-            </div>
+        {loading && (
+          <div className="flex justify-start mx-auto items-center h-screen w-max">
+            <Loader />
           </div>
-        ))}
+        )}
+        <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
+            {collectible?.map((post: ICollectible, index: number) => (
+              <CollectiblesBox item={post} key={index} />
+              // <div key={post.id}>
+              //   <div className="bg-white shadow-lg rounded-lg overflow-hidden m-4 w-80">
+              //     <Link href={`/collectibles/${post.id}`}>
+              //       <Image
+              //         width={200}
+              //         height={200}
+              //         className="w-full h-48 object-cover object-center"
+              //         src={post.image}
+              //         alt={post.title}
+              //       />
+              //     </Link>
+              //     <div className="p-4">
+              //       <h2 className="text-gray-800 text-xl font-semibold">
+              //         {post.title}
+              //       </h2>
+              //       <p className="mt-2 text-gray-600">Type: {post.type}</p>
+              //       <p className="text-gray-600">Sub-Type: {post.subtype}</p>
+              //       <p className="mt-2 text-gray-800 font-semibold">
+              //         ${post.price}
+              //       </p>
+              //       <button
+              //         onClick={() => addToCart(post)}
+              //         className="mt-4 bg-brand_blue-500 flex hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              //       >
+              //         <BiPlus />
+              //         Add to Cart
+              //       </button>
+              //     </div>
+              //   </div>
+              // </div>
+            ))}
+          </div>
+        </div>
       </div>
     </CommonLayout>
   );
