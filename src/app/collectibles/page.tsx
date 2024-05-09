@@ -18,13 +18,15 @@ const Collectibles = () => {
   const [loading, setloading] = useState(false);
   const [myTypes, setMyTypes] = useState<string[]>([]);
   const params = useSearchParams();
-  const paramtype = params.get("t") || "";
+  const paramtype = params.get("t");
 
   useEffect(() => {
     const get_data = async () => {
       try {
         setloading(true);
-        const a = await fetch(`/api/collectibles?mytype=${paramtype}`);
+        const a = await fetch(
+          `/api/collectibles?mytype=${paramtype ? paramtype : ""}`
+        );
         const b = await a.json();
         setCollectible(b.data);
         console.log(b);
@@ -43,14 +45,20 @@ const Collectibles = () => {
   return (
     <CommonLayout>
       <div className="bg-brand_blue-300 p-4 pt-10 pl-10 lg:pl-14 lg:pt-14  lg:p-14">
-        <div className="flex pb-10 gap-5">
+        <div className="flex justify-center pb-10 gap-5">
           {myTypes?.map((el, i) => (
             <Link
-              className="bg-brand_blue-100 cursor-pointer w-36 h-10 my-3 relative rounded-xl"
+              className={`bg-brand_blue-100 cursor-pointer w-36 h-10 my-3 relative rounded-xl `}
               key={i}
               href={el === "All" ? "/collectibles" : `/collectibles/?t=${el}`}
             >
-              <span className="absolute capitalize flex justify-center items-center bg-black h-full rounded-lg text-white w-full text-sm -top-1 -left-1">
+              <span
+                className={`absolute capitalize flex justify-center items-center bg-black h-full rounded-lg text-white w-full text-sm -top-1 -left-1 ${
+                  paramtype === el || (!paramtype && el === "All")
+                    ? "bg-brand_gray-700"
+                    : "bg-black"
+                }`}
+              >
                 {el}
               </span>
             </Link>
@@ -65,36 +73,6 @@ const Collectibles = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
             {collectible?.map((post: ICollectible, index: number) => (
               <CollectiblesBox item={post} key={index} />
-              // <div key={post.id}>
-              //   <div className="bg-white shadow-lg rounded-lg overflow-hidden m-4 w-80">
-              //     <Link href={`/collectibles/${post.id}`}>
-              //       <Image
-              //         width={200}
-              //         height={200}
-              //         className="w-full h-48 object-cover object-center"
-              //         src={post.image}
-              //         alt={post.title}
-              //       />
-              //     </Link>
-              //     <div className="p-4">
-              //       <h2 className="text-gray-800 text-xl font-semibold">
-              //         {post.title}
-              //       </h2>
-              //       <p className="mt-2 text-gray-600">Type: {post.type}</p>
-              //       <p className="text-gray-600">Sub-Type: {post.subtype}</p>
-              //       <p className="mt-2 text-gray-800 font-semibold">
-              //         ${post.price}
-              //       </p>
-              //       <button
-              //         onClick={() => addToCart(post)}
-              //         className="mt-4 bg-brand_blue-500 flex hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              //       >
-              //         <BiPlus />
-              //         Add to Cart
-              //       </button>
-              //     </div>
-              //   </div>
-              // </div>
             ))}
           </div>
         </div>

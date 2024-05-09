@@ -35,16 +35,12 @@ const CollectiblesBox = ({ item }: IProp) => {
             </Link>
             <Link
               href={`/collectibles/${item.id}`}
-              className="line-clamp-1 text-black font-bold my-2 text-xl"
+              className="line-clamp-2 min-h-14 text-black font-bold my-2 text-xl"
             >
               {item.title}
             </Link>
             <div className="flex justify-between items-center ">
               <div>
-                <div className="flex items-center gap-2">
-                  <p className="text-black">Type:</p>
-                  <p className=" text-gray-600"> {item.type}</p>
-                </div>
                 <div className="flex items-center gap-2">
                   <p className="text-black">Sub-Type:</p>
                   <p className="text-gray-600"> {item.subtype}</p>
