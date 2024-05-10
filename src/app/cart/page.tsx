@@ -2,6 +2,7 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/Hooks";
 import CommonLayout from "@/layout";
 import { addItem, decrementItem, removeItem } from "@/redux/slices/cartSlices";
+import { ICollectible } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -19,60 +20,92 @@ const Cart = () => {
   const decrementCartItem = (item: any) => {
     dispatch(decrementItem(item));
   };
+  const totalSum = items.reduce(
+    (acc, item: any) => acc + item.price * item.quantity,
+    0
+  );
+  console.log(totalSum);
   return (
     <CommonLayout>
-      {items.length === 0 && (
-        <div className="h-screen flex justify-center items-center">
-          <p>Cart is empty</p>
-        </div>
-      )}
-      <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center lg:grid-cols-3">
-        {items.map((post: any) => (
-          <div key={post.id}>
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden m-4 w-80">
-              <Link href={`/collectibles/${post.id}`}>
-                <Image
-                  height={200}
-                  width={200}
-                  className="w-full h-48 object-cover object-center"
-                  src={post.image}
-                  alt={post.title}
-                />
-              </Link>
-              <div className="p-4">
-                <h2 className="text-gray-800 text-xl font-semibold">
-                  {post.title}
-                </h2>
-                <p className="mt-2 text-gray-600">Type: {post.type}</p>
-                <p className="text-gray-600">Sub-Type: {post.subtype}</p>
-                <p className="mt-2 text-gray-800 font-semibold">
-                  ${post.price}
-                </p>
-                <div className="flex justify-between items-center mt-4">
-                  <button
-                    onClick={() => decrementCartItem(post)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    -
-                  </button>
-                  <p className="dark:text-black text-black">{post.quantity}</p>
-                  <button
-                    onClick={() => incrementCartItem(post)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    +
-                  </button>
-                </div>
-                <button
-                  onClick={() => removeCartItem(post)}
-                  className="mt-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                  Remove from cart
-                </button>
-              </div>
-            </div>
+      <div className="h-full min-h-screen">
+        {items.length === 0 && (
+          <div className=" flex justify-center items-center">
+            <p>Cart is empty</p>
           </div>
-        ))}
+        )}
+        <div className=" w-full p-5 overflow-x-auto">
+          <table className="w-full ">
+            <thead>
+              <tr className=" text-sm w-full bg-brand_blue-200 text-white whitespace-nowrap">
+                <th className="px-4 py-3 font-medium rounded-l-lg">Image</th>
+                <th className="px-4 py-3 font-medium text-center">Title</th>
+                <th className="px-4 py-3 font-medium text-center">Type</th>
+                <th className="px-4 py-3 font-medium text-center">Sub Type</th>
+                <th className="px-4 py-3 font-medium text-center">Price</th>
+                <th className="px-4 py-3 font-medium text-center ">Actions</th>
+                <th className="px-4 py-3 font-medium text-center rounded-r-lg">
+                  Sub Total
+                </th>
+              </tr>
+            </thead>
+            <tbody className="space-y-6">
+              {items.map((post: any, index) => (
+                <>
+                  <tr className="h-6" />
+                  <tr className=" bg-brand_gray-100 dark:text-black text-brand_black-500 font-Montserrat whitespace-nowrap text-sm font-semibold">
+                    <td className="px-4 py-3 text-center ">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        height={40}
+                        width={40}
+                        className="h-10 object-cover rounded-md w-20"
+                      />
+                    </td>
+                    <td className="px-4 py-3 text-center">{post.title}</td>
+                    <td className="px-4 py-3 text-center ">{post.type}</td>
+                    <td className="px-4 py-3 text-center ">{post.subtype}</td>
+                    <td className="px-4 py-3 text-center ">$ {post.price}</td>
+                    <td className="px-4 py-3 flex h-full items-center gap-3 justify-center">
+                      <button
+                        onClick={() => decrementCartItem(post)}
+                        className="bg-brand_blue-300 relative text-white font-bold h-10 w-10 py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"
+                      >
+                        <span className="absolute -top-1 -left-1 flex justify-center items-center bg-black h-full rounded-lg w-full">
+                          -
+                        </span>
+                      </button>
+                      <p className="bg-brand_gray-400 relative text-white font-bold h-12 w-11 py-1 flex items-center justify-center px-4 rounded-xl focus:outline-none focus:shadow-outline">
+                        {post.quantity}
+                      </p>
+                      <button
+                        onClick={() => incrementCartItem(post)}
+                        className="bg-brand_blue-300 relative text-white font-bold h-10 w-10 py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"
+                      >
+                        <span className="absolute -top-1 -left-1 flex justify-center items-center bg-black h-full rounded-lg w-full">
+                          +
+                        </span>
+                      </button>
+                    </td>
+                    <td className="px-4 py-3 text-center rounded-r-lg">
+                      $ {post.price * post.quantity}
+                    </td>
+                  </tr>
+                </>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="flex px-5">
+          <table className="w-full ">
+            <tbody className="space-y-6">
+              <tr className=" bg-brand_gray-100 flex h-16 justify-between items-center dark:text-black text-brand_black-500 font-Montserrat whitespace-nowrap text-sm font-semibold">
+                <td className="px-4 py-3 text-center">Total</td>
+                <td className="px-8 py-3 text-center ">$ {totalSum}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </CommonLayout>
   );

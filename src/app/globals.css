@@ -75,3 +75,11 @@ div.sticks {
   width: 100%;
   border-radius: 15px;
 }
+.swiper-pagination-bullet {
+  border-radius: 50%; /* Set the desired roundness here */
+  background-color: #ccc; /* Adjust background color as needed */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #333; /* Adjust active button color if desired */
+}
