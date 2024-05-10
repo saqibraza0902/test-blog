@@ -53,7 +53,7 @@ const Cart = () => {
                 <>
                   <tr className="h-6" />
                   <tr className=" bg-brand_gray-100 dark:text-black text-brand_black-500 font-Montserrat whitespace-nowrap text-sm font-semibold">
-                    <td className="px-4 py-3 text-center ">
+                    <td className="px-4 py-3 text-center rounded-l-lg">
                       <Image
                         src={post.image}
                         alt={post.title}
@@ -75,7 +75,7 @@ const Cart = () => {
                           -
                         </span>
                       </button>
-                      <p className="bg-brand_gray-400 relative text-white font-bold h-12 w-11 py-1 flex items-center justify-center px-4 rounded-xl focus:outline-none focus:shadow-outline">
+                      <p className=" relative text-black font-bold h-12 w-11 py-1 flex items-center justify-center px-4 rounded-xl focus:outline-none focus:shadow-outline">
                         {post.quantity}
                       </p>
                       <button
@@ -99,9 +99,11 @@ const Cart = () => {
         <div className="flex px-5">
           <table className="w-full ">
             <tbody className="space-y-6">
-              <tr className=" bg-brand_gray-100 flex h-16 justify-between items-center dark:text-black text-brand_black-500 font-Montserrat whitespace-nowrap text-sm font-semibold">
-                <td className="px-4 py-3 text-center">Total</td>
-                <td className="px-8 py-3 text-center ">$ {totalSum}</td>
+              <tr className=" bg-brand_gray-100 flex h-16 rounded-lg justify-between items-center dark:text-black  whitespace-nowrap text-sm font-semibold">
+                <td className="px-4 py-3 text-center rounded-l-lg">Total</td>
+                <td className="px-8 py-3 text-center rounded-r-lg">
+                  $ {totalSum}
+                </td>
               </tr>
             </tbody>
           </table>
