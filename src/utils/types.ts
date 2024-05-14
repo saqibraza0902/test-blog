@@ -70,3 +70,57 @@ export interface ICollectible {
   downloadUrl: string;
   content: string;
 }
+export interface IHeroSection {
+  text1: string;
+  text2: string;
+  text3: string;
+}
+export interface IServices {
+  title: string;
+  services: {
+    title: string;
+    description: string;
+    icon: string;
+  }[];
+}
+export interface IRating {
+  title: string;
+  ratings: {
+    clientName: string;
+    clientDescription: string;
+    clientImage: string;
+    review: string;
+    rating: number;
+  }[];
+}
+export interface IWork {
+  title: string;
+}
+export interface IPartners {
+  title: string;
+  partners: {
+    image: string;
+    text: string;
+  }[];
+}
+export interface IBlogSection {
+  title: string;
+  description: string;
+}
+export interface IHome {
+  HeroSection: IHeroSection;
+  ScrollText: string;
+  ServicesPage: IServices;
+  RatingSection: IRating;
+  WorksSection: IWork;
+  PartnersSection: IPartners;
+  BlogSection: IBlogSection;
+}
+
+export interface IContact {
+  title: string;
+  contact: {
+    title: string;
+    description: string;
+  }[];
+}

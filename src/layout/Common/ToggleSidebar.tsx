@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { RxCross1 } from "react-icons/rx";
 import { NavData, WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import { auth } from "@/utils/firebase";
@@ -12,6 +12,7 @@ interface Props {
 const ToggleSidebar = ({ open, close }: Props) => {
   const router = useRouter();
   const user = auth.currentUser;
+  const path = usePathname();
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
@@ -31,12 +32,14 @@ const ToggleSidebar = ({ open, close }: Props) => {
           {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => (
             <div
               key={index}
-              className="flex items-center px-3 bg-yellow-300 w-full relative gap-2"
+              className={`flex items-center px-3 bg-brand_blue-500 w-full relative gap-2 ${
+                path === item.pathname && "!bg-brand_blue-200"
+              }`}
             >
               <AnimatedLink
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className="!text-black !bg-none  uppercase flex items-center gap-1"
+                className=" !text-white !bg-none  uppercase flex items-center gap-1"
                 href={item.pathname}
                 text={item.title}
                 showIcon={item.isDropdown}

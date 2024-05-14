@@ -20,17 +20,17 @@ export async function generateMetadata(props: any): Promise<Metadata> {
     icons: post?.featuredImage?.url,
   };
 }
-
-export default async function SinglePost({
-  params,
-}: {
-  params: { slug: string };
-}) {
+interface IProp {
+  params: {
+    slug: string;
+  };
+}
+export default async function SinglePost({ params }: IProp) {
   const blogPost: IBlog = await getSinglePost(params.slug);
   const recentBlogs = await recent_blogs();
   const autherdetail: IUser = await auther_details(blogPost.autherId);
   const strongText = extractStrongText(blogPost.content);
-  // console.log(blogPost.featuredImage.url)
+  const link = `${process.env.NEXT_PUBLIC_URL}/blog/${params.slug}`;
   return (
     <CommonLayout>
       <div className="flex flex-col lg:flex-row relative justify-center w-full h-full min-h-screen ">
@@ -69,12 +69,7 @@ export default async function SinglePost({
                     <span className="text-xl font-medium">Share</span>
                     <div className="flex flex-row justify-between lg:flex-col gap-2">
                       {SHARE_ICONS.map((el, i) => (
-                        <ShareIcon
-                          key={i}
-                          IconAlt={el.iconAlt}
-                          Icon={el.icon}
-                          color={el.color}
-                        />
+                        <ShareIcon key={i} item={el} url={link} />
                       ))}
                     </div>
                   </div>

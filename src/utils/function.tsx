@@ -2,6 +2,33 @@ import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 import { cache } from "react";
 
+export const home_details = async () => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/home`, {
+      method: "GET",
+    });
+    if (!res.ok) {
+      return console.log("Blog function not working");
+    }
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};
+
+export const contact_details = async () => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/contact`, {
+      method: "GET",
+    });
+    if (!res.ok) {
+      return console.log("Blog function not working");
+    }
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};
 export const get_blogs = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {

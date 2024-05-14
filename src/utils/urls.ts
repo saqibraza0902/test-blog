@@ -1,8 +1,8 @@
 export const PUBLIC_URLS = {
   HOME: "/",
-  SERVICES: "/",
+  SERVICES: "/services",
   PROJECTS: "/portfolio",
   BLOG: "/blog",
   COLLECTIBLES: "/collectibles",
-  CONTACT: "/",
+  CONTACT: "/contact",
 };

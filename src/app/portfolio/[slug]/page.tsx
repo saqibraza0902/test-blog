@@ -43,7 +43,8 @@ const SinglePortfolio = async (props: any) => {
   const post: IPortfolio = await getData(slug);
   const strongText = extractStrongText(post?.content);
   const similarportfolios = await recent_portfolios(post.tags);
-  // console.log(abc);
+
+  const link = `${process.env.NEXT_PUBLIC_URL}/portfolio/${slug}`;
   const duration = calculateDuration(
     // @ts-ignore
     post.timeline.start.seconds,
@@ -90,12 +91,7 @@ const SinglePortfolio = async (props: any) => {
                     <span className="text-xl font-medium">Share</span>
                     <div className="flex flex-row justify-between lg:flex-col gap-2">
                       {SHARE_ICONS.map((el, i) => (
-                        <ShareIcon
-                          key={i}
-                          IconAlt={el.iconAlt}
-                          Icon={el.icon}
-                          color={el.color}
-                        />
+                        <ShareIcon key={i} item={el} url={link} />
                       ))}
                     </div>
                   </div>

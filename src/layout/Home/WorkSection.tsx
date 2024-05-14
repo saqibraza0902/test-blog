@@ -1,20 +1,20 @@
 "use client";
-import { SERVICES_ARRAY } from "@/mock";
 import {
   SliderLeftButton,
   SliderRightButton,
 } from "@/ui/components/AnimatedButton";
 import React, { useEffect, useRef, useState } from "react";
-import { GoArrowUpRight } from "react-icons/go";
 import { WorkContentSlider, WorkSlider } from "./SwiperComponent";
 import { get_portfolios } from "@/utils/function";
 
-const WorkSection = () => {
+interface IProp {
+  title: string;
+}
+const WorkSection = ({ title }: IProp) => {
   const swiperRef = useRef<any>(null);
   const swiperRefs = useRef<any>(null);
   const [loading, setloading] = useState(false);
   const nextSlide = () => {
-    // console.log(swiperRef.current, swiperRefs.current);
     if (
       swiperRef.current &&
       swiperRef.current.swiper &&
@@ -38,28 +38,7 @@ const WorkSection = () => {
     }
   };
   const [data, setData] = useState([]);
-  // const data = [
-  //   {
-  //     title: "This is another portfolio.",
-  //     desc: "This is the desc",
-  //     gallery: [
-  //       {
-  //         url: "https://firebasestorage.googleapis.com/v0/b/next-firebase-33c02.appspot.com/o/1711530077152Screenshot%20(1).png?alt=media&token=06ecae98-baa4-4cd3-beca-0d3043ef6553",
-  //         alt: "https://firebasestorage.googleapis.com/v0/b/next-firebase-33c02.appspot.com/o/1711530077152Screenshot%20(1).png?alt=media&token=06ecae98-baa4-4cd3-beca-0d3043ef6553",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: "This is another portfolio no 2.",
-  //     desc: "This is the desc",
-  //     gallery: [
-  //       {
-  //         url: "https://firebasestorage.googleapis.com/v0/b/next-firebase-33c02.appspot.com/o/1711530077152Screenshot%20(1).png?alt=media&token=06ecae98-baa4-4cd3-beca-0d3043ef6553",
-  //         alt: "https://firebasestorage.googleapis.com/v0/b/next-firebase-33c02.appspot.com/o/1711530077152Screenshot%20(1).png?alt=media&token=06ecae98-baa4-4cd3-beca-0d3043ef6553",
-  //       },
-  //     ],
-  //   },
-  // ];
+
   useEffect(() => {
     const get_data = async () => {
       try {
@@ -85,7 +64,7 @@ const WorkSection = () => {
         <div className="flex flex-col-reverse z-0  lg:flex-row relative p-5 lg:gap-5">
           <div className="lg:w-1/2 h-full flex 2xl:justify-end flex-col z-40  -mt-12 md:mt-0 gap-4">
             <h2 className="text-4xl hidden lg:flex w-1/12 lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black ">
-              Our Works
+              {title}
             </h2>
             <div className=" bg-black flex p-3 flex-col w-full rounded-[40px] ">
               <div>
@@ -109,7 +88,7 @@ const WorkSection = () => {
 
           <div className="lg:w-1/2 h-full lg:pr-4 z-0">
             <h2 className="text-4xl flex lg:hidden w-1/12 lg:text-[70px] font-SuisseBold lg:leading-[65px] text-black ">
-              Our Works
+              {title}
             </h2>
             <WorkSlider
               data={data}

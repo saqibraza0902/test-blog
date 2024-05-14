@@ -1,11 +1,16 @@
+"use client";
 import {
   SliderLeftButton,
   SliderRightButton,
 } from "@/ui/components/AnimatedButton";
 import React, { useRef } from "react";
-import SwiperComponent from "./SwiperComponent";
+import { RatingSwiper } from "@/ui/components/RatingSwiper";
+import { IRating } from "@/utils/types";
 
-const RatingSection = () => {
+interface IProp {
+  rating: IRating;
+}
+const RatingSection = ({ rating }: IProp) => {
   const swiperRef = useRef<any>(null);
 
   const nextSlide = () => {
@@ -25,7 +30,7 @@ const RatingSection = () => {
         <div className="w-1/2 flex flex-col">
           <span className="text-4xl font-SuisseBold text-white">4.9</span>
           <span className="text-3xl  text-white font-SuisseMedium">
-            Overall Ratings
+            {rating?.title}
           </span>
         </div>
         <div className="flex gap-10 lg:mt-6">
@@ -38,7 +43,8 @@ const RatingSection = () => {
         </div>
       </div>
       <div className="w-full lg:w-9/12 flex items-center justify-center  h-full">
-        <SwiperComponent
+        <RatingSwiper
+          array={rating?.ratings}
           swiperRef={swiperRef}
           onNextSlide={nextSlide}
           onPrevSlide={prevSlide}

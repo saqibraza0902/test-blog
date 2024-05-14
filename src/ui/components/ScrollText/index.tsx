@@ -5,14 +5,17 @@ import React, { useRef } from "react";
 const Content =
   "For a decade in Pakistan, honing our Design & Development skills. We endeavor to support ambitious clients in their pursuit of perfection. Success, we believe, is a collaborative effort. let's join forces to reach the pinnacle together!";
 
-const ParagraphComponent = () => {
+interface IProp {
+  text: string;
+}
+const ParagraphComponent = ({ text }: IProp) => {
   const element = useRef(null);
   const { scrollYProgress } = useScroll({
     target: element,
     offset: ["start 0.8", "start 0.2"],
   });
 
-  const words = Content.split(" ");
+  const words = text.split(" ");
 
   return (
     <div>

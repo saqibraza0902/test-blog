@@ -39,8 +39,8 @@ export const WITHOUT_AUTH_PUBLIC_NAV = [
   {
     isDropdown: false,
     title: "Process",
-    pathname: PUBLIC_URLS.CONTACT,
-    prefix: PUBLIC_URLS.CONTACT,
+    pathname: PUBLIC_URLS.HOME,
+    prefix: PUBLIC_URLS.HOME,
   },
   {
     title: "Projects",
@@ -200,20 +200,88 @@ export const SHARE_ICONS = [
     icon: <FaLinkedinIn color="#878A93" size={20} />,
     iconAlt: <FaLinkedinIn color="#fff" size={20} />,
     color: "bg-[#3827C7]",
+    shareType: "LINKEDIN",
   },
   {
     icon: <FaFacebookF color="#878A93" size={20} />,
     iconAlt: <FaFacebookF color="#fff" size={20} />,
     color: "bg-[#255fef]",
+    shareType: "FACEBOOK",
   },
   {
     icon: <BsTwitterX color="#878A93" size={20} />,
     iconAlt: <BsTwitterX color="#fff" size={20} />,
     color: "bg-[#000]",
+    shareType: "TWITTER",
   },
   {
     icon: <IoIosLink color="#878A93" size={20} />,
     iconAlt: <IoIosLink color="#fff" size={20} />,
     color: "bg-[#000]",
+    shareType: "COPY",
+  },
+];
+export const SERVICE_ARRAY = [
+  {
+    title: "Research & Concepts",
+    time: "4-6 days",
+    description:
+      "At the outset, we explore your goals, analyze competitors, and study how customers interact with similar products.",
+    deliverables: ["Style visualization", "Design concepts"],
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/65675dbf5e3650c81fde3320_icon-one.svg",
+  },
+  {
+    title: "Wireframes",
+    time: "1.5-2 weeks",
+    description:
+      "Putting users first, our specialists visualize each screen of the product and turn it into a clickable prototype.",
+    deliverables: ["Page structure", "Approximate layout"],
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/65675dc84eb549e10e0b1501_icon-second.svg",
+  },
+  {
+    title: "UI & Design system",
+    time: "2-3 weeks",
+    description:
+      "Based on the results from previous steps, we shape your individual style, making it appealing and functional for your audience.",
+    deliverables: ["Final design", "Guide to using components"],
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/65675dd0c75e045c8d26fa87_icon-three.svg",
+  },
+];
+export const OFFERS = [
+  {
+    title: "Website design",
+    description:
+      "Our creative team will make sure your site’s design captures and elevates the image of your start-up or business.",
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/663a282becda26698f443648_icon-benefits_design.svg",
+  },
+  {
+    title: "Content writing",
+    description:
+      "We write clear, creative content that drives traffic, conversions, brand loyalty and works great for SEO.",
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/661f94e2c8f151e9638501bf_icon-benefits_responsive.svg",
+  },
+  {
+    title: "SEO",
+    description:
+      "We’ll tailor our approach to help your site climb to the top of search results, making sure people find you first.",
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/661f949990f4a57dba84183f_icon-benefits_user-centric.svg",
+  },
+  {
+    title: "Website development",
+    description:
+      "We turn great designs into functional websites, blending custom solutions and CMS with a design-first mindset.",
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/6595325927ede6e1109aea5c_icon-benefits_result.svg",
+  },
+  {
+    title: "CRO",
+    description:
+      "We’ll audit and refine your site’s UX, applying proven strategies to drive leads and conversions.",
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/6595325927ede6e1109aea5c_icon-benefits_result.svg",
+  },
+  {
+    title: "CMS setup",
+    description:
+      "We will pick and customize the perfect CMS to fit your needs, making your website management smooth and easy.",
+    icon: "https://assets-global.website-files.com/63f38a8c92397a024fcb9ae8/663a28a647f16f833b7e49dd_icon-benefits_cms.svg",
   },
 ];

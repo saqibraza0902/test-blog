@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import ReduxProvider from "@/providers/ReduxProvider";
 import NextTopLoader from "nextjs-toploader";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import ReactToastProvider from "@/providers/ToastProvider";
 const inter = Inter({ subsets: ["latin"] });
 export const revalidate = 0;
 export const metadata: Metadata = {
@@ -32,9 +33,11 @@ export default function RootLayout({
           shadow="0 0 10px #2299DD,0 0 5px #2299DD"
         />
         <AppRouterCacheProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <ReduxProvider>{children}</ReduxProvider>
-          </ThemeProvider>
+          <ReactToastProvider>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <ReduxProvider>{children}</ReduxProvider>
+            </ThemeProvider>
+          </ReactToastProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

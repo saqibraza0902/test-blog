@@ -1,3 +1,4 @@
+"use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -24,18 +25,21 @@ const HomeSwiper = ({ swiperRef }: any) => {
       scrollbar={{ draggable: true }}
       autoplay={{ delay: 5000 }}
       loop={true}
-      className="h-full w-full"
+      className="h-full w-full "
     >
       {[0, 2, 3, 4, 5, 5].map((item, i) => (
-        <SwiperSlide key={i} className="h-full">
-          <div className=" bg-transparent   w-full h-full relative ">
-            <Image
-              src={"/test.jpg"}
-              alt=""
-              className="h-full object-center rounded-[40px] w-full"
-              height={200}
-              width={100}
-            />
+        <SwiperSlide className="h-full w-full relative overflow-hidden">
+          <div className="bg-black absolute bottom-0 right-0 w-[95%] dark:bg-white rounded-[60px] h-full lg:h-[95%] overflow-hidden"></div>
+          <div className="absolute bottom-[3%] right-[5%] w-[95%] h-[95%] ">
+            <div className="relative h-full">
+              <Image
+                src={"/test.jpg"}
+                alt=""
+                className="object-center rounded-[40px] w-full h-full"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
           </div>
         </SwiperSlide>
       ))}

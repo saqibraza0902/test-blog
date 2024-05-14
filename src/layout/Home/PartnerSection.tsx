@@ -1,15 +1,19 @@
 import { PARTNERS_ARRAY } from "@/mock";
 import AnimatedHoverLogo from "@/ui/components/AnimateHoverLogo";
+import { IPartners } from "@/utils/types";
 import React from "react";
 
-const PartnerSection = () => {
+interface IProp {
+  partners: IPartners;
+}
+const PartnerSection = ({ partners }: IProp) => {
   return (
     <>
       <div className="grid grid-cols-2 justify-items-center lg:grid-cols-4 grid-rows-2">
-        {PARTNERS_ARRAY.map((item, index) => (
+        {partners?.partners?.map((item, index) => (
           <React.Fragment key={index}>
             <AnimatedHoverLogo
-              imageSrc={item.img}
+              imageSrc={item.image}
               index={index}
               textContent={item.text}
             />

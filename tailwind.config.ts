@@ -42,6 +42,9 @@ const config: Config = {
         brand_red: {
           800: "#991b1b",
         },
+        brand_white: {
+          200: "#f5f5f7",
+        },
         brand_green: {
           200: "#bbf7d0",
           300: "#FF6633",
