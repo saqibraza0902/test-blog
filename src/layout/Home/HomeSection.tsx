@@ -1,4 +1,6 @@
 import { AnimatedHeroButton } from "@/ui/components/AnimatedButton";
+import BlueContentBox from "@/ui/components/BlueContentBox";
+import ContentBox from "@/ui/components/ContentBox";
 import HomeSwiper from "@/ui/components/HomeSwiper";
 import { IHeroSection } from "@/utils/types";
 import React from "react";
@@ -10,30 +12,35 @@ const HomeSection = ({ hero }: IProp) => {
   return (
     <>
       <div className="h-screen lg:h-[80vh] 2xl:h-[60vh] flex flex-col lg:flex-row gap-14 w-full 2xl:w-[90%]">
-        <div className="lg:w-10/12 bg-black dark:bg-white  rounded-[60px] h-full relative ">
-          <div className="w-full flex gap-5  flex-col justify-center items-start bg-brand_blue-300 p-10 h-full absolute -top-5 -left-5 rounded-[40px] ">
-            <p className="font-extrabold z-40 w-full text-center lg:text-left text-3xl lg:text-6xl font-SuisseBold xl:text-[80px] lg:leading-[100px] text-black uppercase ">
-              {hero.text1}
-            </p>
-            <div className="flex flex-col gap-5  lg:flex-row w-full justify-between lg:gap-0 items-center">
-              <div className="hidden lg:flex text-black items-center w-5/6 2xl:w-full justify-between">
-                <span className=" w-1/4 font-SuisseBold lg:text-[50px]">
-                  {hero.text2}
-                </span>
-                <span className="text-xl  w-3/4 2xl:text-3xl font-SuisseMedium ">
-                  {hero.text3}
-                </span>
-              </div>
-              <div className="flex text-black lg:hidden">
-                <span className="text-lg text-center  font-SuisseMedium ">
-                  7Y OF TEST DRIVEN PRODUCTION DEVELOPMENT
-                </span>
-              </div>
-              <div className="lg:w-1/6  text-black uppercase lg:mr-20 xl:mr-10">
-                <AnimatedHeroButton text="LET'S TALK" />
+        <div className="pl-4 pr-9 lg:pr-0 lg:pl-0 lg:w-9/12">
+          <ContentBox
+            className="!bg-brand_blue-300 w-full p-0"
+            childClass="!bg-black"
+          >
+            <div className="w-full flex gap-14 lg:gap-5 flex-col justify-center items-start p-10 h-full ">
+              <p className="font-extrabold z-40 w-full text-center lg:text-left text-3xl lg:text-6xl font-SuisseBold xl:text-[80px] lg:leading-[100px] text-black uppercase ">
+                {hero.text1}
+              </p>
+              <div className="flex flex-col gap-5  lg:flex-row w-full justify-between lg:gap-0 items-center">
+                <div className="hidden lg:flex text-black items-center w-5/6 2xl:w-full justify-between">
+                  <span className=" w-1/4 font-SuisseBold lg:text-[50px]">
+                    {hero.text2}
+                  </span>
+                  <span className="text-xl  w-3/4 2xl:text-3xl font-SuisseMedium ">
+                    {hero.text3}
+                  </span>
+                </div>
+                <div className="flex text-black lg:hidden">
+                  <span className="text-lg text-center  font-SuisseMedium ">
+                    7Y OF TEST DRIVEN PRODUCTION DEVELOPMENT
+                  </span>
+                </div>
+                <div className="lg:w-1/6  text-black uppercase lg:mr-20 xl:mr-10">
+                  <AnimatedHeroButton text="LET'S TALK" />
+                </div>
               </div>
             </div>
-          </div>
+          </ContentBox>
         </div>
         <div className="lg:w-4/12   rounded-[60px] h-full lg:h-[107%] relative ">
           <div className="w-full flex justify-start items-start h-full  absolute -top-[30px] right-0">

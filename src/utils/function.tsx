@@ -29,6 +29,21 @@ export const contact_details = async () => {
     return error;
   }
 };
+
+export const services_page = async () => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/services`, {
+      method: "GET",
+    });
+    if (!res.ok) {
+      return console.log("Error ");
+    }
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};
+
 export const get_blogs = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {

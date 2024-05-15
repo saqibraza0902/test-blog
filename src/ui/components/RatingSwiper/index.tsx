@@ -5,6 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import SwiperCore from "swiper";
 import { FaStar } from "react-icons/fa6";
+import ContentBox from "../ContentBox";
 SwiperCore.use([Navigation]);
 
 export const RatingSwiper = ({ swiperRef, array }: any) => {
@@ -14,6 +15,10 @@ export const RatingSwiper = ({ swiperRef, array }: any) => {
       spaceBetween: 10,
     },
     1024: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    1280: {
       slidesPerView: 2,
       spaceBetween: 10,
     },
@@ -28,7 +33,6 @@ export const RatingSwiper = ({ swiperRef, array }: any) => {
       breakpoints={breakpoints}
       spaceBetween={5}
       ref={swiperRef}
-      slidesPerView={1}
       pagination={{ clickable: false }}
       scrollbar={{ draggable: true }}
       autoplay={{ delay: 3000 }}
@@ -36,9 +40,9 @@ export const RatingSwiper = ({ swiperRef, array }: any) => {
       className="h-full 2xl:h-[600px]"
     >
       {array?.map((item: any, i: number) => (
-        <SwiperSlide key={i} className="h-full">
-          <div className=" bg-black ml-10 mt-10 rounded-[60px]  h-[500px] 2xl:h-[500px]  relative ">
-            <div className="w-full flex flex-col justify-center  gap-1 bg-white p-5 h-full absolute -top-5 -left-5 rounded-[40px] ">
+        <SwiperSlide key={i} className="h-full pl-4 pr-9 my-10">
+          <ContentBox className="!h-full">
+            <div className="w-full flex flex-col justify-center  gap-1 h-full min-h-full">
               <div className="flex items-center h-1/6 gap-4">
                 <p className="!text-black text-xl font-bold">{item.rating}</p>
                 <span className="flex gap-1">
@@ -47,9 +51,11 @@ export const RatingSwiper = ({ swiperRef, array }: any) => {
                   ))}
                 </span>
               </div>
-              <div className="h-[0.1px] my-6 w-full bg-white" />
-              <div className="h-4/6">
-                <p className="text-lg text-black font-bold ">{item.review}</p>
+              <div className="h-[0.1px] my-6 w-full bg-black" />
+              <div className="!h-full">
+                <p className="text-lg text-black line-clamp-[12] min-h-[30vh] md:min-h-[20vh] lg:min-h-[30vh] xl:min-h-[50vh] font-bold h-full">
+                  {item.review}
+                </p>
               </div>
               <div className="flex items-center h-1/6 mt-8 gap-3">
                 <div className="h-12 w-12 bg-slate-400 rounded-full" />
@@ -63,7 +69,7 @@ export const RatingSwiper = ({ swiperRef, array }: any) => {
                 </div>
               </div>
             </div>
-          </div>
+          </ContentBox>
         </SwiperSlide>
       ))}
     </Swiper>

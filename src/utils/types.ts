@@ -124,3 +124,49 @@ export interface IContact {
     description: string;
   }[];
 }
+
+export interface IHeroSection {
+  text1: string;
+  text2: string;
+  text3: string;
+  text4: string;
+  text5: string;
+  image: string;
+}
+
+export interface IDesignProcess {
+  title: string;
+  processes: {
+    title: string;
+    time: string;
+    icon: string;
+    description: string;
+    deliverables: string[];
+  }[];
+  nextphase: {
+    title: string;
+    icon: string;
+    plans: {
+      title: string;
+      description: string;
+    }[];
+  };
+}
+export interface IOffersSection {
+  title: string;
+  offers: {
+    title: string;
+    description: string;
+    icon: string;
+  }[];
+}
+
+export interface IWebServices {
+  HeroSection: IHeroSection;
+  DesignProcessSection: IDesignProcess;
+  OffersSection: IOffersSection;
+}
+
+export interface IServicesPage {
+  WebServices: IWebServices;
+}

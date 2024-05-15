@@ -19,7 +19,7 @@ import { BsCart } from "react-icons/bs";
 import { PUBLIC_URLS } from "@/utils/urls";
 const c1 = [
   {
-    path: "/",
+    path: "/services",
     name: "Branding",
   },
   {
@@ -37,7 +37,7 @@ const Navbar = ({ toggle }: any) => {
   const [user, setUser] = useState<User | null>();
   const { items } = useAppSelector((s) => s.cart);
   const [isHovered, setIsHovered] = useState(false);
-  console.log(path);
+
   const handleSignOut = () => {
     try {
       signOut(auth);

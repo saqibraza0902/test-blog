@@ -33,8 +33,16 @@ export const WITHOUT_AUTH_PUBLIC_NAV = [
   {
     title: "Services",
     isDropdown: true,
-    pathname: PUBLIC_URLS.SERVICES,
-    prefix: PUBLIC_URLS.SERVICES,
+    dropdownItems: [
+      {
+        title: "Web Development",
+        pathname: "/services/web-development",
+      },
+      {
+        title: "App Development",
+        pathname: "/services/app-development",
+      },
+    ],
   },
   {
     isDropdown: false,

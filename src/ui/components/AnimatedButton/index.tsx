@@ -116,7 +116,7 @@ export const AnimatedHeroButton = ({ className, text }: IProp) => {
 };
 export const AnimatedLink = ({
   text = "Hello",
-  href = "/",
+  href = "#",
   className,
   showIcon,
   onMouseEnter,
@@ -156,7 +156,7 @@ export const AnimatedLink = ({
           )}
         </motion.p>
         <motion.p
-          className=" text-black dark:text-white flex m-auto items-center gap-1"
+          className="text-white  lg:text-black  dark:text-white flex m-auto items-center gap-1"
           initial={{ y: isHovered ? "-50%" : "100%" }}
           animate={{ y: isHovered ? "-50%" : "100%" }}
           transition={{ duration: 0.3 }}

@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { RxCross1 } from "react-icons/rx";
-import { NavData, WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
+import { WITHOUT_AUTH_PUBLIC_NAV } from "@/mock";
 import { auth } from "@/utils/firebase";
+import { motion } from "framer-motion";
 import { AnimatedHeroNav, AnimatedLink } from "@/ui/components/AnimatedButton";
 interface Props {
   open: boolean;
@@ -14,9 +15,18 @@ const ToggleSidebar = ({ open, close }: Props) => {
   const user = auth.currentUser;
   const path = usePathname();
   const [isHovered, setIsHovered] = useState(false);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const handleItemClick = (index: number, isDropdown: boolean) => {
+    if (isDropdown) {
+      setExpandedIndex(expandedIndex === index ? null : index);
+    } else {
+      close();
+    }
+  };
   return (
     <div
-      className={`fixed lg:hidden inset-y-0 w-full md:w-[50%]  !overflow-hidden z-50 lg:w-[25%]  bg-brand_gray-400 dark:bg-brand_gray-700 transition-transform duration-300 transform flex 
+      className={`fixed lg:hidden inset-y-0 w-full md:w-[50%]  !overflow-hidden z-50 lg:w-[25%] bg-white transition-transform duration-300 transform flex 
        ${open ? "translate-x-0" : "-translate-x-full"} 
      
       `}
@@ -32,18 +42,41 @@ const ToggleSidebar = ({ open, close }: Props) => {
           {WITHOUT_AUTH_PUBLIC_NAV.map((item, index) => (
             <div
               key={index}
-              className={`flex items-center px-3 bg-brand_blue-500 w-full relative gap-2 ${
-                path === item.pathname && "!bg-brand_blue-200"
+              className={`flex transition-all duration-300 ease-in-out flex-col px-3 bg-brand_blue-300 w-full relative gap-2 ${
+                path === item.pathname && "!bg-orange-400"
               }`}
             >
-              <AnimatedLink
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                className=" !text-white !bg-none  uppercase flex items-center gap-1"
-                href={item.pathname}
-                text={item.title}
-                showIcon={item.isDropdown}
-              />
+              <div
+                className="flex transition-all duration-300 ease-in-out items-center cursor-pointer"
+                onClick={() => handleItemClick(index, item.isDropdown)}
+              >
+                <AnimatedLink
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  className="!text-white !bg-none w-full uppercase flex items-center gap-1"
+                  href={item.pathname}
+                  text={item.title}
+                  showIcon={item.isDropdown}
+                />
+              </div>
+              {item.isDropdown && expandedIndex === index && (
+                <motion.div
+                  initial={{ height: 0 }}
+                  animate={{ height: expandedIndex === index ? "7.5rem" : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="space-y-2 bg-brand_blue-500 p-2 mb-2 transition-all  overflow-hidden"
+                  layout
+                >
+                  {item.dropdownItems?.map((dropdownItem, subIndex) => (
+                    <AnimatedLink
+                      key={subIndex}
+                      className=" rounded-none !bg-brand_blue-100 w-full uppercase flex items-center gap-1"
+                      href={dropdownItem.pathname}
+                      text={dropdownItem.title}
+                    />
+                  ))}
+                </motion.div>
+              )}
             </div>
           ))}
         </div>

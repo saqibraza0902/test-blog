@@ -33,12 +33,12 @@ export const WorkSlider = ({ swiperRef, data }: any) => {
       scrollbar={{ draggable: true }}
       autoplay={{ delay: 3000 }}
       loop={true}
-      className="h-full"
+      className="h-full w-full"
     >
       {data?.map((item: any, i: number) => (
-        <SwiperSlide key={i} className="h-full">
+        <SwiperSlide key={i} className="h-full w-full">
           <img
-            className="h-full 2xl:h-[700px] rounded-3xl"
+            className="h-full  rounded-3xl"
             src={item.gallery[0]?.url}
             alt={item.gallery[0]?.alt}
           />
