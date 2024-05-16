@@ -31,7 +31,7 @@ export const WorkSlider = ({ swiperRef, data }: any) => {
       allowTouchMove={false}
       pagination={{ clickable: false }}
       scrollbar={{ draggable: true }}
-      autoplay={{ delay: 3000 }}
+      autoplay={{ delay: 5000 }}
       loop={true}
       className="h-full w-full"
     >
@@ -68,7 +68,7 @@ export const WorkContentSlider = ({ swiperRef, data }: any) => {
       allowTouchMove={false}
       slidesPerView={1}
       pagination={{ clickable: false }}
-      autoplay={{ delay: 3000 }}
+      autoplay={{ delay: 5000 }}
       loop={true}
       className="h-full"
     >

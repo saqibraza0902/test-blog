@@ -2,9 +2,8 @@
 import { ContactLink, FooterLink } from "@/ui/components/AnimatedButton";
 import React, { useState } from "react";
 import { BiPlus } from "react-icons/bi";
-import { TextField } from "@mui/material";
 import { FcCallback } from "react-icons/fc";
-import MUIInput from "@/ui/form/MUIInput";
+import { Subscribe } from "@/ui/components/Subscribe";
 const FOOTER_LINKS = [
   {
     name: "Our Services",
@@ -52,7 +51,7 @@ const Footer = () => {
             Subscribe to our newsletter to stay in touch with the latest.
           </p>
           <div className="w-full">
-            <MUIInput />
+            <Subscribe />
           </div>
         </div>
         <div className="lg:w-3/12 flex flex-col lg:items-center ">
@@ -86,7 +85,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="h-12 bg-black w-full"></div>
     </div>
   );
 };

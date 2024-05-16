@@ -64,13 +64,13 @@ const ToggleSidebar = ({ open, close }: Props) => {
                   initial={{ height: 0 }}
                   animate={{ height: expandedIndex === index ? "7.5rem" : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="space-y-2 bg-brand_blue-500 p-2 mb-2 transition-all  overflow-hidden"
+                  className="space-y-2 bg-none p-2 mb-2 transition-all  overflow-hidden"
                   layout
                 >
                   {item.dropdownItems?.map((dropdownItem, subIndex) => (
                     <AnimatedLink
                       key={subIndex}
-                      className=" rounded-none !bg-brand_blue-100 w-full uppercase flex items-center gap-1"
+                      className=" rounded-none !bg-transparent w-full uppercase flex items-center gap-1"
                       href={dropdownItem.pathname}
                       text={dropdownItem.title}
                     />

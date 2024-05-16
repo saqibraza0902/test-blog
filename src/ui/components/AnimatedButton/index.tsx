@@ -139,7 +139,7 @@ export const AnimatedLink = ({
         onMouseLeave={showIcon ? onMouseLeave : () => console.log("first")}
       >
         <motion.p
-          className="text-white  lg:text-black dark:text-white flex m-auto items-center gap-1"
+          className="text-white  md:text-black dark:text-white flex m-auto items-center gap-1"
           initial={{ y: "50%" }}
           animate={{ y: isHovered ? "-150%" : "50%" }}
           transition={{ duration: 0.3 }}
@@ -156,7 +156,7 @@ export const AnimatedLink = ({
           )}
         </motion.p>
         <motion.p
-          className="text-white  lg:text-black  dark:text-white flex m-auto items-center gap-1"
+          className="text-white  md:text-black  dark:text-white flex m-auto items-center gap-1"
           initial={{ y: isHovered ? "-50%" : "100%" }}
           animate={{ y: isHovered ? "-50%" : "100%" }}
           transition={{ duration: 0.3 }}

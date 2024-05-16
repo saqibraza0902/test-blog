@@ -11,7 +11,7 @@ interface IProp {
 const HomeSection = ({ hero }: IProp) => {
   return (
     <>
-      <div className="h-screen lg:h-[80vh] 2xl:h-[60vh] flex flex-col lg:flex-row gap-14 w-full 2xl:w-[90%]">
+      <div className="h-screen lg:h-[50vh] xl:h-[80vh] 2xl:h-[60vh] flex flex-col lg:flex-row gap-14 w-full 2xl:w-[90%]">
         <div className="pl-4 pr-9 lg:pr-0 lg:pl-0 lg:w-9/12">
           <ContentBox
             className="!bg-brand_blue-300 w-full p-0"
@@ -42,8 +42,8 @@ const HomeSection = ({ hero }: IProp) => {
             </div>
           </ContentBox>
         </div>
-        <div className="lg:w-4/12   rounded-[60px] h-full lg:h-[107%] relative ">
-          <div className="w-full flex justify-start items-start h-full  absolute -top-[30px] right-0">
+        <div className="md:w-1/2 w-full mx-auto xl:w-4/12   rounded-[60px] h-full  xl:h-[107%] relative ">
+          <div className="w-full flex px-4 lg:px-0 justify-start items-start h-full  absolute xl:-top-5 right-0">
             <HomeSwiper />
           </div>
         </div>
